@@ -26,7 +26,7 @@ public class TestController {
     }
 
     @RequestMapping(value = "/bookApiData", method = RequestMethod.POST)
-    public int insertBookApiData() {
+    public String insertBookApiData() {
         return testService.insertBookApiData();
     }
 }

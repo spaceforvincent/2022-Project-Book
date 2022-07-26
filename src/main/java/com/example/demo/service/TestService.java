@@ -8,5 +8,5 @@ import java.util.List;
 public interface TestService {
 
     public List<TestDto> getUserList();
-    public int insertBookApiData();
+    public String insertBookApiData();
 }
