@@ -10,4 +10,8 @@
         INSERT INTO book(ISBN,title,author,book_index,cover,story,publish_date,genre,type,position,number_of_reviews,number_of_rental,content)
         values (#{ISBN},#{title},#{author},#{index},#{cover},#{story},#{publish_date},#{genre},#{type},#{position},#{number_of_reviews},#{number_of_rental},#{content});
     </insert>
+    <insert id="borrow" parameterType="com.example.demo.dto.UsageDto" >
+        INSERT INTO Usage_history(id,ISBN,rental_date,reservation,return_date,overdue,late_fee)
+        values (#{id},#{ISBN},#{rental_date},#{reservation},#{return_date},#{overdue},#{late_fee});
+    </insert>
 </mapper>
