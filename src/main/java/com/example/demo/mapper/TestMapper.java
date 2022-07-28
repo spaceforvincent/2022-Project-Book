@@ -16,4 +16,6 @@ public interface TestMapper {
     int borrow(UsageDto dto);
 
     int return_book(Map<String,String> map);
+
+    List<BookDto> search(String keyword);
 }

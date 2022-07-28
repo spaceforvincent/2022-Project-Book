@@ -23,12 +23,13 @@ public class BookController {
         return bookService.borrow(id,isbns);
     }
     @RequestMapping(value = "/book/return", method = RequestMethod.PUT)
-    public List<String> return_book(@RequestParam("id") String id, @RequestParam("ISBN") List<String> isbns) {
-        return bookService.return_book(id,isbns);
+    public List<String> return_book(@RequestParam("ISBN") List<String> isbns) {
+        return bookService.return_book(isbns);
     }
 
     @RequestMapping(value = "/book/search", method = RequestMethod.GET)
     public List<BookDto> search(@RequestParam("keyword") String keyword) {
         return bookService.search(keyword);
     }
+
 }

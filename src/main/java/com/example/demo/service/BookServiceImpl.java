@@ -34,21 +34,22 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public List<String> return_book(String id, List<String> isbns) {
-        List<String> registList=new ArrayList<String>();
+    public List<String> return_book(List<String> isbns) {
+        List<String> returnList=new ArrayList<>();
         for(String isbn:isbns){
             Map<String,String> map = new HashMap<>();
-            map.put("id",id);
-            map.put("isbn",isbn);
+            map.put("ISBN",isbn);
             if(testMapper.return_book(map)==1)
-                registList.add(isbn);
+                returnList.add(isbn);
         }
 
-        return registList;
+        return returnList;
     }
 
     @Override
     public List<BookDto> search(String keyword) {
-        return null;
+        return testMapper.search("%"+keyword+"%");
+
+
     }
 }

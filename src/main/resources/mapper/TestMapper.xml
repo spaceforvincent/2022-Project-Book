@@ -11,10 +11,13 @@
         values (#{ISBN},#{title},#{author},#{index},#{cover},#{story},#{publish_date},#{genre},#{type},#{position},#{number_of_reviews},#{number_of_rental},#{content});
     </insert>
     <insert id="borrow" parameterType="com.example.demo.dto.UsageDto" >
-        INSERT INTO Usage_history(id,ISBN,rental_date,reservation,return_date,overdue,late_fee)
-        values (#{id},#{ISBN},#{rental_date},#{reservation},#{return_date},#{overdue},#{late_fee});
+        INSERT INTO Usage_history(id,ISBN,rental_date,reservation,return_date,overdue,late_fee,return_check)
+        values (#{id},#{ISBN},#{rental_date},#{reservation},#{return_date},#{overdue},#{late_fee},0);
     </insert>
     <update id="return_book" parameterType="hashmap" >
-        UPDATE Usage_history set return_check='1' where id=#{id} and ISBN=#{ISBN};
+        UPDATE Usage_history set return_check='1' where ISBN=#{ISBN};
     </update>
+    <select id="search" parameterType="String" resultType="com.example.demo.dto.BookDto">
+        SELECT * FROM data.book WHERE title like #{keyword};
+    </select>
 </mapper>

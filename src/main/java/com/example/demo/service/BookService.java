@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BookService {
     List<UsageDto> borrow(String id, List<String> isbns);
-    List<String> return_book(String id, List<String> isbns);
+    List<String> return_book(List<String> isbns);
 
     List<BookDto> search(String keyword);
 }
