@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.BookDto;
 import com.example.demo.dto.UsageDto;
 import com.example.demo.mapper.TestMapper;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class BookServiceImpl implements BookService{
             UsageDto dto = new UsageDto();
             Date date = new Date();
             Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.DATE, 7);
+            cal.add(Calendar.DATE, 14);
             Date return_date = new Date(cal.getTimeInMillis());
             dto.setId(id);
             dto.setISBN(isbn);
@@ -30,5 +31,24 @@ public class BookServiceImpl implements BookService{
         }
 
         return registList;
+    }
+
+    @Override
+    public List<String> return_book(String id, List<String> isbns) {
+        List<String> registList=new ArrayList<String>();
+        for(String isbn:isbns){
+            Map<String,String> map = new HashMap<>();
+            map.put("id",id);
+            map.put("isbn",isbn);
+            if(testMapper.return_book(map)==1)
+                registList.add(isbn);
+        }
+
+        return registList;
+    }
+
+    @Override
+    public List<BookDto> search(String keyword) {
+        return null;
     }
 }

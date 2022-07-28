@@ -14,4 +14,6 @@ public interface TestMapper {
     List<TestDto> getUserList();
     int insertBookApiData(BookDto dto);
     int borrow(UsageDto dto);
+
+    int return_book(Map<String,String> map);
 }
