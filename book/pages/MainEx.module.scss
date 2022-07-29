@@ -1,0 +1,27 @@
+.mainEx {
+  background-color: rgba(15, 29, 160, 0.65);
+  padding: 174px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.frame1 {
+  width: 983px;
+  height: 983px;
+  margin-bottom: 123px;
+  margin-left: 213px;
+}
+.flexWrapperOne {
+  display: flex;
+  align-items: flex-start;
+  &:not(:last-of-type) {
+    margin-bottom: 32px;
+  }
+}
+.btnRent {
+  width: 672px;
+  height: 608px;
+  &:not(:last-of-type) {
+    margin-right: 32px;
+  }
+}
