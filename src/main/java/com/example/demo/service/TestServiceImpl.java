@@ -37,7 +37,7 @@ public class TestServiceImpl implements TestService {
     @Override
     public String insertBookApiData() {
         String key = "5430dc48271200b09a22b179c41d62e38160df77c5c72639035f05cc31e22c40";
-        String url_temp1="http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbgusehdghd1437001&QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101";
+        String url_temp1="http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbgusehdghd1437001&QueryType=ItemNewAll&MaxResults=100&start=1&SearchTarget=Book&output=js&Version=20131101";
         String url_temp2="도스토옙스키";
         // 파싱한 데이터를 저장할 변수
         String result = "";

@@ -4,6 +4,7 @@ import com.example.demo.dto.BookDto;
 import com.example.demo.dto.UsageDto;
 import com.example.demo.mapper.TestMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -14,8 +15,9 @@ import java.util.*;
 public class BookServiceImpl implements BookService{
     private final TestMapper testMapper;
     @Override
-    public List<UsageDto> borrow(String id, List<String> isbns) {
+    public List<UsageDto> borrow(List<String> isbns) {
         List<UsageDto> registList=new ArrayList<UsageDto>();
+        String id=SecurityContextHolder.getContext().getAuthentication().getName();
         for(String isbn:isbns){
             UsageDto dto = new UsageDto();
             Date date = new Date();

@@ -19,8 +19,8 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
     @RequestMapping(value = "/book/borrow", method = RequestMethod.PUT)
-    public List<UsageDto> borrow(@RequestParam("id") String id, @RequestParam("ISBN") List<String> isbns) {
-        return bookService.borrow(id,isbns);
+    public List<UsageDto> borrow(@RequestParam("ISBN") List<String> isbns) {
+        return bookService.borrow(isbns);
     }
     @RequestMapping(value = "/book/return", method = RequestMethod.PUT)
     public List<String> return_book(@RequestParam("ISBN") List<String> isbns) {

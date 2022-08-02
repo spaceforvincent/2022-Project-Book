@@ -3,6 +3,7 @@ package com.example.demo.mapper;
 import com.example.demo.dto.BookDto;
 import com.example.demo.dto.TestDto;
 import com.example.demo.dto.UsageDto;
+import com.example.demo.security.UserDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -18,4 +19,8 @@ public interface TestMapper {
     int return_book(Map<String,String> map);
 
     List<BookDto> search(String keyword);
+
+    UserDto searchByEmail(String email);
+
+    int registUser(UserDto dto);
 }
