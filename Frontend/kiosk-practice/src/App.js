@@ -5,12 +5,15 @@ import {
   Paper,
 } from "@material-ui/core";
 import { createTheme } from "@material-ui/core";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import LendScreen from "./screens/LendScreen";
 import RecommendScreen from "./screens/RecommendScreen";
 import ReturnScreen from "./screens/ReturnScreen";
 import SearchScreen from "./screens/SearchScreen";
+import SignIn from "./screens/SignIn";
+import LogIn from "./screens/LogIn";
+import Profile from './screens/Profile';
 
 const theme = createTheme({
   typography: {
@@ -42,11 +45,14 @@ function App() {
         <Container maxWidth="sm">
           <Paper>
             <Routes>
-            <Route path="/" element={<HomeScreen />} exact></Route>
-            <Route path="/rental" element={<LendScreen />} exact></Route>
-            <Route path="/return" element={<ReturnScreen />} exact></Route>
-            <Route path="/recommend" element={<RecommendScreen />} exact></Route>
-            <Route path="/search" element={<SearchScreen />} exact></Route>
+              <Route path="/" element={<HomeScreen />} exact></Route>
+              <Route path="/rental" element={<LendScreen />} exact></Route>
+              <Route path="/return" element={<ReturnScreen />} exact></Route>
+              <Route path="/recommend" element={<RecommendScreen />} exact></Route>
+              <Route path="/search" element={<SearchScreen />} exact></Route>
+              <Route path="/signin" element={<SignIn />} exact></Route>
+              <Route path="/login" element={<LogIn />} exact></Route>
+              <Route path="/profile" element={<Profile />} exact></Route>
             </Routes>
           </Paper>
         </Container>
