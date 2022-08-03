@@ -1,16 +1,25 @@
 import {
   ThemeProvider,
   CssBaseline,
-  Container,
   Paper,
 } from "@material-ui/core";
 import { createTheme } from "@material-ui/core";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomeScreen from "./screens/HomeScreen";
-import LendScreen from "./screens/LendScreen";
-import RecommendScreen from "./screens/RecommendScreen";
-import ReturnScreen from "./screens/ReturnScreen";
-import SearchScreen from "./screens/SearchScreen";
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
+
+// book
+import Main from "./screens/Book/Main";
+import Borrow from "./screens/Book/Borrow";
+import Recommend from "./screens/Book/Recommend";
+import Return from "./screens/Book/Return";
+import Search from "./screens/Book/Search";
+
+// user
+import SignIn from "./screens/User/SignIn";
+import LogIn from "./screens/User/LogIn";
+import Profile from './screens/User/Profile';
+
+// board
+import Board from './screens/Board/Board';
 
 const theme = createTheme({
   typography: {
@@ -39,17 +48,24 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container maxWidth="sm">
-          <Paper>
-            <Routes>
-            <Route path="/" element={<HomeScreen />} exact></Route>
-            <Route path="/rental" element={<LendScreen />} exact></Route>
-            <Route path="/return" element={<ReturnScreen />} exact></Route>
-            <Route path="/recommend" element={<RecommendScreen />} exact></Route>
-            <Route path="/search" element={<SearchScreen />} exact></Route>
-            </Routes>
-          </Paper>
-        </Container>
+        <Paper>
+          <Routes>
+            {/* book */}
+            <Route path="/main" element={<Main />} exact></Route>
+            <Route path="/rental" element={<Borrow />} exact></Route>
+            <Route path="/return" element={<Return />} exact></Route>
+            <Route path="/recommend" element={<Recommend />} exact></Route>
+            <Route path="/search" element={<Search />} exact></Route>
+            
+            {/* user */}
+            <Route path="/signin" element={<SignIn />} exact></Route>
+            <Route path="/login" element={<LogIn />} exact></Route>
+            <Route path="/profile" element={<Profile />} exact></Route>
+
+            {/* board */}
+            <Route path="/board" element={<Board />} exact></Route>
+          </Routes>
+        </Paper>
       </ThemeProvider>
     </BrowserRouter>
   );
