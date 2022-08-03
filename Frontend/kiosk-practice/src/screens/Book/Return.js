@@ -1,13 +1,13 @@
 import React from "react";
-import { useStyles } from "../styles";
+import { useStyles } from "../../styles";
 import { Box, CardActionArea, Fade, Grid } from "@material-ui/core";
-import { ReactComponent as MainIcon } from "../images/Frame 1.svg";
-import { ReactComponent as BtnMiniReturnPressed } from "../images/btnmini-return-pressed.svg";
-import { ReactComponent as BtnMiniRental } from "../images/btnmini-rental.svg";
-import { ReactComponent as BtnMiniSearch } from "../images/btnmini-search.svg";
-import { ReactComponent as BtnMiniRecommend } from "../images/btnmini-recommend.svg";
-import { ReactComponent as ReturnTitle } from "../images/반납.svg";
-import { ReactComponent as BookUp } from "../images/도서를 올려주세요.svg";
+import { ReactComponent as MainIcon } from "../../images/Frame 1.svg";
+import { ReactComponent as BtnMiniReturnPressed } from "../../images/btnmini-return-pressed.svg";
+import { ReactComponent as BtnMiniRental } from "../../images/btnmini-rental.svg";
+import { ReactComponent as BtnMiniSearch } from "../../images/btnmini-search.svg";
+import { ReactComponent as BtnMiniRecommend } from "../../images/btnmini-recommend.svg";
+import { ReactComponent as ReturnTitle } from "../../images/반납.svg";
+import { ReactComponent as BookUp } from "../../images/도서를 올려주세요.svg";
 import { useNavigate } from 'react-router-dom';
 export default function ReturnScreen() {
   const styles = useStyles();
@@ -26,7 +26,7 @@ export default function ReturnScreen() {
             </Box>
             <Box className={styles.center}>
               <Grid container>
-                <Grid item sm={3} className={styles.footer}>
+                <Grid item sm={12} className={styles.footer}>
                   <BtnMiniRental onClick={() => navigate('/rental')} className={styles.MiniButton}/>
                   <BtnMiniReturnPressed className={styles.MiniButton}/>
                   <BtnMiniRecommend onClick={() => navigate('/recommend')} className={styles.MiniButton}/>
