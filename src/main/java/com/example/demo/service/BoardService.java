@@ -18,7 +18,24 @@ public class BoardService {
 
     public List<BoardDto> noticeAll() {
         return boardMapper.noticeAll();
+    }
 
-
+    public String noticeWrite(BoardDto dto) {
+        String id=SecurityContextHolder.getContext().getAuthentication().getName();
+        Date date = new Date();
+        dto.setId(id);
+        dto.setCreated_date(date);
+        return boardMapper.noticeWrite();
+    }
+    public BoardDto noticeDetail(int noticeId) {
+        return boardMapper.noticeDetail(noticeId);
+    }
+    public String noticeDelete(int noticeId) {
+        String id=SecurityContextHolder.getContext().getAuthentication().getName();
+        if(id.equals(boardMapper.searchIdfromBoardId(noticeId))){
+             boardMapper.noticeDelete(noticeId);
+            return "success";
+        }
+        return "fail";
     }
 }

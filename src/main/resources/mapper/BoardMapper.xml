@@ -4,14 +4,16 @@
 <mapper namespace="com.example.demo.mapper.BoardMapper">
 
 
-    <insert id="borrow" parameterType="com.example.demo.dto.UsageDto" >
-        INSERT INTO usage_history(id,ISBN,rental_date,reservation,return_date,overdue,late_fee,return_check)
-        values (#{id},#{ISBN},#{rental_date},#{reservation},#{return_date},#{overdue},#{late_fee},0);
-    </insert>
-    <update id="return_book" parameterType="hashmap" >
-        UPDATE usage_history set return_check='1' where ISBN=#{ISBN};
-    </update>
-    <select id="search" parameterType="String" resultType="com.example.demo.dto.BookDto">
-        SELECT * FROM data.book WHERE title like #{keyword};
+    <select id="noticeAll" resultType="com.example.demo.dto.BoardDto"  >
+        SELECT * FROM data.board WHERE type='notice' ;
     </select>
+    <select id="searchIdfromBoardId" parameterType="int" resultType="String">
+        SELECT id FROM data.board WHERE board_id = #{boardId};
+    </select>
+    <select id="noticeDetail" parameterType="int" resultType="com.example.demo.dto.BoardDto">
+        SELECT * FROM data.board WHERE board_id = #{boardId};
+    </select>
+    <delete id="noticeDelete" parameterType="int">
+        DELETE FROM data.board WHERE board_id = #{boardId};
+    </delete>
 </mapper>
