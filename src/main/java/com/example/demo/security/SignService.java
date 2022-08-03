@@ -1,6 +1,7 @@
 package com.example.demo.security;
 
 import com.example.demo.mapper.TestMapper;
+import com.example.demo.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,14 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class SignService {
     private final JwtTokenProvider jwtTokenProvider;
-    private final TestMapper testMapper;
+    private final UserMapper userMapper;
     @Transactional
     public UserDto registerMember(UserDto requestDto) {
         //validateDuplicated(requestDto.getEmail());
         UserDto user=requestDto;
         user.setPassword(new BCryptPasswordEncoder().encode(requestDto.getPassword()));
-        if(testMapper.searchByEmail(requestDto.getEmail())==null)
-            testMapper.registUser(user);
+        if(userMapper.searchByEmail(requestDto.getEmail())==null)
+            userMapper.registUser(user);
         else{
 
         }
@@ -45,7 +46,7 @@ public class SignService {
 
     public UserApiDto loginMember(UserApiDto requestDto) throws Exception {
         //Member user = memberRepository.findByEmail(requestDto.getEmail()).orElseThrow(Exception::new);
-        UserDto user = testMapper.searchByEmail(requestDto.getEmail());
+        UserDto user = userMapper.searchByEmail(requestDto.getEmail());
         if(user!=null) {
             if (!new BCryptPasswordEncoder().matches(requestDto.getPassword(), user.getPassword())) ;
             //throw new LoginFailureException();

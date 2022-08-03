@@ -1,6 +1,7 @@
 package com.example.demo.security;
 
 import com.example.demo.mapper.TestMapper;
+import com.example.demo.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,10 +19,10 @@ import java.util.List;
 public class CustomUserDetailsService implements UserDetailsService {
 
     //private final UsersRepository usersRepository;
-    private final TestMapper testMapper;
+    private final UserMapper userMapper;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDto user = testMapper.searchByEmail(username);
+        UserDto user = userMapper.searchByEmail(username);
         List<GrantedAuthority> authorites = new ArrayList<GrantedAuthority>();
 //        if(user!=null){
 //            authorities.add(new SimpleGrantedAuthority(UserDto.getUserRole());

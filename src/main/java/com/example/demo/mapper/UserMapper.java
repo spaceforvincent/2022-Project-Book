@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface TestMapper {
+public interface UserMapper {
 
-    List<TestDto> getUserList();
-    int insertBookApiData(BookDto dto);
+    UserDto searchByEmail(String email);
 
+    int registUser(UserDto dto);
 }
