@@ -23,12 +23,12 @@ export default function HomeScreen(props) {
           <Box className={styles.center}>
             <Grid container>
               <Grid item sm={6} columnSpacing={0}>
-                <BtnRent className={styles.MainButton} onClick={() => navigate('/rental')}></BtnRent>
-                <BtnRecommend className={styles.MainButton} onClick={() => navigate('/recommend')}></BtnRecommend>
+                <BtnRent className={styles.MainButton} onClick={() => navigate('/book/borrow')}></BtnRent>
+                <BtnRecommend className={styles.MainButton} onClick={() => navigate('/book/recommend')}></BtnRecommend>
               </Grid>
               <Grid item sm={6}>
-                <BtnReturn className={styles.MainButton} onClick={() => navigate('/return')}></BtnReturn>
-                <BtnSearch className={styles.MainButton} onClick={() => navigate('/search')}></BtnSearch>
+                <BtnReturn className={styles.MainButton} onClick={() => navigate('/book/return')}></BtnReturn>
+                <BtnSearch className={styles.MainButton} onClick={() => navigate('/book/search')}></BtnSearch>
               </Grid>
             </Grid>
           </Box>

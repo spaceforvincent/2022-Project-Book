@@ -28,10 +28,10 @@ export default function RecommendScreen() {
               <Box className={styles.center}>
                 <Grid container>
                   <Grid item sm={12}>
-                    <BtnMiniRental onClick={() => navigate('/rental')} className={styles.MiniButton} />
-                    <BtnMiniReturn onClick={() => navigate('/return')} className={styles.MiniButton} />
+                    <BtnMiniRental onClick={() => navigate('/book/borrow')} className={styles.MiniButton} />
+                    <BtnMiniReturn onClick={() => navigate('/book/return')} className={styles.MiniButton} />
                     <BtnMiniRecommendPressed className={styles.MiniButton} />
-                    <BtnMiniSearch  onClick={() => navigate('/search')}className={styles.MiniButton} />
+                    <BtnMiniSearch  onClick={() => navigate('/book/search')}className={styles.MiniButton} />
                   </Grid>
                 </Grid>
               </Box>

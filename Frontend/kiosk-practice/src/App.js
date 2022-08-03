@@ -14,12 +14,17 @@ import Return from "./screens/Book/Return";
 import Search from "./screens/Book/Search";
 
 // user
-import SignIn from "./screens/User/SignIn";
+import SignUp from "./screens/User/SignUp";
 import LogIn from "./screens/User/LogIn";
 import Profile from './screens/User/Profile';
 
 // board
-import Board from './screens/Board/Board';
+import Notice from './screens/Board/Notice';
+import Introduce from './screens/Board/Introduce';
+import Suggestion from './screens/Board/Suggestion';
+import FAQ from './screens/Board/FAQ';
+import Complaint from './screens/Board/Complaint';
+import Book_Suggestion from './screens/Board/Book_Suggestion';
 
 const theme = createTheme({
   typography: {
@@ -51,19 +56,25 @@ function App() {
         <Paper>
           <Routes>
             {/* book */}
-            <Route path="/main" element={<Main />} exact></Route>
-            <Route path="/rental" element={<Borrow />} exact></Route>
-            <Route path="/return" element={<Return />} exact></Route>
-            <Route path="/recommend" element={<Recommend />} exact></Route>
-            <Route path="/search" element={<Search />} exact></Route>
+            <Route path="/book/main" element={<Main />} exact></Route>
+            <Route path="/book/borrow" element={<Borrow />} exact></Route>
+            <Route path="/book/return" element={<Return />} exact></Route>
+            <Route path="/book/recommend" element={<Recommend />} exact></Route>
+            <Route path="/book/search" element={<Search />} exact></Route>
             
             {/* user */}
-            <Route path="/signin" element={<SignIn />} exact></Route>
-            <Route path="/login" element={<LogIn />} exact></Route>
-            <Route path="/profile" element={<Profile />} exact></Route>
+            <Route path="/user/signup" element={<SignUp />} exact></Route>
+            <Route path="/user/login" element={<LogIn />} exact></Route>
+            <Route path="/user/profile" element={<Profile />} exact></Route>
 
             {/* board */}
-            <Route path="/board" element={<Board />} exact></Route>
+            <Route path="/board/notice" element={<Notice />} exact></Route>
+            <Route path="/board/introduce" element={<Introduce />} exact></Route>
+            <Route path="/board/suggestion" element={<Suggestion />} exact></Route>
+            <Route path="/board/FAQ" element={<FAQ />} exact></Route>
+            <Route path="/board/complaint" element={<Complaint />} exact></Route>
+            <Route path="/board/bookSuggestion" element={<Book_Suggestion />} exact></Route>
+
           </Routes>
         </Paper>
       </ThemeProvider>

@@ -27,10 +27,10 @@ export default function ReturnScreen() {
             <Box className={styles.center}>
               <Grid container>
                 <Grid item sm={12} className={styles.footer}>
-                  <BtnMiniRental onClick={() => navigate('/rental')} className={styles.MiniButton}/>
+                  <BtnMiniRental onClick={() => navigate('/book/borrow')} className={styles.MiniButton}/>
                   <BtnMiniReturnPressed className={styles.MiniButton}/>
-                  <BtnMiniRecommend onClick={() => navigate('/recommend')} className={styles.MiniButton}/>
-                  <BtnMiniSearch onClick={() => navigate('/search')} className={styles.MiniButton}/>
+                  <BtnMiniRecommend onClick={() => navigate('/book/recommend')} className={styles.MiniButton}/>
+                  <BtnMiniSearch onClick={() => navigate('/book/search')} className={styles.MiniButton}/>
                 </Grid>
               </Grid>
             </Box>

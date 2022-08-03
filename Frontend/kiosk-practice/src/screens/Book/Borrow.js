@@ -28,9 +28,9 @@ export default function LendScreen() {
               <Grid container>
                 <Grid item sm={12} className={styles.footer}>
                   <BtnMiniRentalPressed className={styles.MiniButton}/>
-                  <BtnMiniReturn onClick={() => navigate('/return')} className={styles.MiniButton}/>
-                  <BtnMiniRecommend onClick={() => navigate('/recommend')} className={styles.MiniButton}/>
-                  <BtnMiniSearch onClick={() => navigate('/search')} className={styles.MiniButton}/>
+                  <BtnMiniReturn onClick={() => navigate('/book/return')} className={styles.MiniButton}/>
+                  <BtnMiniRecommend onClick={() => navigate('/book/recommend')} className={styles.MiniButton}/>
+                  <BtnMiniSearch onClick={() => navigate('/book/search')} className={styles.MiniButton}/>
                 </Grid>
               </Grid>
             </Box>

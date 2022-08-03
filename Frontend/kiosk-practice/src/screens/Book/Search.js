@@ -29,15 +29,15 @@ export default function SearchScreen() {
               <Grid container>
                 <Grid item sm={12}>
                   <BtnMiniRental
-                    onClick={() => navigate("/rental")}
+                    onClick={() => navigate("/book/borrow")}
                     className={styles.MiniButton}
                   />
                   <BtnMiniReturn
-                    onClick={() => navigate("/return")}
+                    onClick={() => navigate("/book/return")}
                     className={styles.MiniButton}
                   />
                   <BtnMiniRecommend
-                    onClick={() => navigate("/recommend")}
+                    onClick={() => navigate("/book/recommend")}
                     className={styles.MiniButton}
                   />
                   <BtnMiniSearchPressed className={styles.MiniButton} />

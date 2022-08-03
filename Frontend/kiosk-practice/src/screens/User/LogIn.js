@@ -91,7 +91,7 @@ function Login() {
         </Button>
 
         <Typography
-          endDecorator={<Link href="/signin">회원 가입</Link>}
+          endDecorator={<Link href="/user/signup">회원 가입</Link>}
           fontSize="sm"
           sx={{ alignSelf: 'center' }}
         >
