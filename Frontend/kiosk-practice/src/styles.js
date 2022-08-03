@@ -65,5 +65,8 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
-
+  searchbar: {
+    width: 1000,
+    height: 1000,
+  },
 }));
