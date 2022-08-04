@@ -1,16 +1,30 @@
 import {
   ThemeProvider,
   CssBaseline,
-  Container,
   Paper,
 } from "@material-ui/core";
 import { createTheme } from "@material-ui/core";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomeScreen from "./screens/HomeScreen";
-import LendScreen from "./screens/LendScreen";
-import RecommendScreen from "./screens/RecommendScreen";
-import ReturnScreen from "./screens/ReturnScreen";
-import SearchScreen from "./screens/SearchScreen";
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
+
+// book
+import Main from "./screens/Book/Main";
+import Borrow from "./screens/Book/Borrow";
+import Recommend from "./screens/Book/Recommend";
+import Return from "./screens/Book/Return";
+import Search from "./screens/Book/Search";
+
+// user
+import SignUp from "./screens/User/SignUp";
+import LogIn from "./screens/User/LogIn";
+import Profile from './screens/User/Profile';
+
+// board
+import Notice from './screens/Board/Notice';
+import Introduce from './screens/Board/Introduce';
+import Suggestion from './screens/Board/Suggestion';
+import FAQ from './screens/Board/FAQ';
+import Complaint from './screens/Board/Complaint';
+import Book_Suggestion from './screens/Board/Book_Suggestion';
 
 const theme = createTheme({
   typography: {
@@ -39,17 +53,30 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container maxWidth="sm">
-          <Paper>
-            <Routes>
-            <Route path="/" element={<HomeScreen />} exact></Route>
-            <Route path="/rental" element={<LendScreen />} exact></Route>
-            <Route path="/return" element={<ReturnScreen />} exact></Route>
-            <Route path="/recommend" element={<RecommendScreen />} exact></Route>
-            <Route path="/search" element={<SearchScreen />} exact></Route>
-            </Routes>
-          </Paper>
-        </Container>
+        <Paper>
+          <Routes>
+            {/* book */}
+            <Route path="/book/main" element={<Main />} exact></Route>
+            <Route path="/book/borrow" element={<Borrow />} exact></Route>
+            <Route path="/book/return" element={<Return />} exact></Route>
+            <Route path="/book/recommend" element={<Recommend />} exact></Route>
+            <Route path="/book/search" element={<Search />} exact></Route>
+            
+            {/* user */}
+            <Route path="/user/signup" element={<SignUp />} exact></Route>
+            <Route path="/user/login" element={<LogIn />} exact></Route>
+            <Route path="/user/profile" element={<Profile />} exact></Route>
+
+            {/* board */}
+            <Route path="/board/notice" element={<Notice />} exact></Route>
+            <Route path="/board/introduce" element={<Introduce />} exact></Route>
+            <Route path="/board/suggestion" element={<Suggestion />} exact></Route>
+            <Route path="/board/FAQ" element={<FAQ />} exact></Route>
+            <Route path="/board/complaint" element={<Complaint />} exact></Route>
+            <Route path="/board/bookSuggestion" element={<Book_Suggestion />} exact></Route>
+
+          </Routes>
+        </Paper>
       </ThemeProvider>
     </BrowserRouter>
   );
