@@ -16,8 +16,4 @@
     <delete id="noticeDelete" parameterType="int">
         DELETE FROM data.board WHERE board_id = #{boardId};
     </delete>
-    <insert id="noticeWrite" parameterType="com.example.demo.dto.BoardDto" >
-        INSERT INTO board(id,title,story,type,created_date)
-        values (#{id},#{title},#{story},#{type},#{created_date});
-    </insert>
 </mapper>
