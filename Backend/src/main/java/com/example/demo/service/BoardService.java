@@ -25,7 +25,8 @@ public class BoardService {
         Date date = new Date();
         dto.setId(id);
         dto.setCreated_date(date);
-        return boardMapper.noticeWrite();
+        dto.setType("notice");
+        return boardMapper.noticeWrite(dto);
     }
     public BoardDto noticeDetail(int noticeId) {
         return boardMapper.noticeDetail(noticeId);
