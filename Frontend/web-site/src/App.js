@@ -19,16 +19,24 @@ const App = () => {
     <React.Fragment>
       <Header/>
       <Routes>
+        {/* 메인 */}
         <Route path="/" element={<Home/>}/>
+
+        {/* 회원가입 */}
         <Route path="/sign-up" element={<SignUp/>}/>
+
+        {/* 로그인 */}
         <Route path="/login" element={<Login/>}/>
+
         <Route
           path="/add-board"
           element={
             <PrivateRoute path="/add-board" component={AddBoard}/>
           }
         />
+
         <Route path="/board-list" element={<BoardList/>}/>
+
         <Route
           path="/myboard-list"
           element={
@@ -36,7 +44,9 @@ const App = () => {
             <PrivateRoute path={`${location.pathname}`} component={MyBoardList}/>
           }
         />
+        
         <Route path="/board/:board_id" element={<Board/>}/>
+
         <Route
           path="/edit-board/:board_id"
           element={

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
@@ -29,17 +30,13 @@ const Board = () => {
     }
     getBoard().then(result => setBoard(result)).then(() => setIsLoaded(true));
   }, [])
+  
   return (
     <React.Fragment>
       {isLoaded && (
         <div className="board-wrapper">
           {
-            /*
-              해당 글의 작성자가 로그인을 했을 때만 수정, 삭제 버튼이 보이게 하자.
-              로그인을 한 사용자의 jwt-token에서 user의 ID를 추출한 후,
-              board(해당 글)의 user의 ID를 비교했을 때 같으면 수정, 삭제 버튼이 보이게 한다.
-              ID는 DB에 저장되어 있는 유저의 고유 번호이다.
-             */
+            // 해당 글의 작성자가 로그인을 했을 때만 수정, 삭제 버튼이 보임
             jwtUtils.isAuth(token) && jwtUtils.getId(token) === board.user.id &&
             <div className="edit-delete-button">
               <Button
@@ -68,7 +65,7 @@ const Board = () => {
           <hr/>
           <div className="board-body">
             <div className="board-image">
-              <img src={`/api/image/view/${board_id}`}/>
+              <img src={`/api/image/view/${board_id}`} alt="이미지 없음"/>
             </div>
             <div className="board-title-content">
               <div className="board-title">{board.title}</div>

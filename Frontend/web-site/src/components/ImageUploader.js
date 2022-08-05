@@ -28,7 +28,7 @@ const ImageUploader = ({ preview_URL, setImage }) => {
         style={{ display: "none" }}
       />
       <div className="img-wrapper">
-        <img src={preview_URL} />
+        <img src={preview_URL} alt="이미지 없음"/>
       </div>
       <div className="upload-button">
         <Button

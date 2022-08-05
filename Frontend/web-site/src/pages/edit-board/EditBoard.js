@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {useCallback, useEffect, useState} from "react";
@@ -13,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const EditBoard = () => {
   const token = useSelector(state => state.Auth.token);
+
   const navigate = useNavigate();
 
   // URI 파라미터 가져오기
@@ -46,15 +49,22 @@ const EditBoard = () => {
     try {
       const formData = new FormData();
       formData.append("title", title);
+
       formData.append("content", content);
+
       // 이미지를 선택했을 때만 formdata에 넣음
       formData.append("file", image.image_file);
+
       // 수정할 땐 board_id를 보내자
       formData.append("id", board_id);
+
       await api.put("/api/board", formData);
+
       window.alert("수정이 완료되었습니다.");
+      
       // 이전 페이지로 돌아가기
       window.location.href = `/board/${board_id}`;
+      
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
       toast.error("오류발생! 이모지를 사용하면 오류가 발생할 수 있습니다.", {

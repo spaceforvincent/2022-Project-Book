@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import moment from 'moment';
@@ -61,14 +62,14 @@ const Comments = ({board_id}) => {
       user_id: jwtUtils.getId(token)
     }
 
-    // axios interceptor 사용 : 로그인한 사용자만 쓸 수 있다!
+    // 로그인해야 사용가능
     await api.post('/api/comment', comment);
     alert("댓글 등록 완료");
     window.location.reload();
   }, [content]);
   console.log(commentList)
 
-  /*modal 관련 코드*/
+  /* modal 관련 코드 */
   // 로그인 후 돌아올 수 있게 현재 경로 세팅
   const goLogin = () => {
     setShow(false);
@@ -115,12 +116,6 @@ const Comments = ({board_id}) => {
         ))}
       </div>
       {
-        /*
-          page(현재 페이지)와 pageCount(총 페이지 갯수)가 같으면 서버에서
-          모든 댓글을 가져온 상태이므로 댓글 더보기 버튼이 보이지 않게 한다.
-          page의 초기 상태가 1이기 때문에 컴포넌트가 마운트 된 후 첫페이지를 가져오고 만약 pageCount가 5이고
-          현재 page가 4라면 버튼을 누르는 순간 page가 5가되어 마지막 페이지의 데이터를 가져온다.
-        */
 
         page < pageCount && (
           <div className="comments-footer"
@@ -134,7 +129,7 @@ const Comments = ({board_id}) => {
         )
       }
 
-      {/*modal*/}
+      {/* modal */}
       <Dialog open={show}>
         <DialogContent style={{position: "relative"}}>
           <IconButton

@@ -15,8 +15,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   // 쿼리 파라미터 받아오기
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+
   const dispatch = useDispatch();
+
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("올바른 이메일 형식이 아닙니다!")
@@ -24,6 +26,7 @@ const Login = () => {
     password: Yup.string()
       .required("패스워드를 입력하세요!")
   });
+
   const submit = async (values) => {
     const {email, password} = values;
     try {
@@ -31,7 +34,9 @@ const Login = () => {
         email,
         password,
       });
+
       dispatch(setToken(data.jwt));
+
       const redirectUrl = searchParams.get("redirectUrl");
       toast.success(<h3>로그인 성공</h3>, {
         position: "top-center",
@@ -70,16 +75,19 @@ const Login = () => {
             <div className="input-forms">
               <div className="input-forms-item">
                 <div className="input-label">계정</div>
+
                 <TextField
                   value={values.email}
                   name="email"
                   variant="outlined"
                   onChange={handleChange}
                 />
+
                 <div className="error-message">
                   <ErrorMessage name="email"/>
                 </div>
               </div>
+
               <div className="input-forms-item">
                 <div className="input-label">비밀번호</div>
                 <TextField
@@ -89,10 +97,12 @@ const Login = () => {
                   type="password"
                   onChange={handleChange}
                 />
+
                 <div className="error-message">
                   <ErrorMessage name="password"/>
                 </div>
               </div>
+
               <Button
                 color="primary"
                 variant="contained"

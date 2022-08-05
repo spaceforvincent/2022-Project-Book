@@ -11,7 +11,7 @@ import moment from "moment";
 const MyBoardList = () => {
   const [pageCount, setPageCount] = useState(0);
   const [boardList, setBoardList] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   // user의 id를 알아내기 위해 token 가져오기
   const token = useSelector(state => state.Auth.token);
 
@@ -36,6 +36,7 @@ const MyBoardList = () => {
 
     // 페이지 카운트 구하기
     getTotalBoard().then(result => setPageCount(Math.ceil(result / 4)));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
