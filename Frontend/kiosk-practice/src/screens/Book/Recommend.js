@@ -19,7 +19,9 @@ export default function RecommendScreen() {
           <CardActionArea>
             <Box className={[styles.root, styles.background]}>
               <Box className={[styles.main, styles.center]}>
+                <Box>
                 <LendTitle className={styles.title}></LendTitle>
+                </Box>
                 <MainIcon className={styles.largeLogo}></MainIcon>
               </Box>
               <Box className={styles.center}>

@@ -20,7 +20,7 @@ export const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
   },
 
-  title: { marginTop: 30 },
+  title: { marginTop: 10, marginBottom: 100, width: 500, height: 200 },
 
   ment: {
     width: 1100,
@@ -47,7 +47,14 @@ export const useStyles = makeStyles((theme) => ({
     height: 608,
     width: 672,
   },
-
+  TitleButton: {
+    position: "relative",
+    marginLeft: 150,
+    marginRight: 150,
+    marginBottom:100,
+    height: 150,
+    width: 150,
+  },
   footer: {
     display: "flex",
     flexDirection: "row",
@@ -68,5 +75,30 @@ export const useStyles = makeStyles((theme) => ({
   searchbar: {
     width: 1000,
     height: 1000,
+  },
+  detailUpper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: 30,
+    marginRight: 30,
+  },
+  detailUpperButton: {
+    marginTop: 30,
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  detailBorrowStatus: {
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  RelatedBooks: {
+    backgroundColor: "#223069",
+    padding: 100,
+    justifyContent: "center",
+  },
+  RelatedBookList: {
+    marginLeft: 30,
+    marginRight: 30,
   },
 }));
