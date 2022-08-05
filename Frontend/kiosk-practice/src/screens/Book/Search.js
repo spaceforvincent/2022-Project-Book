@@ -19,9 +19,6 @@ export default function SearchScreen() {
           <Box className={[styles.root, styles.background]}>
             <Box className={[styles.main, styles.center]}>
               <SearchTitle className={styles.title} />
-              {/* <Box className={styles.searchbar}>
-                <SearchBar />
-              </Box> */}
             </Box>
             <Box className={styles.center}>
               <VirtualKeyboard />
