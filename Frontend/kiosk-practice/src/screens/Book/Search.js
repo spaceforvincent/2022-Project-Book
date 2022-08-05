@@ -7,7 +7,7 @@ import { ReactComponent as BtnMiniRecommend } from "../../images/btnmini-recomme
 import { ReactComponent as SearchTitle } from "../../images/도서 검색.svg";
 import { useStyles } from "../../styles";
 import { useNavigate } from "react-router-dom";
-import SearchBar from "../../components/SearchBar";
+import VirtualKeyboard from "../../components/keyboard/Keyboard.tsx";
 
 export default function SearchScreen() {
   const styles = useStyles();
@@ -19,11 +19,9 @@ export default function SearchScreen() {
           <Box className={[styles.root, styles.background]}>
             <Box className={[styles.main, styles.center]}>
               <SearchTitle className={styles.title} />
-              <Box className={styles.searchbar}>
-              <SearchBar/>
-              </Box>
             </Box>
             <Box className={styles.center}>
+              <VirtualKeyboard />
             </Box>
             <Box className={styles.center}>
               <Grid container>
