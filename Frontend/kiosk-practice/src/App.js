@@ -24,7 +24,9 @@ import Introduce from './screens/Board/Introduce';
 import Suggestion from './screens/Board/Suggestion';
 import FAQ from './screens/Board/FAQ';
 import Complaint from './screens/Board/Complaint';
-import Book_Suggestion from './screens/Board/Book_Suggestion';
+import BookSuggestion from './screens/Board/Book_Suggestion';
+import SearchResult from "./screens/Book/SearchResult";
+import Detail from "./screens/Book/Detail";
 
 const theme = createTheme({
   typography: {
@@ -61,6 +63,8 @@ function App() {
             <Route path="/book/return" element={<Return />} exact></Route>
             <Route path="/book/recommend" element={<Recommend />} exact></Route>
             <Route path="/book/search" element={<Search />} exact></Route>
+            <Route path="/book/searchresult" element={<SearchResult />} exact></Route>
+            <Route path="/book/detail/:id" element={<Detail />} exact></Route>
             
             {/* user */}
             <Route path="/user/signup" element={<SignUp />} exact></Route>
@@ -73,7 +77,7 @@ function App() {
             <Route path="/board/suggestion" element={<Suggestion />} exact></Route>
             <Route path="/board/FAQ" element={<FAQ />} exact></Route>
             <Route path="/board/complaint" element={<Complaint />} exact></Route>
-            <Route path="/board/bookSuggestion" element={<Book_Suggestion />} exact></Route>
+            <Route path="/board/booksuggestion" element={<BookSuggestion />} exact></Route>
 
           </Routes>
         </Paper>
