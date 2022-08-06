@@ -1,12 +1,10 @@
-import { HangulImeInputWrapper } from "mole-virtual-keyboard";
+
 import React, { useEffect, useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 // import { Link } from "react-router-dom";
-
-let inputWrapper: HangulImeInputWrapper | undefined = undefined;
 
 export default function VirtualKeyboard() {
   const navigate = useNavigate();

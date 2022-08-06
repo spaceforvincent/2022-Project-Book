@@ -8,7 +8,6 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   background: {
-    backgroundColor: "rgba(15, 29, 160, 0.65)",
     color: "#ffffff",
   },
 
@@ -32,6 +31,7 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
+    backgroundColor: "rgba(15, 29, 160, 0.65)",
   },
 
   largeLogo: {
@@ -58,6 +58,9 @@ export const useStyles = makeStyles((theme) => ({
   footer: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
   },
 
   MiniButton: {
