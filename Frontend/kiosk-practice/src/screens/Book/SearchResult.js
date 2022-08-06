@@ -11,6 +11,7 @@ import { ReactComponent as Home } from "../../images/homeBtn.svg";
 import { ReactComponent as Back } from "../../images/backBtn.svg";
 import { useStyles } from "../../styles";
 export default function SearchResult() {
+    
   const styles = useStyles();
   const navigate = useNavigate();
   return (
