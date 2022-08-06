@@ -19,7 +19,7 @@ const Footer = () => {
     console.log(sampleLocation.pathname);
 
     return (
-        <Box className={styles.center}>
+        <Box className={[styles.center,styles.topmargin]}>
             <Grid container="container">
                 <Grid item="item" sm={12} className={styles.footer}>
                     {
