@@ -20,7 +20,12 @@ export const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
   },
 
-  title: { marginTop: 10, marginBottom: 100, width: 500, height: 200 },
+  title: {
+    marginTop: 10,
+    marginBottom: 100,
+    width: 500,
+    height: 200,
+  },
 
   ment: {
     width: 1100,
@@ -51,7 +56,7 @@ export const useStyles = makeStyles((theme) => ({
     position: "relative",
     marginLeft: 150,
     marginRight: 150,
-    marginBottom:100,
+    marginBottom: 100,
     height: 150,
     width: 150,
   },

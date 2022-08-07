@@ -17,7 +17,7 @@ const SearchContainer = styled.div`
     right: 10px;
     top: 10px;
   }
-  margin-bottom: 600px;
+  margin-bottom: 700px;
   margin-left: 200px;
 `;
 
@@ -33,13 +33,13 @@ const Search = styled.input`
 
 const AutoSearchContainer = styled.div`
   z-index: 3;
-  height: 20vh;
-  width: 950px;
+  height: 26vh;
+  width: 980px;
   background-color: #fff;
   position: absolute;
   top: 100px;
   border: 2px solid;
-  padding: 15px;
+  padding: 5px;
 `;
 
 const AutoSearchWrap = styled.ul``;
@@ -67,22 +67,21 @@ const AutoSearchData = styled.li`
 let inputWrapper: HangulImeInputWrapper | undefined = undefined;
 interface autoDatas {
   //api를 통해 받아온 데이터 interface
-  title: string;
-  author: string;
-  index: number;
-  cover: string;
-  story: string;
-  publish_date: string;
-  genre: string;
-  type: string;
-  position: string;
-  number_of_reviews: number;
-  number_of_rental: number;
-  content: string;
-  isbn:string;
+  title: any;
+  author: any;
+  index: any;
+  cover: any;
+  story: any;
+  publish_date: any;
+  genre: any;
+  type: any;
+  position: any;
+  number_of_reviews: any;
+  number_of_rental: any;
+  content: any;
+  isbn: any;
 }
 export default function VirtualKeyboard() {
-
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isHangul, setHangul] = useState(true);
@@ -92,12 +91,10 @@ export default function VirtualKeyboard() {
   };
   const [keyItems, setKeyItems] = useState<autoDatas[]>([]);
   const fetchData = () => {
-    return fetch(
-      `http://i7d211.p.ssafy.io:8081/book/search?keyword`
-    )
+    return fetch(`http://i7d211.p.ssafy.io:8081/book/search?keyword`)
       .then((res) => res.json())
-      .then((data) => data.slice(0, 100))
-    };
+      .then((data) => data.slice(0, 100));
+  };
 
   interface Book {
     includes(data: string): boolean;
@@ -107,8 +104,7 @@ export default function VirtualKeyboard() {
     const res = await fetchData();
     let b = res
       .filter((list: Book) => list.title.includes(keyword) === true)
-      .slice(0, 5);
-    console.log(b);
+      .slice(0, 3);
     setKeyItems(b);
   };
   useEffect(() => {
@@ -140,8 +136,7 @@ export default function VirtualKeyboard() {
           type="submit"
           sx={{ marginBottom: "20px" }}
           aria-label="search"
-          onClick={() => navigate("/book/searchresult")}
-    
+          onClick={() => navigate("/book/searchresult", { state: {keyword} })}
         >
           <SearchIcon
             sx={{
@@ -159,11 +154,13 @@ export default function VirtualKeyboard() {
                 {keyItems.map((search, idx) => (
                   <AutoSearchData
                     key={search.title}
-                    onClick={() => {
-                      setKeyword(search.title);
-                    }}
+                    onClick={() => navigate(`/book/detail/${search.isbn}`)}
                   >
-                    <a href="#">{search.title}</a>
+                    <span
+                      style={{color: "black" }}
+                    >
+                      {search.title}
+                    </span>
                   </AutoSearchData>
                 ))}
               </AutoSearchWrap>
