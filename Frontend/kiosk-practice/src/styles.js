@@ -25,7 +25,11 @@ export const useStyles = makeStyles((theme) => ({
         fontWeight: "700",
         fontSize: "130px",
         color: "#FFFFFF",
-        textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE"
+        textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
     },
     ment: {
         width: 1100,
@@ -67,7 +71,8 @@ export const useStyles = makeStyles((theme) => ({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        textAlign: "center"
+        textAlign: "center",
+        position: "relative"
     },
     Header: {
         display: "flex",
@@ -79,8 +84,7 @@ export const useStyles = makeStyles((theme) => ({
         paddingBottom: 150
     },
     padding: {
-        paddingTop: 150,
-        paddingBottom: 150
+        paddingTop: 150
     },
     MiniButton: {
         position: "relative",
@@ -131,7 +135,7 @@ export const useStyles = makeStyles((theme) => ({
         textAlign: "center",
         position: "absolute",
         top: "50 %",
-        left: "90 %",
+        left: "45%",
         transform: "translate(-50 %, -50 %)",
         zIndex: "1",
 
@@ -145,5 +149,20 @@ export const useStyles = makeStyles((theme) => ({
         textAlign: "center",
 
         color: "#6069BE"
-    }
+    },
+    outerWrapper: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#223069",
+        marginLeft: 85,
+        marginRight: 85,
+        height: 580,
+    },
+    wrapper: {
+
+    },
+    slide: {
+
+    },
 }));
