@@ -7,7 +7,6 @@ import Footer from './Footer';
 import Header from './Header';
 export default function ReturnScreen() {
   const styles = useStyles();
-  const navigate = useNavigate();
   return (
     <div>
       <Fade in={true}>
