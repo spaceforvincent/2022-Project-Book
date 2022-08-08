@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
     root: {
@@ -6,11 +6,6 @@ export const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column"
     },
-
-    background: {
-        color: "#ffffff"
-    },
-
     main: {
         flex: 1,
         overflow: "auto",
@@ -29,9 +24,8 @@ export const useStyles = makeStyles((theme) => ({
         fontStyle: "normal",
         fontWeight: "700",
         fontSize: "130px",
-        color: "#FFFFFF",   
-        textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE",
-
+        color: "#FFFFFF",
+        textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE"
     },
     ment: {
         width: 1100,
@@ -82,11 +76,11 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         textAlign: "center",
         paddingTop: 150,
-        paddingBottom: 150,
+        paddingBottom: 150
     },
     padding: {
         paddingTop: 150,
-        paddingBottom: 150,
+        paddingBottom: 150
     },
     MiniButton: {
         position: "relative",
@@ -127,5 +121,29 @@ export const useStyles = makeStyles((theme) => ({
     RelatedBookList: {
         marginLeft: 30,
         marginRight: 30
+    },
+    AcceptButton: {
+        verticalAlign: "middle",
+        display: "grid",
+        zIndex: "1"
+    },
+    AcceptButtonText: {
+        textAlign: "center",
+        position: "absolute",
+        top: "50 %",
+        left: "90 %",
+        transform: "translate(-50 %, -50 %)",
+        zIndex: "1",
+
+        fontFamily: 'Noto Sans',
+        fontStyle: "normal",
+        fontWeight: "700",
+        fontSize: "130px",
+        lineHeight: "177px",
+        display: "flex",
+        alignItems: "center",
+        textAlign: "center",
+
+        color: "#6069BE"
     }
 }));
