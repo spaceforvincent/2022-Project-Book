@@ -18,7 +18,7 @@ import { useStyles } from "../../styles";
 export default function Detail() {
   const styles = useStyles();
   const url = window.location.pathname
-  const regex = /[0-9]/g
+  const regex = /[0-9]/g //숫자만 추출
   const navigate = useNavigate();
   const [book, setBook] = useState([]);
   const getBook = async () => {
