@@ -8,7 +8,6 @@ import Footer from "./Footer";
 
 export default function SearchScreen() {
   const styles = useStyles();
-  const navigate = useNavigate();
   return (
     <div>
       <Fade in={true}>

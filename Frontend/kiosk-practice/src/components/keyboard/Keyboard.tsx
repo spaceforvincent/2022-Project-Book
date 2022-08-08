@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
@@ -45,6 +44,7 @@ const AutoSearchContainer = styled.div`
 
 const AutoSearchWrap = styled.ul``;
 const AutoSearchData = styled.li`
+  list-style: none;
   padding: 10px 8px;
   width: 100%;
   font-size: 50px;
@@ -105,7 +105,7 @@ export default function VirtualKeyboard() {
     const res = await fetchData();
     let b = res
       .filter((list: Book) => list.title.includes(keyword) === true)
-      .slice(0, 3);
+      .slice(0, 4);
     setKeyItems(b);
   };
   useEffect(() => {
@@ -124,50 +124,50 @@ export default function VirtualKeyboard() {
 
   return (
     <div style={{ justifyContent: "center" }}>
-      <SearchContainer>
-        <Search
-          value={keyword}
-          onChange={onChangeData}
-          ref={inputRef}
-          onSelect={() => {
-            inputWrapper?.checkChangedSelect();
-          }}
-        />
-        <IconButton
-          type="submit"
-          sx={{ marginBottom: "20px" }}
-          aria-label="search"
-          onClick={() => navigate("/book/searchresult", { state: {keyword} })}
-        >
-          <SearchIcon
-            sx={{
-              position: "absolute",
-              width: 80,
-              height: 80,
-              marginRight: "120px",
+      <form>
+        <SearchContainer>
+          <Search
+            value={keyword}
+            onChange={onChangeData}
+            ref={inputRef}
+            onSelect={() => {
+              inputWrapper?.checkChangedSelect();
             }}
           />
-        </IconButton>
-        {keyItems.length > 0 &&
-          keyword && ( //키워드가 존재하고,해당키워드에 맞는 이름이 있을때만 보여주기
-            <AutoSearchContainer>
-              <AutoSearchWrap>
-                {keyItems.map((search, idx) => (
-                  <AutoSearchData
-                    key={search.title}
-                    onClick={() => navigate(`/book/detail/${search.isbn}`)}
-                  >
-                    <span
-                      style={{color: "black" }}
+          <IconButton
+            type="submit"
+            sx={{ marginBottom: "20px" }}
+            aria-label="search"
+            onClick={() =>
+              navigate("/book/searchresult", { state: { keyword } })
+            }
+          >
+            <SearchIcon
+              sx={{
+                position: "absolute",
+                width: 80,
+                height: 80,
+                marginRight: "120px",
+              }}
+            />
+          </IconButton>
+          {keyItems.length > 0 &&
+            keyword && ( //키워드가 존재하고,해당키워드에 맞는 이름이 있을때만 보여주기
+              <AutoSearchContainer>
+                <AutoSearchWrap>
+                  {keyItems.map((search, idx) => (
+                    <AutoSearchData
+                      key={search.title}
+                      onClick={() => navigate(`/book/detail/${search.isbn}`)}
                     >
-                      {search.title}
-                    </span>
-                  </AutoSearchData>
-                ))}
-              </AutoSearchWrap>
-            </AutoSearchContainer>
-          )}
-      </SearchContainer>
+                      <span style={{ color: "black" }}>{search.title}</span>
+                    </AutoSearchData>
+                  ))}
+                </AutoSearchWrap>
+              </AutoSearchContainer>
+            )}
+        </SearchContainer>
+      </form>
 
       <div style={{ backgroundColor: "#132154" }}>
         <div style={{ marginTop: 20, marginBottom: 20, marginBlock: 20 }}>
