@@ -49,26 +49,28 @@ export default function SearchResult() {
                 "{state.keyword}"에 대한 검색결과입니다.
               </Box>
               <Box>
-              <Grid container>
-              {books.map((book) => (
-                <Grid item xs={6} style={{ marginBottom: 200 }}>
-                  <Box onClick={() => navigate(`/book/detail/${book.isbn}`)}>
-                  <img
-                    src={book.cover}
-                    style={{width:'430px', height: '600px'}}
-                    alt="dummy"
-                  ></img>
-                  <Typography
-                    style={{ marginTop: 10 }}
-                    component="h3"
-                    variant="h3"
-                  >
-                    {book.title}
-                  </Typography>
-                  </Box>
+                <Grid container>
+                  {books.map((book) => (
+                    <Grid item xs={6} style={{ marginBottom: 200 }}>
+                      <Box
+                        onClick={() => navigate(`/book/detail/${book.isbn}`)}
+                      >
+                        <img
+                          src={book.cover}
+                          style={{ width: "400px", height: "500px" }}
+                          alt="dummy"
+                        ></img>
+                        <Typography
+                          style={{ marginTop: 10 }}
+                          component="h3"
+                          variant="h3"
+                        >
+                          {book.title}
+                        </Typography>
+                      </Box>
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
-              </Grid>
               </Box>
             </Box>
             <Box className={styles.center}>

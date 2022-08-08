@@ -1,10 +1,11 @@
-import { HangulImeInputWrapper } from "mole-virtual-keyboard";
+
 import React, { useEffect, useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
+import { HangulImeInputWrapper } from "mole-virtual-keyboard";
 
 const SearchContainer = styled.div`
   display: flex;

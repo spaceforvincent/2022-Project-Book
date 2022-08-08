@@ -1,6 +1,6 @@
 import { CardActionArea, Fade, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as SearchResultTitle } from "../../images/검색 결과.svg";
 import { ReactComponent as ShowReview } from "../../images/리뷰 보기.svg";
@@ -17,7 +17,21 @@ import { ReactComponent as Back } from "../../images/backBtn.svg";
 import { useStyles } from "../../styles";
 export default function Detail() {
   const styles = useStyles();
+  const url = window.location.pathname
+  const regex = /[0-9]/g
   const navigate = useNavigate();
+  const [book, setBook] = useState([]);
+  const getBook = async () => {
+    const json = await (
+      await fetch(
+        `http://i7d211.p.ssafy.io:8081/book/detail?ISBN=${url.match(regex).join('')}`
+      )
+    ).json();
+    setBook(json);
+  };
+  useEffect(() => {
+    getBook();
+  }, []);
   return (
     <div>
       <Fade in={true}>
@@ -37,18 +51,13 @@ export default function Detail() {
               </Box>
               <Box container className={styles.detailUpper}>
                 <img
-                  src="https://dummyimage.com/430x600/000/fff"
+                style={{width:'430px', height:'660px'}}
+                  src={book.cover}
                   alt="dummy"
                 ></img>
                 <Box>
                   <Typography component="h3" variant="h3">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged.
+                    {book.content ? book.content : "표시할 책 내용이 없습니다."}
                   </Typography>
                   <Box>
                     <ShowReview className={styles.detailUpperButton} />
