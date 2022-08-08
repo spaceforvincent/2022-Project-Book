@@ -10,18 +10,22 @@ const Header = () => {
   const navigate = useNavigate();
   const token = useSelector(state => state.Auth.token);
   const [isAuth, setIsAuth] = useState(false);
+
   useEffect(() => {
     if (jwtUtils.isAuth(token)) {
       setIsAuth(true);
+
     } else {
       setIsAuth(false);
     }
   }, [token]);
+
   const logout = async () => {
     await dispatch(setToken(""));
     alert("로그아웃 되었습니다.");
     navigate("/");
   };
+  
   return (
     <div className="header-wrapper">
       <div className="header-title">

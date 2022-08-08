@@ -21,8 +21,9 @@ const Login = () => {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .email("올바른 이메일 형식이 아닙니다!")
+      //.email("올바른 이메일 형식이 아닙니다!")
       .required("이메일을 입력하세요!"),
+
     password: Yup.string()
       .required("패스워드를 입력하세요!")
   });
@@ -30,14 +31,14 @@ const Login = () => {
   const submit = async (values) => {
     const {email, password} = values;
     try {
-      const {data} = await axios.post("/api/auth/signin", {
-        email,
-        password,
+      const {data} = await axios.post("http://i7d211.p.ssafy.io:8081/user/login", {
+        email, password,
       });
-
-      dispatch(setToken(data.jwt));
+        
+      dispatch(setToken(data.token));
 
       const redirectUrl = searchParams.get("redirectUrl");
+
       toast.success(<h3>로그인 성공</h3>, {
         position: "top-center",
         autoClose: 2000
@@ -46,6 +47,7 @@ const Login = () => {
       setTimeout(()=> {
         if (redirectUrl) {
           navigate(redirectUrl);
+
         } else {
           navigate("/");
         }

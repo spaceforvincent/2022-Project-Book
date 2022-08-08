@@ -1,23 +1,26 @@
 import React from "react";
 import { useStyles } from "../../styles";
-import { Box, CardActionArea, Fade, Grid } from "@material-ui/core";
-import { useNavigate } from "react-router-dom";
+import { Box } from "@material-ui/core";
 import { useLocation } from "react-router-dom"
 
-const Footer = () => {
+const Borrow_booklist = () => {
     const styles = useStyles();
-    const sampleLocation = useLocation();
-    console.log(sampleLocation.pathname);
 
     return (
-        <Box className={[styles.center, styles.topmargin]}>
-            <Grid container="container">
-                <Grid item="item" sm={12} className={styles.footer}>
-
-                </Grid>
-            </Grid>
+        <Box className={styles.outerWrapper}>
+            <Box className={styles.wrapper}>
+                <Box className={styles.slide}>초특가 야놀자!!</Box>
+                <Box className={styles.slide}>초특가 야놀자!!</Box>
+                <Box className={styles.slide}>초특가 야놀자!!</Box>
+                <Box className={styles.slide}>초특가 야놀자!!</Box>
+                <Box className={styles.slide}>초특가 야놀자!!</Box>
+                <Box className={styles.slide}>초특가 야놀자!!</Box>
+                <Box className={styles.slide}>초특가 야놀자!!</Box>
+                <Box className={styles.slide}>초특가 야놀자!!</Box>
+                <Box className={styles.slide}>초특가 야놀자!!</Box>
+            </Box>
         </Box>
     );
 }
 
-export default Footer;
+export default Borrow_booklist;
