@@ -57,18 +57,21 @@ const SignUp = () => {
     const {email, password, phonenumber, address, name, gender, birthday} = values;
 
     try {
-      await axios.post("http://i7d211.p.ssafy.io:8081/user/signUp", 
-      JSON.stringify({email, password, phonenumber, address, name, gender, birthday})
+      const {data} = await axios.post("http://i7d211.p.ssafy.io:8081/user/signUp", 
+      JSON.stringify({email, password, phonenumber, address, name, gender, birthday,})
       );
 
-      toast.success(<h3>회원가입이 완료되었습니다.<br/>로그인 하세요.</h3>, {
-        position: "top-center",
-        autoClose: 2000
-      });
-      
-      setTimeout(()=> {
-        navigate("/login");
-      }, 2000);
+      // 회원가입 성공 -> 데이터 반환값 존재
+      if (data.name) {
+        toast.success(<h3>회원가입이 완료되었습니다.<br/>로그인 하세요.</h3>, {
+          position: "top-center",
+          autoClose: 2000
+        });
+        
+        setTimeout(()=> {
+          navigate("/login");
+        }, 2000);
+      }
 
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
