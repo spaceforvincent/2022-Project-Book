@@ -11,7 +11,8 @@ export const useStyles = makeStyles((theme) => ({
     overflow: "auto",
     flexDirection: "column",
     display: "flex",
-    color: "#ffffff",
+    backgroundColor: "rgba(96, 105, 190, 1)",
+    color:"#FFFFFF"
   },
   title: {
     marginTop: 10,
@@ -36,7 +37,7 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    backgroundColor: "rgba(15, 29, 160, 0.65)",
+    backgroundColor: "rgba(96, 105, 190, 1)"
   },
 
   largeLogo: {

@@ -28,39 +28,35 @@ export default function SearchResult() {
       <Fade in={true}>
         <CardActionArea>
           <Box className={[styles.root, styles.background]}>
-            <Box
-              style={{ backgroundColor: "rgba(15, 29, 160, 0.65)" }}
-              className={[styles.main]}
-            >
+            <Box className={[styles.main]}>
               <Box
                 style={{
-                  display: "flex",
                   width: "100%",
-                  justifyContent: "center",
                   position: "fixed",
-                  backgroundColor: "rgba(15, 29, 160, 1)",
-                }}
+                  backgroundColor: 'rgba(96, 105, 190, 1)'
+                                }}
               >
                 <Header />
-              </Box>
               <Box
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  marginTop: 500,
-                  marginLeft:400,
-                  position: "fixed",
+                  position: "relative",
                   justifyContent: "center",
-                  backgroundColor: "rgba(15, 29, 160, 1)"
+                  backgroundColor: "rgba(96, 105, 190, 1)", 
                 }}
               >
                 "{state.keyword}"의 검색결과입니다.
               </Box>
+              </Box>
+
               <Box
-                className={styles.center}
+                className={[styles.main]}
                 style={{
-                  marginTop:650,
-                  backgroundColor: "rgba(15, 29, 160, 0.01)",
+                  marginTop: 600,
+                  paddingTop:100,
+                  justifyContent:'center',
+                  backgroundColor: "rgba(96, 105, 190, 1)",
                 }}
               >
                 {books ? (
@@ -76,6 +72,7 @@ export default function SearchResult() {
                             alt="dummy"
                           ></img>
                           <Typography
+                            noWrap
                             style={{ marginTop: 10 }}
                             component="h3"
                             variant="h3"
