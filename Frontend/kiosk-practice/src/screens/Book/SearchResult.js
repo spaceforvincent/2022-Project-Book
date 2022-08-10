@@ -43,7 +43,7 @@ export default function SearchResult() {
                                                             xs={6}
                                                             style={{
                                                               marginTop: 100,
-                                                                marginBottom: 100
+                                                            marginBottom: 100
                                                             }}>
                                                             <Box onClick={() => navigate(`/book/detail/${book.isbn}`)}>
                                                                 <img

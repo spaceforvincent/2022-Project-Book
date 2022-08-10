@@ -8,12 +8,12 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     background: {
-        background: "6069BE",
+        background: "6069BE"
     },
 
     booklistBox: {
         width: 500,
-        height: 200,
+        height: 200
     },
 
     main: {
@@ -41,7 +41,7 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
-        backgorund: "#6069BE",
+        backgorund: "#6069BE"
     },
     subTitleMessage: {
         fontFamily: "'Noto Sans'",
@@ -72,8 +72,6 @@ export const useStyles = makeStyles((theme) => ({
     },
 
     largeLogo: {
-        position: "relative",
-        display: "flex",
         width: 983,
         marginTop: 30,
         marginBottom: 30
@@ -93,6 +91,22 @@ export const useStyles = makeStyles((theme) => ({
         height: 150,
         width: 150
     },
+    miniMessage: {
+        fontFamily: "'Noto Sans'",
+        fontStyle: "normal",
+        fontWeight: "700",
+        fontSize: "50px",
+        color: "#FFFFFF",
+        textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        backgorund: "#6069BE",
+        marginTop: 100,
+        marginBottom: 100,
+    },
     footer: {
         display: "flex",
         flexDirection: "row",
@@ -106,10 +120,10 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
-        paddingTop: 150,
+        paddingTop: 100,
     },
     padding: {
-        paddingTop: 150,
+        paddingTop: 100
     },
     searchResult: {
         display: "flex",
@@ -163,26 +177,25 @@ export const useStyles = makeStyles((theme) => ({
     AcceptButton: {
         verticalAlign: "middle",
         display: "grid",
-        zIndex: "1"
+        justifyContent: "center"
     },
     AcceptButtonText: {
-        position: "absolute",
-        top: "50 %",
-        left: "150 %",
+        position: "relative",
+        top: "-300px",
         transform: "translate(-50 %, -50 %)",
         zIndex: "1",
         fontFamily: "Noto Sans",
         fontStyle: "normal",
         fontWeight: "700",
         fontSize: "130px",
-        lineHeight: "177px",
-        display: "flex",
-        color: "#6069BE"
+        lineHeight: "177px"
     },
     wrapper: {
         overflow: "scroll",
+        overflow: "auto",
+        whiteSpace: "nowrap",
         width: 1300,
-        height: 700,
+        height: 900,
         background: "#223069",
         boxShadow: "inset 4px 16px 40px rgba(0, 0, 0, 0.5), inset 0px 4px 4px rgba(0, 0, 0, 0.25)"
     },
@@ -193,14 +206,24 @@ export const useStyles = makeStyles((theme) => ({
         background: "#223069",
         boxShadow: "inset 4px 16px 40px rgba(0, 0, 0, 0.5), inset 0px 4px 4px rgba(0, 0, 0, 0.25)"
     },
+    innerwrapBtn: {
+        float: "left",
+        width: "50%",
+        display: "grid",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
+    },
     outerWrapper: {
         verticalAlign: "middle",
         display: "grid",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        textAlign: "center"
-    },    
+        textAlign: "center",
+        whiteSpace: "nowrap",
+    },
     outerWrapperSearch: {
         verticalAlign: "middle",
         display: "grid",
@@ -209,4 +232,22 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         textAlign: "center"
     },
+    boxBtn: {
+        width: 500,
+        height: 200,
+        background: "#223069",
+        boxShadow: "inset 4px 16px 40px rgba(0, 0, 0, 0.5), inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
+        marginTop: 10,
+        marginBottom: 100,
+        lineHeight: "100%",
+    },
+    boxBtnCenter: {
+        verticalAlign: "middle",
+        display: "grid",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        whiteSpace: "nowrap",
+    }
 }));

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {useStyles} from "../../styles";
 import {ReactComponent as Accept} from "../../images/accept+.svg";
 import {ReactComponent as Cancle} from "../../images/cancle+.svg";
-import {Box, Grid} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import Footer from "./Footer";
 
 import Borrow_booklist from './Borrow_booklist';
@@ -28,24 +28,7 @@ const Borrow1 = () => {
         return todayMonth + "월" + todayDate + "일 " + dayOfWeek + "요일";
     }
 
-    const weeksAfterdayTime = () => {
-        let now = new Date();
-        let weeksAfter = new Date(now.setDate(now.getDate() + 14));
-        let todayMonth = weeksAfter.getMonth() + 1;
-        let todayDate = weeksAfter.getDate();
-        const week = [
-            '일',
-            '월',
-            '화',
-            '수',
-            '목',
-            '금',
-            '토'
-        ];
-        let dayOfWeek = week[weeksAfter.getDay()];
 
-        return todayMonth + "월" + todayDate + "일 " + dayOfWeek + "요일";
-    }
     return (
         <Box className={styles.center}>
             <Box className={[styles.TitleMessage, styles.padding]}>
@@ -54,11 +37,9 @@ const Borrow1 = () => {
             </Box>
             <Box className={styles.padding}/>
             <Borrow_booklist/>
-            <Box className={[styles.TitleMessage, styles.padding]}>
-                {weeksAfterdayTime().slice(0, 9)}
-            </Box>
+
             <Box className={[styles.TitleMessage]}>
-                <b>까지</b> 대여 <b>합니다.</b>
+                반납&nbsp;합니다
             </Box>
 
             <Box className={styles.wrapBtn}>

@@ -25,13 +25,19 @@ import {useLocation} from "react-router-dom"
 //     }
 // }
 
-
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:9994");
 
 const Footer = () => {
     const styles = useStyles();
     const sampleLocation = useLocation();
     const navigate = useNavigate();
     console.log(sampleLocation.pathname);
+
+    const sendMsg = (answer) => {
+        console.log(answer);
+        socket.emit("inputdata", answer);
+      };
 
     return (
         <Box >
@@ -42,28 +48,28 @@ const Footer = () => {
                             ? <BtnMiniRentalPressed className={styles.MiniButton}/>
                             : <BtnMiniRental
                                     className={styles.MiniButton}
-                                    onClick={() => navigate("/book/borrow")}/>
+                                    onClick={() => {navigate("/book/borrow"); sendMsg(1) }}/>
                     }
                     {
                         sampleLocation.pathname === "/book/return"
                             ? <BtnMiniReturnPressed className={styles.MiniButton}/>
                             : <BtnMiniReturn
                                     className={styles.MiniButton}
-                                    onClick={() => navigate("/book/return")}/>
+                                    onClick={() => {navigate("/book/return"); sendMsg(2) }}/>
                     }
                     {
                         sampleLocation.pathname === "/book/recommend"
                             ? <BtnMiniRecommendPressed className={styles.MiniButton}/>
                             : <BtnMiniRecommend
                                     className={styles.MiniButton}
-                                    onClick={() => navigate("/book/recommend")}/>
+                                    onClick={() => {navigate("/book/recommend"); sendMsg(3) }}/>
                     }
                     {
                         sampleLocation.pathname === "/book/search"
                             ? <BtnMiniSearchPressed className={styles.MiniButton}/>
                             : <BtnMiniSearch
                                     className={styles.MiniButton}
-                                    onClick={() => navigate("/book/search")}/>
+                                    onClick={() => {navigate("/book/search"); sendMsg(4) }}/>
                     }
                 </Grid>
             </Grid>

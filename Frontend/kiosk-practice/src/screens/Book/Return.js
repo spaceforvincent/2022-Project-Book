@@ -1,29 +1,23 @@
 import React from "react";
-import { useStyles } from "../../styles";
-import { Box, CardActionArea, Fade, Grid } from "@material-ui/core";
-import { ReactComponent as MainIcon } from "../../images/Frame 1.svg";
-import { useNavigate } from "react-router-dom";
-import Footer from './Footer';
-import Header from './Header';
+import {useStyles} from "../../styles";
+import {Box, CardActionArea, Fade, Grid} from "@material-ui/core";
+import {ReactComponent as MainIcon} from "../../images/Frame 1.svg";
+import {useNavigate} from "react-router-dom";
+
+import Return1 from "./Return1";
+import Return2 from "./Return2";
+import Return3 from "./Return3";
+
+
 export default function ReturnScreen() {
-  const styles = useStyles();
-  return (
-    <div>
+    const styles = useStyles();
+    return (
       <Fade in={true}>
         <CardActionArea>
-          <Box className={[styles.root, styles.background]}>
-            <Header />
-            <Box className={[styles.main, styles.center]}>
-              <MainIcon className={styles.largeLogo}></MainIcon>
-            </Box>
-            <Box className={styles.center}>
-              <Box className={[styles.TitleMessage, styles.padding]}>안녕하세요!</Box>
-            </Box>
-            <Footer />
-          </Box>
+          <Return1 />
+          <Return2 />
+          <Return3 />
         </CardActionArea>
       </Fade>
-
-    </div>
-  );
+    );
 }
