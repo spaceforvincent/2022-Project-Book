@@ -1,28 +1,32 @@
 import axios from "axios";
-import {toast, ToastContainer} from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {useNavigate} from "react-router-dom";
 import {Formik} from "formik";
 import * as Yup from "yup";
+
+// css 영역
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {Button, TextField} from "@mui/material";
-import {useNavigate} from "react-router-dom";
 import "./signUp.scss";
+
+
 
 const SignUp = () => {
   const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      //.email("올바른 이메일 형식이 아닙니다.")
+      .email("올바른 이메일 형식이 아닙니다.")
       .required("이메일을 입력하세요."),
 
     password: Yup.string()
-      //.min(8, "비밀번호는 최소 8자리 이상입니다.")
+      .min(8, "비밀번호는 최소 8자리 이상입니다.")
       .max(16, "비밀번호는 최대 16자리입니다.")
       .required("패스워드를 입력하세요.")
-      // .matches(
-      //   // eslint-disable-next-line
-      //   /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[^\s]*$/,
-      //   "알파벳, 숫자, 공백을 제외한 특수문자를 모두 포함해야 합니다."
-      // )
+      .matches(
+      // eslint-disable-next-line
+        /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[^\s]*$/,
+        "알파벳, 숫자, 공백을 제외한 특수문자를 모두 포함해야 합니다."
+      )
       ,
 
     password2: Yup.string()
@@ -56,9 +60,10 @@ const SignUp = () => {
   const submit = async (values) => {
     const {email, password, phonenumber, address, name, gender, birthday} = values;
 
+    
     try {
       const {data} = await axios.post("http://i7d211.p.ssafy.io:8081/user/signUp", 
-      JSON.stringify({email, password, phonenumber, address, name, gender, birthday,})
+      {email, password, phonenumber, address, name, gender, birthday,}
       );
 
       // 회원가입 성공 -> 데이터 반환값 존재
@@ -111,7 +116,7 @@ const SignUp = () => {
 
               <div className="input-forms-item">
                 <div className="input-label">비밀번호</div>
-                <TextField
+                <TextField autoComplete="off"
                   value={values.password}
                   name="password"
                   variant="outlined"
@@ -125,7 +130,7 @@ const SignUp = () => {
 
               <div className="input-forms-item">
                 <div className="input-label">비밀번호 확인</div>
-                <TextField
+                <TextField autoComplete="off"
                   value={values.password2}
                   name="password2"
                   variant="outlined"

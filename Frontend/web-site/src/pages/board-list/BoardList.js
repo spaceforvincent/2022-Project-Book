@@ -28,8 +28,8 @@ const BoardList = () => {
 
     // 게시물 전체 갯수 구하기
     const getTotalBoard = async () => {
-      const {data} = await axios.get("");
-      return data.total;
+      const {data} = await axios.get("http://i7d211.p.ssafy.io:8081/board/boardAll?boardType=notice");
+      return data.length;
     }
 
     // 페이지 카운트 구하기: (전체 board 갯수) / (한 페이지 갯수) 결과 올림
@@ -47,7 +47,7 @@ const BoardList = () => {
           <Card key={item.id} username={item.user.username}
                 date={moment(item.created).add(9, "hour").format('YYYY-MM-DD')}
                 title={item.title} content={item.content}
-                board_id={item.id} img_url={`/api/image/view/${item.id}`}
+                // board_id={item.id} img_url={`/api/image/view/${item.id}`}
           />
         ))}
       </div>
