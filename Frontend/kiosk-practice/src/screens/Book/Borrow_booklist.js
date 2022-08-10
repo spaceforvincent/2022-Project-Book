@@ -7,7 +7,7 @@ const Borrow_booklist = () => {
     const styles = useStyles();
 
     return (
-        <Box className={styles.outerWrapper}>
+        <Box className={[styles.outerWrapper]}>
             <Box className={styles.wrapper}>
                 <Box className={styles.slide}>초특가 야놀자!!</Box>
                 <Box className={styles.slide}>초특가 야놀자!!</Box>
