@@ -11,6 +11,11 @@ export const useStyles = makeStyles((theme) => ({
         background: "6069BE",
     },
 
+    booklistBox: {
+        width: 500,
+        height: 200,
+    },
+
     main: {
         flex: 1,
         overflow: "auto",
@@ -37,6 +42,22 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         textAlign: "center",
         backgorund: "#6069BE",
+    },
+    subTitleMessage: {
+        fontFamily: "'Noto Sans'",
+        fontStyle: "normal",
+        fontWeight: "700",
+        fontSize: "50px",
+        color: "#FFFFFF",
+        textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        backgorund: "#6069BE",
+        marginTop: 100,
+        marginBottom: 100
     },
     ment: {
         width: 1100,
@@ -86,7 +107,6 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         textAlign: "center",
         paddingTop: 150,
-        paddingBottom: 150
     },
     padding: {
         paddingTop: 150,
@@ -166,6 +186,13 @@ export const useStyles = makeStyles((theme) => ({
         background: "#223069",
         boxShadow: "inset 4px 16px 40px rgba(0, 0, 0, 0.5), inset 0px 4px 4px rgba(0, 0, 0, 0.25)"
     },
+    wrapperSearch: {
+        overflow: "scroll",
+        width: 1300,
+        height: 1630,
+        background: "#223069",
+        boxShadow: "inset 4px 16px 40px rgba(0, 0, 0, 0.5), inset 0px 4px 4px rgba(0, 0, 0, 0.25)"
+    },
     outerWrapper: {
         verticalAlign: "middle",
         display: "grid",
@@ -173,5 +200,13 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center"
-    }
+    },    
+    outerWrapperSearch: {
+        verticalAlign: "middle",
+        display: "grid",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
+    },
 }));

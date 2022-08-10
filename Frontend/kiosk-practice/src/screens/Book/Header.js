@@ -13,7 +13,7 @@ const Header = () => {
     console.log(sampleLocation.pathname);
 
     return (
-        <Box className={styles.center}>
+        <Box>
             <Grid item="item" sm={12} className={styles.Header}>
                 <Home className={styles.TitleButton} onClick={() => navigate("/book/main")} /> {
                     sampleLocation.pathname === "/book/borrow"

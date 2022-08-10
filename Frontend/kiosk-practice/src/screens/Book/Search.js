@@ -12,11 +12,11 @@ export default function SearchScreen() {
     <div>
       <Fade in={true}>
         <CardActionArea>
-          <Box className={[styles.root, styles.background]}>
+          <Box className={styles.center}>
           <Header />
-            <Box className={[styles.main, styles.center]}>
+            <Box className={[styles.main]}>
             </Box>
-            <Box className={styles.center}>
+            <Box>
               <VirtualKeyboard />
             </Box>
            <Footer />
