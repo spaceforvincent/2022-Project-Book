@@ -31,27 +31,34 @@ const Login = () => {
   const submit = async (values) => {
     const {email, password} = values;
     try {
-      const {data} = await axios.post("http://i7d211.p.ssafy.io:8081/user/login", {
-        email, password,
-      });
-        
-      dispatch(setToken(data.token));
+      const {data} = await axios.post("http://i7d211.p.ssafy.io:8081/user/login", 
+      {email, password,}
+      );
+      
+      // 로그인 성공시 -> 토큰값 있음
+      if (data.token) {
+        dispatch(setToken(data.token));
 
-      const redirectUrl = searchParams.get("redirectUrl");
+        const redirectUrl = searchParams.get("redirectUrl");
 
-      toast.success(<h3>로그인 성공</h3>, {
-        position: "top-center",
-        autoClose: 2000
-      });
-   
-      setTimeout(()=> {
-        if (redirectUrl) {
-          navigate(redirectUrl);
+        toast.success(<h3>로그인 성공</h3>, {
+          position: "top-center",
+          autoClose: 2000
+        });
+    
+        setTimeout(()=> {
+          // 로그인을 요구하는 페이지에서 온 경우 돌려보냄
+          if (redirectUrl) {
+            navigate(redirectUrl);
 
-        } else {
-          navigate("/");
-        }
-      }, 2000);
+          } else {
+            navigate("/");
+          }
+        }, 2000);
+
+      } else {
+        alert("이메일 혹은 비밀번호가 틀렸습니다.")
+      }
 
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력

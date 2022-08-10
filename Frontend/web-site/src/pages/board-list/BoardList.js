@@ -19,16 +19,19 @@ const BoardList = () => {
     // 페이지에 해당하는 게시물 가져오기
     const getBoardList = async () => {
       const page_number = searchParams.get("page");
-      const {data} = await axios.get(`/api/board/list?page_number=${page_number}&page_size=4`);
+      const {data} = await axios.get("");
       return data;
     }
+
     // 현재 페이지에 해당하는 게시물로 상태 변경하기
     getBoardList().then(result => setBoardList(result));
+
     // 게시물 전체 갯수 구하기
     const getTotalBoard = async () => {
-      const {data} = await axios.get("/api/board/count");
+      const {data} = await axios.get("");
       return data.total;
     }
+
     // 페이지 카운트 구하기: (전체 board 갯수) / (한 페이지 갯수) 결과 올림
     getTotalBoard().then(result => setPageCount(Math.ceil(result / 4)));
   }, [])
@@ -36,8 +39,9 @@ const BoardList = () => {
   return (
     <div className="boardList-wrapper">
       <div className="boardList-header">
-        전체 게시물 📝
+        전체 게시물
       </div>
+
       <div className="boardList-body">
         {boardList.map((item, index) => (
           <Card key={item.id} username={item.user.username}
@@ -47,6 +51,7 @@ const BoardList = () => {
           />
         ))}
       </div>
+
       <div className="boardList-footer">
         {/*페이지네이션: count에 페이지 카운트, page에 페이지 번호 넣기*/}
         <Pagination

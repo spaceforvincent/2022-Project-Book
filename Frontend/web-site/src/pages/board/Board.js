@@ -20,8 +20,10 @@ const Board = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const token = useSelector(state => state.Auth.token);
   const navigate = useNavigate();
+
   // modal이 보이는 여부 상태
   const [show, setShow] = useState(false);
+  
   // board 가져오기
   useEffect(() => {
     const getBoard = async () => {
