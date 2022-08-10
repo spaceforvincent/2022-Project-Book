@@ -21,7 +21,7 @@ const SignUp = () => {
     password: Yup.string()
       .min(8, "비밀번호는 최소 8자리 이상입니다.")
       .max(16, "비밀번호는 최대 16자리입니다.")
-      .required("패스워드를 입력하세요.")
+      .required("비밀번호를 입력하세요.")
       .matches(
       // eslint-disable-next-line
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[^\s]*$/,
@@ -37,7 +37,7 @@ const SignUp = () => {
       .required("전화번호를 입력하세요."),
 
     address: Yup.string()
-      .required("이름을 입력하세요."),
+      .required("주소를 입력하세요."),
 
     name: Yup.string()
       .min(2, "이름은 최소 2글자 이상입니다.")
@@ -50,9 +50,11 @@ const SignUp = () => {
       .required("이름을 입력하세요."),
 
     gender: Yup.string()
+      .oneOf(["남성","여성"],
+        "셩별은 '남성' 혹은 '여성'으로 입력해야 합니다.")
       .required("성별을 입력하세요."),
-      
-    birthday: Yup.string()
+
+    birthday: Yup.date()
       .required("생일을 입력하세요."),
     
   });
@@ -60,10 +62,13 @@ const SignUp = () => {
   const submit = async (values) => {
     const {email, password, phonenumber, address, name, gender, birthday} = values;
 
-    
+    const inputData = JSON.stringify({ email, password, phonenumber, address, name, gender, birthday })
+
     try {
+      console.log(inputData)
+
       const {data} = await axios.post("http://i7d211.p.ssafy.io:8081/user/signUp", 
-      {email, password, phonenumber, address, name, gender, birthday,}
+      inputData
       );
 
       // 회원가입 성공 -> 데이터 반환값 존재

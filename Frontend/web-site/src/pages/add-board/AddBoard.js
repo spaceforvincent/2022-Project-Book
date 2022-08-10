@@ -35,7 +35,8 @@ const AddBoard = () => {
       // formData.append("file", image.image_file);
 
       const {data} = await axios.put("http://i7d211.p.ssafy.io:8081/board/board", 
-     {"id" : jwtUtils.getId(token),"title" : title, "story" : content,"type" : "notice", });
+      JSON.stringify({"id" : jwtUtils.getId(token),"title" : title, "story" : content,"type" : "notice", }),
+      { headers: authHeader() });
 
       console.log(data)
 
