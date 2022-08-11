@@ -138,12 +138,12 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     marginLeft: 50,
     marginRight: 50,
-    margin: 180,
+    margin: 110,
   },
   detailUpperButton: {
-    marginTop: 30,
     marginLeft: 20,
     marginRight: 20,
+    marginBottom: 100
   },
   detailBorrowStatus: {
     marginLeft: 10,
@@ -158,6 +158,11 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: 30,
     marginRight: 30,
   },
+  horizontalScroll: {
+    display:'flex', 
+    overflow: 'auto', 
+    whiteSpace: 'nowrap'
+  }, 
   AcceptButton: {
     verticalAlign: "middle",
     display: "grid",
@@ -225,4 +230,8 @@ export const useStyles = makeStyles((theme) => ({
     boxShadow: 24,
     p: 4,
   },
+  star:{
+    width:300,
+    height:60
+  }
 }));

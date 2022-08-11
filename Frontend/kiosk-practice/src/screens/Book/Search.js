@@ -1,10 +1,9 @@
 import { Box, CardActionArea, Fade} from "@material-ui/core";
 import React from "react";
 import { useStyles } from "../../styles";
-import { useNavigate } from "react-router-dom";
 import VirtualKeyboard from "../../components/keyboard/Keyboard.tsx";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export default function SearchScreen() {
   const styles = useStyles();

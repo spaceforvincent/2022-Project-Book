@@ -24,6 +24,7 @@ const SearchContainer = styled.div`
 const Search = styled.input`
   border: 0;
   padding-left: 10px;
+  margin-left: 50px;
   background-color: #eaeaea;
   width: 100%;
   height: 100%;
@@ -34,11 +35,12 @@ const Search = styled.input`
 const AutoSearchContainer = styled.div`
   z-index: 3;
   height: 26vh;
-  width: 980px;
+  width: 940px;
   background-color: #fff;
   position: absolute;
   top: 100px;
   border: 2px solid;
+  margin-left:45px;
   padding: 5px;
 `;
 

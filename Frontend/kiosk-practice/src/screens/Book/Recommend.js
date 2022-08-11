@@ -1,11 +1,10 @@
-import { Box, CardActionArea, Fade, Grid } from '@material-ui/core';
+import { Box, CardActionArea, Fade } from '@material-ui/core';
 import React from 'react'
 import { ReactComponent as LendTitle } from "../../images/대여.svg";
 import { ReactComponent as BookUp } from "../../images/도서를 올려주세요.svg";
 import { ReactComponent as MainIcon } from "../../images/Frame 1.svg";
 import { useStyles } from '../../styles';
-import { useNavigate } from 'react-router-dom';
-import Footer from './Footer';
+import Footer from '../../components/Footer';
 
 export default function RecommendScreen() {
     const styles = useStyles();

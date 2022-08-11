@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useStyles } from "../../styles";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 export default function SearchResult() {
   const { state } = useLocation();
   const styles = useStyles();
