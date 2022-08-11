@@ -1,3 +1,5 @@
+import { useState, useEffect, useCallback } from 'react';
+
 import React, {Component} from "react";
 import {useStyles} from "../../styles";
 import {ReactComponent as Accept} from "../../images/accept+.svg";
@@ -7,9 +9,33 @@ import Footer from "./Footer";
 
 import Borrow_booklist from './Borrow_booklist';
 
-const Borrow1 = () => {
-    const styles = useStyles();
+import io from "socket.io-client";
+import axios from 'axios';
 
+const Borrow1 = () => {
+
+    // let isbndata = [];
+    
+    const socket = io.connect("http://localhost:9994");
+    const [ books, setBook ] = useState([]);
+
+    const getBook = ( bookdata ) => {
+        axios.get("http://i7d211.p.ssafy.io:8081/book/detail", { 
+            params: { ISBN : bookdata }
+        })
+      .then(function (response) {
+           return setBook(response.data)
+      })
+    }
+
+
+    socket.on('isbnoutput', (data) => {
+        getBook(data)
+    });
+    
+
+    const styles = useStyles();
+    
     const todayTime = () => {
         let now = new Date();
         let todayMonth = now.getMonth() + 1;
@@ -57,7 +83,11 @@ const Borrow1 = () => {
             <Box className={[styles.TitleMessage, styles.padding]}>
                 {weeksAfterdayTime().slice(0, 9)}
             </Box>
+
             <Box className={[styles.TitleMessage]}>
+                <div>
+                <h1> { books.title } </h1>
+                </div>
                 <b>까지</b> 대여 <b>합니다.</b>
             </Box>
 

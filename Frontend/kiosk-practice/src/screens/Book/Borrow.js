@@ -12,8 +12,7 @@ export default function LendScreen() {
   return (
       <Fade in={true}>
         <CardActionArea>
-          {state === "/book/return" ? <Borrow3></Borrow3>:<Borrow3></Borrow3>}
-          {state === "/book/return" ? <Borrow1></Borrow1>:<Borrow2></Borrow2>}
+          <Borrow2></Borrow2>
         </CardActionArea>
       </Fade>
   );

@@ -55,21 +55,21 @@ const Footer = () => {
                             ? <BtnMiniReturnPressed className={styles.MiniButton}/>
                             : <BtnMiniReturn
                                     className={styles.MiniButton}
-                                    onClick={() => {navigate("/book/return"); sendMsg(2) }}/>
+                                    onClick={() => {navigate("/book/return"); sendMsg(0) }}/>
                     }
                     {
                         sampleLocation.pathname === "/book/recommend"
                             ? <BtnMiniRecommendPressed className={styles.MiniButton}/>
                             : <BtnMiniRecommend
                                     className={styles.MiniButton}
-                                    onClick={() => {navigate("/book/recommend"); sendMsg(3) }}/>
+                                    onClick={() => {navigate("/book/recommend"); sendMsg(2) }}/>
                     }
                     {
                         sampleLocation.pathname === "/book/search"
                             ? <BtnMiniSearchPressed className={styles.MiniButton}/>
                             : <BtnMiniSearch
                                     className={styles.MiniButton}
-                                    onClick={() => {navigate("/book/search"); sendMsg(4) }}/>
+                                    onClick={() => {navigate("/book/search") }}/>
                     }
                 </Grid>
             </Grid>

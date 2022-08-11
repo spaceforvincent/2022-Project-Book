@@ -13,6 +13,8 @@ const io = socketio (server, {
 io.sockets.on('connection', (socket) => {
 	
 	socket.join("output");
+	socket.join("isbnput");
+	socket.join("faceput")
 
 	socket.on('inputdata', (data) => {
 	console.log(data);
@@ -21,5 +23,11 @@ io.sockets.on('connection', (socket) => {
 
 	socket.on('isbndata', (data) => {
 	console.log(data);
+	io.sockets.in("isbnput").emit('isbnoutput', data);
+	});
+
+	socket.on('facedata', (data) => {
+		console.log(data);
+		io.sockets.in("faceput").emit('faceoutput', data);
 	});
 });
