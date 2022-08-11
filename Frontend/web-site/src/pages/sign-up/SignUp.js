@@ -10,7 +10,6 @@ import {Button, TextField} from "@mui/material";
 import "./signUp.scss";
 
 
-
 const SignUp = () => {
   const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
@@ -55,6 +54,7 @@ const SignUp = () => {
       .required("성별을 입력하세요."),
 
     birthday: Yup.date()
+      .typeError("생일은 2022/01/01 과 같이 작성해야 합니다.")
       .required("생일을 입력하세요."),
     
   });
@@ -65,7 +65,7 @@ const SignUp = () => {
     const inputData = { email, password, phonenumber, address, name, gender, birthday }
 
     try {
-      console.log(inputData)
+      // console.log(inputData)
 
       const {data} = await axios.post("http://i7d211.p.ssafy.io:8081/user/signUp", 
       inputData
@@ -85,9 +85,7 @@ const SignUp = () => {
 
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
-      toast.error(e.response.data.message, {
-        position: "top-center",
-      });
+      console.log(e)
     }
   };
 
