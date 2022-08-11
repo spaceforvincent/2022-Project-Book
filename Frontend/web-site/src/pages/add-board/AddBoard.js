@@ -36,7 +36,7 @@ const AddBoard = () => {
 
       const {data} = await axios.put("http://i7d211.p.ssafy.io:8081/board/board", 
       JSON.stringify({"id" : jwtUtils.getId(token),"title" : title, "story" : content,"type" : "notice", }),
-      { headers: authHeader() });
+     );
 
       console.log(data)
 
