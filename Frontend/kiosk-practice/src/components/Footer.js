@@ -1,13 +1,13 @@
 import React from "react";
-import {useStyles} from "../../styles";
-import {ReactComponent as BtnMiniReturn} from "../../images/btnmini-return.svg";
-import {ReactComponent as BtnMiniReturnPressed} from "../../images/btnmini-return-pressed.svg";
-import {ReactComponent as BtnMiniRental} from "../../images/btnmini-rental.svg";
-import {ReactComponent as BtnMiniRentalPressed} from "../../images/btnmini-rental-pressed.svg";
-import {ReactComponent as BtnMiniSearch} from "../../images/btnmini-search.svg";
-import {ReactComponent as BtnMiniSearchPressed} from "../../images/btnmini-search-pressed.svg";
-import {ReactComponent as BtnMiniRecommend} from "../../images/btnmini-recommend.svg";
-import {ReactComponent as BtnMiniRecommendPressed} from "../../images/btnmini-recommend-pressed.svg";
+import {useStyles} from "../styles";
+import {ReactComponent as BtnMiniReturn} from "../images/btnmini-return.svg";
+import {ReactComponent as BtnMiniReturnPressed} from "../images/btnmini-return-pressed.svg";
+import {ReactComponent as BtnMiniRental} from "../images/btnmini-rental.svg";
+import {ReactComponent as BtnMiniRentalPressed} from "../images/btnmini-rental-pressed.svg";
+import {ReactComponent as BtnMiniSearch} from "../images/btnmini-search.svg";
+import {ReactComponent as BtnMiniSearchPressed} from "../images/btnmini-search-pressed.svg";
+import {ReactComponent as BtnMiniRecommend} from "../images/btnmini-recommend.svg";
+import {ReactComponent as BtnMiniRecommendPressed} from "../images/btnmini-recommend-pressed.svg";
 import {Box, Grid} from "@material-ui/core";
 import {useNavigate} from "react-router-dom";
 import {useLocation} from "react-router-dom"
