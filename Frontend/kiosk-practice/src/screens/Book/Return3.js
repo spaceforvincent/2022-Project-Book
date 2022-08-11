@@ -1,8 +1,8 @@
-import React, {Component} from "react";
-import {useStyles} from "../../styles";
-import {Box, Grid} from "@material-ui/core";
-import Footer from "./Footer";
-
+import React, { Component } from "react";
+import { useStyles } from "../../styles";
+import { Box, Grid } from "@material-ui/core";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import Borrow_booklist from './Borrow_booklist';
 
 const Borrow1 = () => {
@@ -12,8 +12,8 @@ const Borrow1 = () => {
             <Box className={[styles.TitleMessage, styles.padding]}>
                 대여&nbsp;현황
             </Box>
-            <Box className={styles.padding}/>
-            <Borrow_booklist/>
+            <Box className={styles.padding} />
+            <Borrow_booklist />
             <Box className={[styles.TitleMessage, styles.padding]}>
             </Box>
             <Box className={[styles.TitleMessage]}>
@@ -25,7 +25,7 @@ const Borrow1 = () => {
                 돌아갑니다
             </Box>
 
-            <Footer/>
+            <Footer />
         </Box>
     );
 }

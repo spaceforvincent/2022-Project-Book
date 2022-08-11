@@ -1,9 +1,10 @@
-import React, {Component} from "react";
-import {useStyles} from "../../styles";
-import {ReactComponent as Accept} from "../../images/accept+.svg";
-import {ReactComponent as Cancle} from "../../images/cancle+.svg";
-import {Box, Grid} from "@material-ui/core";
-import Footer from "./Footer";
+import React, { Component } from "react";
+import { useStyles } from "../../styles";
+import { ReactComponent as Accept } from "../../images/accept+.svg";
+import { ReactComponent as Cancle } from "../../images/cancle+.svg";
+import { Box, Grid } from "@material-ui/core";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 import Borrow_booklist from './Borrow_booklist';
 
@@ -14,8 +15,8 @@ const Borrow1 = () => {
             <Box className={[styles.TitleMessage, styles.padding]}>
                 대여&nbsp;현황
             </Box>
-            <Box className={styles.padding}/>
-            <Borrow_booklist/>
+            <Box className={styles.padding} />
+            <Borrow_booklist />
             <Box className={[styles.TitleMessage, styles.padding]}>
             </Box>
             <Box className={[styles.TitleMessage]}>
@@ -27,7 +28,7 @@ const Borrow1 = () => {
                 돌아갑니다
             </Box>
 
-            <Footer/>
+            <Footer />
         </Box>
     );
 }

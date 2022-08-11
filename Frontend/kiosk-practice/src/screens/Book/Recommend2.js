@@ -1,9 +1,10 @@
-import React, {Component} from "react";
-import {useStyles} from "../../styles";
-import {ReactComponent as Accept} from "../../images/accept+.svg";
-import {ReactComponent as Cancle} from "../../images/cancle+.svg";
-import {Box} from "@material-ui/core";
-import Footer from "./Footer";
+import React, { Component } from "react";
+import { useStyles } from "../../styles";
+import { ReactComponent as Accept } from "../../images/accept+.svg";
+import { ReactComponent as Cancle } from "../../images/cancle+.svg";
+import { Box } from "@material-ui/core";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 import Borrow_booklist from './Borrow_booklist';
 
@@ -35,8 +36,8 @@ const Borrow1 = () => {
                 오늘 <br></br>
                 {todayTime().slice(0, 9)}
             </Box>
-            <Box className={styles.padding}/>
-            <Borrow_booklist/>
+            <Box className={styles.padding} />
+            <Borrow_booklist />
 
             <Box className={[styles.TitleMessage]}>
                 반납&nbsp;합니다
@@ -44,14 +45,14 @@ const Borrow1 = () => {
 
             <Box className={styles.wrapBtn}>
                 <Box className={styles.innerwrapBtn}>
-                    <Accept className={styles.AcceptButton}/>
+                    <Accept className={styles.AcceptButton} />
                 </Box>
                 <Box className={styles.innerwrapBtn}>
-                    <Cancle className={styles.AcceptButton}/>
+                    <Cancle className={styles.AcceptButton} />
                 </Box>
             </Box>
 
-            <Footer/>
+            <Footer />
         </Box>
     );
 }
