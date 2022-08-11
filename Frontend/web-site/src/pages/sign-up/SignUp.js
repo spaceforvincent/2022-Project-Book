@@ -50,8 +50,8 @@ const SignUp = () => {
       .required("이름을 입력하세요."),
 
     gender: Yup.string()
-      .oneOf(["남성","여성"],
-        "셩별은 '남성' 혹은 '여성'으로 입력해야 합니다.")
+      .oneOf(["0","1"],
+        "셩별은 '남성' 이면 '0'을 '여성' 이면 '1' 로 입력해야 합니다.")
       .required("성별을 입력하세요."),
 
     birthday: Yup.date()
@@ -62,7 +62,7 @@ const SignUp = () => {
   const submit = async (values) => {
     const {email, password, phonenumber, address, name, gender, birthday} = values;
 
-    const inputData = JSON.stringify({ email, password, phonenumber, address, name, gender, birthday })
+    const inputData = { email, password, phonenumber, address, name, gender, birthday }
 
     try {
       console.log(inputData)
