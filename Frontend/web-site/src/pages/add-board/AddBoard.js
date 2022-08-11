@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import axios from "axios";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {useCallback, useState} from "react";
 // import ImageUploader from "../../components/ImageUploader";
-import api from "../../utils/api";
 import {jwtUtils} from "../../utils/jwtUtils";
 import TextArea from "../../components/TextArea";
 import {Button} from "@mui/material";
@@ -34,13 +34,14 @@ const AddBoard = () => {
     try{
       // formData.append("file", image.image_file);
 
-      const {data} = await api.put("http://i7d211.p.ssafy.io:8081/board/board", 
-      JSON.stringify({"id" : jwtUtils.getId(token),"title" : title, "story" : content,"type" : "notice", }));
+      const {data} = await axios.put("http://i7d211.p.ssafy.io:8081/board/board", 
+      JSON.stringify({"id" : jwtUtils.getId(token),"title" : title, "story" : content,"type" : "notice", }),
+     );
 
-      if (data === "success") {
-        window.alert("등록이 완료되었습니다.");
-        navigate("/board-list");
-      }
+      console.log(data)
+
+      window.alert("등록이 완료되었습니다.");
+      navigate("/board-list");
 
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력

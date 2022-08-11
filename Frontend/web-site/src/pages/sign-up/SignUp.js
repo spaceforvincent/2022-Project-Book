@@ -1,28 +1,32 @@
 import axios from "axios";
-import {toast, ToastContainer} from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {useNavigate} from "react-router-dom";
 import {Formik} from "formik";
 import * as Yup from "yup";
+
+// css 영역
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {Button, TextField} from "@mui/material";
-import {useNavigate} from "react-router-dom";
 import "./signUp.scss";
+
+
 
 const SignUp = () => {
   const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      //.email("올바른 이메일 형식이 아닙니다.")
+      .email("올바른 이메일 형식이 아닙니다.")
       .required("이메일을 입력하세요."),
 
     password: Yup.string()
-      //.min(8, "비밀번호는 최소 8자리 이상입니다.")
+      .min(8, "비밀번호는 최소 8자리 이상입니다.")
       .max(16, "비밀번호는 최대 16자리입니다.")
-      .required("패스워드를 입력하세요.")
-      // .matches(
-      //   // eslint-disable-next-line
-      //   /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[^\s]*$/,
-      //   "알파벳, 숫자, 공백을 제외한 특수문자를 모두 포함해야 합니다."
-      // )
+      .required("비밀번호를 입력하세요.")
+      .matches(
+      // eslint-disable-next-line
+        /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[^\s]*$/,
+        "알파벳, 숫자, 공백을 제외한 특수문자를 모두 포함해야 합니다."
+      )
       ,
 
     password2: Yup.string()
@@ -33,7 +37,7 @@ const SignUp = () => {
       .required("전화번호를 입력하세요."),
 
     address: Yup.string()
-      .required("이름을 입력하세요."),
+      .required("주소를 입력하세요."),
 
     name: Yup.string()
       .min(2, "이름은 최소 2글자 이상입니다.")
@@ -46,9 +50,11 @@ const SignUp = () => {
       .required("이름을 입력하세요."),
 
     gender: Yup.string()
+      .oneOf(["0","1"],
+        "셩별은 '남성' 이면 '0'을 '여성' 이면 '1' 로 입력해야 합니다.")
       .required("성별을 입력하세요."),
-      
-    birthday: Yup.string()
+
+    birthday: Yup.date()
       .required("생일을 입력하세요."),
     
   });
@@ -56,9 +62,13 @@ const SignUp = () => {
   const submit = async (values) => {
     const {email, password, phonenumber, address, name, gender, birthday} = values;
 
+    const inputData = { email, password, phonenumber, address, name, gender, birthday }
+
     try {
+      console.log(inputData)
+
       const {data} = await axios.post("http://i7d211.p.ssafy.io:8081/user/signUp", 
-      JSON.stringify({email, password, phonenumber, address, name, gender, birthday,})
+      inputData
       );
 
       // 회원가입 성공 -> 데이터 반환값 존재
@@ -111,7 +121,7 @@ const SignUp = () => {
 
               <div className="input-forms-item">
                 <div className="input-label">비밀번호</div>
-                <TextField
+                <TextField autoComplete="off"
                   value={values.password}
                   name="password"
                   variant="outlined"
@@ -125,7 +135,7 @@ const SignUp = () => {
 
               <div className="input-forms-item">
                 <div className="input-label">비밀번호 확인</div>
-                <TextField
+                <TextField autoComplete="off"
                   value={values.password2}
                   name="password2"
                   variant="outlined"

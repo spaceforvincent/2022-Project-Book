@@ -27,7 +27,7 @@ const Board = () => {
   // board 가져오기
   useEffect(() => {
     const getBoard = async () => {
-      const {data} = await axios.get(`/api/board/${board_id}`);
+      const {data} = await axios.get();
       return data;
     }
     getBoard().then(result => setBoard(result)).then(() => setIsLoaded(true));
