@@ -13,7 +13,7 @@ import java.util.Map;
 public interface BoardMapper {
 
     List<BoardDto> noticeAll();
-    String noticeWrite();
+    int noticeWrite(BoardDto dto);
 
     String searchIdfromBoardId(int boardId);
 

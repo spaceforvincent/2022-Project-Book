@@ -26,7 +26,10 @@ public class BoardService {
         dto.setId(id);
         dto.setCreated_date(date);
         dto.setType("notice");
-        return boardMapper.noticeWrite(dto);
+        if(boardMapper.noticeWrite(dto)==1)
+            return "success";
+        else
+            return "fail";
     }
     public BoardDto noticeDetail(int noticeId) {
         return boardMapper.noticeDetail(noticeId);
