@@ -5,8 +5,8 @@ import {useNavigate} from "react-router-dom";
 import {useLocation} from "react-router-dom";
 import {useStyles} from "../../styles";
 import {ReactComponent as BtnMiniSearchPressed} from "../../images/btnmini-search-pressed.svg";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 export default function SearchResult() {
     const styles = useStyles();
     

@@ -3,7 +3,7 @@ import {useStyles} from "../../styles";
 import {ReactComponent as Accept} from "../../images/accept+.svg";
 import {ReactComponent as Cancle} from "../../images/cancle+.svg";
 import {Box, Grid} from "@material-ui/core";
-import Footer from "./Footer";
+import Footer from "../../components/Footer";
 
 import Borrow_booklist from './Borrow_booklist';
 
