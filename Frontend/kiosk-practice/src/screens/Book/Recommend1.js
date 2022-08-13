@@ -1,15 +1,15 @@
 import React from "react";
-import {useStyles} from "../../styles";
-import {Box, Grid} from "@material-ui/core";
-import {ReactComponent as MainIcon} from "../../images/Frame 1.svg";
-import Footer from './Footer';
-import Header from './Header';
+import { useStyles } from "../../styles";
+import { Box, Grid } from "@material-ui/core";
+import { ReactComponent as MainIcon } from "../../images/Frame 1.svg";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 export default function ReturnScreen() {
     const styles = useStyles();
     return (
         <Box className={styles.center}>
-            <Header/>
+            <Header />
             <Grid container="container">
                 <Grid xs={6} className={styles.boxBtnCenter}>
                     <Box className={styles.boxBtn}>
@@ -42,7 +42,7 @@ export default function ReturnScreen() {
                     </Box>
                 </Grid>
             </Grid>
-            <Footer/>
+            <Footer />
         </Box>
     );
 }
