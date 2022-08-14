@@ -73,7 +73,6 @@ export const useStyles = makeStyles((theme) => ({
 
   largeLogo: {
     position: "relative",
-    display: "flex",
     width: 983,
     marginTop: 200,
     marginBottom: 150,
@@ -83,6 +82,11 @@ export const useStyles = makeStyles((theme) => ({
     position: "relative",
     height: 608,
     width: 672,
+  },
+  HomeButton: {
+    position: "relative",
+    height: 300,
+    width: 300,
   },
   TitleButton: {
     display: "flex",
@@ -159,14 +163,12 @@ export const useStyles = makeStyles((theme) => ({
     marginRight: 30,
   },
   horizontalScroll: {
-    display:'flex', 
-    overflow: 'auto', 
-    whiteSpace: 'nowrap'
-  }, 
+    display: 'flex',
+    overflow: 'auto',
+    whiteSpace: 'nowrap',
+  },
   AcceptButton: {
-    verticalAlign: "middle",
-    display: "grid",
-    zIndex: "1",
+    margin: 50,
   },
   AcceptButtonText: {
     position: "absolute",
@@ -183,7 +185,9 @@ export const useStyles = makeStyles((theme) => ({
     color: "#6069BE",
   },
   wrapper: {
-    overflow: "scroll",
+    display: 'flex',
+    overflow: 'auto',
+    whiteSpace: 'nowrap',
     width: 1300,
     height: 700,
     background: "#223069",
@@ -218,9 +222,9 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: 130,
   },
   modal: {
-    display:'flex', 
-    width:1376, 
-    height:1280, 
+    display: 'flex',
+    width: 1376,
+    height: 1280,
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -230,8 +234,8 @@ export const useStyles = makeStyles((theme) => ({
     boxShadow: 24,
     p: 4,
   },
-  star:{
-    width:300,
-    height:60
+  star: {
+    width: 300,
+    height: 60
   }
 }));

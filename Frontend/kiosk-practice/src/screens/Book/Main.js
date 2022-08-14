@@ -7,6 +7,7 @@ import { ReactComponent as BtnRent } from "../../images/btn-rent.svg";
 import { ReactComponent as BtnRecommend } from "../../images/btn-recommend.svg";
 import { ReactComponent as BtnSearch } from "../../images/btn-search.svg";
 import { ReactComponent as BtnReturn } from "../../images/btn-return.svg";
+import { ReactComponent as Signup } from "../../images/Signup.svg";
 import { useNavigate } from 'react-router-dom';
 export default function HomeScreen(props) {
   const styles = useStyles();
@@ -15,12 +16,11 @@ export default function HomeScreen(props) {
     <Card>
       <CardActionArea>
         {/* Box는 html의 div와 비슷 */}
-        <Box className={[styles.root, styles.background]}>
-          <Box className={[styles.main, styles.center]}>
-            <MainIcon className={styles.largeLogo}/>
-          </Box>
+        <Box className={[styles.root, styles.background, styles.center]}>
+          <MainIcon className={styles.largeLogo} />
           {/* bottom */}
-          <Box className={styles.center}>
+          <Signup className={styles.MainButton} onClick={() => navigate("/book/Login")} />
+          <Box>
             <Grid container>
               <Grid item sm={6} columnSpacing={0}>
                 <BtnRent className={styles.MainButton} onClick={() => navigate('/book/borrow')}></BtnRent>

@@ -1,24 +1,30 @@
-import { CardActionArea, Fade, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import React from "react";
 import { useStyles } from "../../styles";
-import { ReactComponent as BtnMiniSearchPressed } from "../../images/btnmini-search-pressed.svg";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-export default function SearchResult() {
+import propTypes from "prop-types"
+
+function Book({ publish_date, title, author, content, cover }) {
     const styles = useStyles();
 
     return (
-        <Box>
-            <BtnMiniSearchPressed className={styles.innerwrapBtn} />
-            <Box className={styles.innerwrapBtn}>
-                책이름:<br></br>
-                작가이름:<br></br>
-                출판사:<br></br>
-                반납일자:<br></br>
-            </Box>
-        </Box>
+        <div className="movie_list">
+            <div className="movie_poster">
+                <img src="{cover}" alt="{title}" />
+            </div>
+            <h3 className="movie_title">{title}</h3>
+            <h5 className="movie_year">{author}</h5>
+            <h5 className="movie_year">{publish_date}</h5>
+            <p className="movie_summary">{content}</p>
+        </div>
     );
 }
+
+Book.propTypes = {
+    publish_date: propTypes.number.isRequired,
+    title: propTypes.string.isRequired,
+    author: propTypes.string.isRequired,
+    content: propTypes.string.isRequired,
+    cover: propTypes.string.isRequired
+}
+
+export default Book;

@@ -13,6 +13,7 @@ import Recommend from "./screens/Book/Recommend";
 import AgeRecommend from "./screens/Book/RecommendAge";
 import Return from "./screens/Book/Return";
 import Search from "./screens/Book/Search";
+import Login from "./screens/Book/Login";
 
 // user
 import SignUp from "./screens/User/SignUp";
@@ -66,8 +67,9 @@ function App() {
             <Route path="/book/recommend/age" element={<AgeRecommend />} exact></Route>
             <Route path="/book/search" element={<Search />} exact></Route>
             <Route path="/book/searchresult" element={<SearchResult />} exact></Route>
+            <Route path="/book/login" element={<Login />} exact></Route>
             <Route path="/book/detail/:id" element={<Detail />} exact></Route>
-            
+
             {/* user */}
             <Route path="/user/signup" element={<SignUp />} exact></Route>
             <Route path="/user/login" element={<LogIn />} exact></Route>

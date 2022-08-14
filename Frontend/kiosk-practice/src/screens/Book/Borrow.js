@@ -9,10 +9,10 @@ export default function LendScreen() {
   const styles = useStyles();
   const state = useState();
   return (
-      <Fade in={true}>
-        <CardActionArea>
-          <Borrow2></Borrow2>
-        </CardActionArea>
-      </Fade>
+    <Fade in={true}>
+      <CardActionArea>
+        <Borrow3></Borrow3>
+      </CardActionArea>
+    </Fade>
   );
 }

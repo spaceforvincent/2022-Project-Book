@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { useStyles } from "../../styles";
-import { ReactComponent as Accept } from "../../images/accept+.svg";
-import { ReactComponent as Cancle } from "../../images/cancle+.svg";
-import { Box, Grid } from "@material-ui/core";
-import Header from "../../components/Header";
+import { Box } from "@material-ui/core";
 import Footer from "../../components/Footer";
+import Timer from './Timer';
 
-import Borrow_booklist from './Borrow_booklist';
+import RentalStatus from './RentalStatus';
 
 const Borrow1 = () => {
     const styles = useStyles();
@@ -15,18 +13,16 @@ const Borrow1 = () => {
             <Box className={[styles.TitleMessage, styles.padding]}>
                 대여&nbsp;현황
             </Box>
-            <Box className={styles.padding} />
-            <Borrow_booklist />
-            <Box className={[styles.TitleMessage, styles.padding]}>
+            <RentalStatus />
+            <Box className={[styles.TitleMessage]}>
             </Box>
             <Box className={[styles.TitleMessage]}>
                 대여가&nbsp;완료되었습니다<br></br>
                 감사합니다
             </Box>
-            <Box className={[styles.miniMessage]}>
-                잠시후&nbsp;메인화면으로<br></br>
-                돌아갑니다
-            </Box>
+
+            <Timer sec="10" />
+            {/* <meta http-equiv="refresh" content="10; url=http://localhost:3000/book/main" /> */}
 
             <Footer />
         </Box>
