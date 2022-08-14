@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useStyles } from "../../styles";
+
 import { CardActionArea, Fade } from "@material-ui/core";
 
 import Borrow1 from "./Borrow1";
@@ -18,5 +19,6 @@ export default function LendScreen() {
           <Borrow3></Borrow3>
         </CardActionArea>
       </Fade>
+
   );
 }

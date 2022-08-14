@@ -10,7 +10,7 @@
   }
 }
 
-.boardList-wrapper{
+.bookList-wrapper{
   opacity: 0;
   animation: smoothAppear 1.5s forwards;
   animation-delay: 0.5s;
@@ -18,21 +18,21 @@
   flex-direction: column;
   align-items: center;
 
-  .boardList-header{
+  .bookList-header{
     color: midnightblue;
     font-weight: bold;
     font-size: 2rem;
     margin-bottom: 1rem;
   }
 
-  .boardList-body{
+  .bookList-body{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
   }
   
-  .boardList-footer{
+  .bookList-footer{
     margin: 1.5rem;
   }
 }

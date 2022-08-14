@@ -1,27 +1,30 @@
+import { Box } from "@mui/system";
 import React from "react";
-import {useStyles} from "../../styles";
+import { useStyles } from "../../styles";
+import propTypes from "prop-types"
 
-function Borrow_book({
-    cover,
-    title,
-    publish_date,
-    genre,
-}) {
+function Book({ publish_date, title, author, content, cover }) {
     const styles = useStyles();
+
     return (
-        <div>
-            <img src={cover} alt={title}/>
-            <div>
-                <h2 className={styles.movie__title}>
-                    {title}
-                </h2>
-                <h3>{publish_date}</h3>
-                <ul>
-                    {genre}
-                </ul>
+        <div className="movie_list">
+            <div className="movie_poster">
+                <img src="{cover}" alt="{title}" />
             </div>
+            <h3 className="movie_title">{title}</h3>
+            <h5 className="movie_year">{author}</h5>
+            <h5 className="movie_year">{publish_date}</h5>
+            <p className="movie_summary">{content}</p>
         </div>
     );
 }
 
-export default Borrow_book;
+Book.propTypes = {
+    publish_date: propTypes.number.isRequired,
+    title: propTypes.string.isRequired,
+    author: propTypes.string.isRequired,
+    content: propTypes.string.isRequired,
+    cover: propTypes.string.isRequired
+}
+
+export default Book;

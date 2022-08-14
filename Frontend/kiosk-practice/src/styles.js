@@ -41,7 +41,7 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    backgorund: "#6069BE",
+    background: "#6069BE",
   },
   subTitleMessage: {
     fontFamily: "'Noto Sans'",
@@ -55,7 +55,7 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    backgorund: "#6069BE",
+    background: "#6069BE",
     marginTop: 100,
     marginBottom: 100,
   },
@@ -89,6 +89,12 @@ export const useStyles = makeStyles((theme) => ({
     width: 550,
   },
 
+  HomeButton: {
+    position: "relative",
+    height: 300,
+    width: 300,
+  },
+  
   TitleButton: {
     display: "flex",
     alignItems: "center",
@@ -201,7 +207,7 @@ export const useStyles = makeStyles((theme) => ({
   wrapperSearch: {
     overflow: "scroll",
     width: 1300,
-    height: 1630,
+    height: 1600,
     background: "#223069",
     boxShadow:
       "inset 4px 16px 40px rgba(0, 0, 0, 0.5), inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
@@ -226,9 +232,9 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: 130,
   },
   modal: {
-    display:'flex', 
-    width:1376, 
-    height:1280, 
+    display: 'flex',
+    width: 1376,
+    height: 1280,
     position: "absolute",
     top: "50%",
     left: "50%",

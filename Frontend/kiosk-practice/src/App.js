@@ -10,9 +10,11 @@ import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import Main from "./screens/Book/Main";
 import Borrow from "./screens/Book/Borrow";
 import Recommend from "./screens/Book/Recommend";
+import AgeRecommend from "./screens/Book/RecommendAge";
 import Return from "./screens/Book/Return";
 import Search from "./screens/Book/Search";
 import Login from "./screens/Book/Login";
+
 // user
 import SignUp from "./screens/User/SignUp";
 import LogIn from "./screens/User/LogIn";
@@ -62,10 +64,11 @@ function App() {
             <Route path="/book/borrow" element={<Borrow />} exact></Route>
             <Route path="/book/return" element={<Return />} exact></Route>
             <Route path="/book/recommend" element={<Recommend />} exact></Route>
+            <Route path="/book/recommend/age" element={<AgeRecommend />} exact></Route>
             <Route path="/book/search" element={<Search />} exact></Route>
             <Route path="/book/searchresult" element={<SearchResult />} exact></Route>
-            <Route path="/book/detail/:id" element={<Detail />} exact></Route>
             <Route path="/book/login" element={<Login />} exact></Route>
+            <Route path="/book/detail/:id" element={<Detail />} exact></Route>
             
             {/* user */}
             <Route path="/user/signup" element={<SignUp />} exact></Route>

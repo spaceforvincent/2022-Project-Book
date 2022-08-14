@@ -19,6 +19,7 @@ export default function SearchResult() {
     ).json();
     setBooks(json);
   };
+
   useEffect(() => {
     getBooks();
   }, []);

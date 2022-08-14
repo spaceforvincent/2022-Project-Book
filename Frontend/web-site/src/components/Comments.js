@@ -1,15 +1,37 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useCallback, useEffect, useState} from "react";
 import axios from "axios";
-import moment from 'moment';
-import {Button, Dialog, DialogContent, IconButton, TextField} from "@mui/material";
+import React, {useCallback, useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {jwtUtils} from "../utils/jwtUtils";
-import api from "../utils/api";
 import {useLocation, useNavigate} from "react-router-dom";
+
+// css
+import {Button, Dialog, DialogContent, IconButton, TextField, Pagination} from "@mui/material";
 import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefaultOutlined";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import moment from 'moment';
 import "./comments.scss";
+
+
+// 한페이지에 보일 댓글 수
+var totalComment = 5
+
+// 페이지별 댓글
+const getCommentList = async (board_id, page) => {
+  const url = "http://i7d211.p.ssafy.io:8081/board/boardDetail"
+  const {data} = await axios.get(`${url}?boardId=${board_id}`);
+
+  var newData = []
+
+  for (var i = (page-1)*totalComment; i < page*totalComment; i ++) {
+    // 총 댓글 수 보다 많아지면 중단
+    if (i >= data.answers.length) {
+      break
+
+    } else {
+      newData.push(data.answers[i])
+    }
+  }
+  return newData;
+}
 
 const Comments = ({board_id}) => {
   // 로그인 후 현재 경로로 돌아오기 위해 useLocation 사용
@@ -31,45 +53,49 @@ const Comments = ({board_id}) => {
   // 페이지에 해당하는 댓글 목록은 page 상태가 변경될 때마다 가져옴
   // 맨 처음 페이지가 1이므로 처음엔 1페이지에 해당하는 댓글을 가져온다
   useEffect(() => {
-    const getCommentList = async () => {
-      const {data} = await axios.get(`/api/comment/list?board_id=${board_id}&page_number=${page}&page_size=${5}`);
-      return data;
-    }
+    getCommentList(board_id, page)
 
-    // 기존 commentList에 데이터를 덧붙임
-    getCommentList().then((result) => setCommentList([...commentList, ...result]));
-  }, [page])
+    // 현재 페이지에 맞게 변경
+    .then((result) => setCommentList(result));
 
-  // 페이지 카운트는 컴포넌트가 마운트되고 딱 한번만 가져오면됨
-  useEffect(() => {
     // 댓글 전체 갯수 구하기
-    const getTotalBoard = async () => {
-      const {data} = await axios.get(`/api/comment/count?board_id=${board_id}`);
-      return data.total;
+    const getTotalComment = async () => {
+      const url = "http://i7d211.p.ssafy.io:8081/board/boardDetail"
+      const {data} = await axios.get(`${url}?boardId=${board_id}`);
+
+      return data.answers.length;
     }
 
     // 페이지 카운트 구하기: (전체 comment 갯수) / (한 페이지 갯수) 결과 올림
-    getTotalBoard().then((result) => setPageCount(Math.ceil(result / 5)));
-  }, []);
+    getTotalComment().then((result) => setPageCount(Math.ceil(result / totalComment)));
+  }, [board_id, page, commentList])
 
-  // 댓글 추가하기, 댓글 추가하는 API는 인증 미들웨어가 설정되어 있으므로
-  // HTTP HEADER에 jwt-token 정보를 보내는 interceptor 사용
+  // 댓글 추가하기
   const submit = useCallback(async () => {
     const comment = {
-      board_id: board_id,
-      // DB에 엔터가 먹힌 상태로 들어가므로 제대로 화면에 띄우기 위해 <br>로 치환
-      content: content,
-      user_id: jwtUtils.getId(token)
+      "id": jwtUtils.getId(token),
+      "board_id" : board_id,
+      "story": content,
+    }
+
+    const config = {
+      headers:{
+        'X-AUTH-TOKEN': token,
+      }
     }
 
     // 로그인해야 사용가능
-    await api.post('/api/comment', comment);
-    alert("댓글 등록 완료");
-    window.location.reload();
-  }, [content]);
-  console.log(commentList)
+    const {data} = await axios.put("/board/boardAnswer", 
+      comment, config
+      );
 
-  /* modal 관련 코드 */
+      if (data === "success") {
+        window.alert("등록이 완료되었습니다.");
+        navigate(`/board/${board_id}`);
+      }
+  }, [board_id, content, token, navigate]);
+
+  /* modal  */
   // 로그인 후 돌아올 수 있게 현재 경로 세팅
   const goLogin = () => {
     setShow(false);
@@ -103,30 +129,40 @@ const Comments = ({board_id}) => {
           </Button>
         )}
       </div>
+
       <div className="comments-body">
         {commentList.map((item, index) => (
           <div key={index} className="comments-comment">
             <div className="comment-username-date">
-              <div className="comment-date">{moment(item.created).add(9, "hour").format('YYYY-MM-DD HH:mm:ss')}</div>
+              <div className="comment-date">작성일 : {moment(item.created_date).add(9, "hour").format('YYYY-MM-DD HH:mm:ss')}</div>
             </div>
-            <div className="comment-content">{item.content}</div>
-            <div className="comment-username">{item.user.username}</div>
+            <div className="comment-content">내용 : {item.story}</div>
+            <div className="comment-username">작성자 : {item.id}</div>
             <hr/>
           </div>
         ))}
       </div>
       {
 
-        page < pageCount && (
-          <div className="comments-footer"
-               onClick={() => {
-                 setPage(page + 1);
-               }}
-          >
-            댓글 더보기
-            <KeyboardArrowDownIcon/>
-          </div>
-        )
+      
+      <div className="comments-footer">
+        <Pagination
+          variant="outlined" 
+          color="primary" 
+          page={Number(page)}
+          count={pageCount} 
+          size="large"
+          onChange={(e, value) => {
+            setPage(value)
+
+            getCommentList(board_id, value)
+            .then(result => setCommentList(result));
+          }}
+          showFirstButton 
+          showLastButton
+        />
+      </div>
+        
       }
 
       {/* modal */}
@@ -166,4 +202,5 @@ const Comments = ({board_id}) => {
     </div>
   );
 }
+
 export default Comments;

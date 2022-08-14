@@ -1,4 +1,4 @@
-import { CardActionArea, Fade, Modal, Typography } from "@mui/material";
+import { Button, CardActionArea, Fade, Modal, Typography } from "@mui/material";
 import {
   Table,
   TableBody,
@@ -37,6 +37,9 @@ export default function Detail() {
   const [onReview, setReview] = useState(false);
   const [onLocation, setLocation] = useState(false);
   const [lookReview, setLookReview] = useState(false);
+  const [onReservation, setReservation] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState();
+  const [reviewStory, setReviewStory] = useState();
   const [book, setBook] = useState([]);
 
   const getBook = async () => {
@@ -55,6 +58,7 @@ export default function Detail() {
   useEffect(() => {
     getBook();
   }, []);
+
   return (
     <div>
       <Fade in={true}>
@@ -162,10 +166,13 @@ export default function Detail() {
                                           <Typography
                                             onClick={() => {
                                               setLookReview(!lookReview);
-                                              
+                                              setSelectedIndex(
+                                                review.review_id
+                                              );
+                                              setReviewStory(review.story);
                                             }}
                                             style={{
-                                              fontSize: 30,
+                                              fontSize: 40,
                                               color: "#ffffff",
                                             }}
                                           >
@@ -175,7 +182,7 @@ export default function Detail() {
                                         <TableCell align="center">
                                           <Typography
                                             style={{
-                                              fontSize: 30,
+                                              fontSize: 40,
                                               color: "#ffffff",
                                             }}
                                           >
@@ -186,6 +193,24 @@ export default function Detail() {
                                     </TableBody>
                                   </Table>
                                 </TableContainer>
+                              </Box>
+                              <Box>
+                                {lookReview &&
+                                selectedIndex === review.review_id ? (
+                                  <Box
+                                    style={{
+                                      width: "100%",
+                                      border: "2px solid #000",
+                                      boxShadow: 24,
+                                    }}
+                                  >
+                                    <Typography style={{ fontSize: 40 }}>
+                                      {reviewStory}
+                                    </Typography>
+                                  </Box>
+                                ) : (
+                                  <></>
+                                )}
                               </Box>
                             </Box>
                           ))
@@ -219,7 +244,62 @@ export default function Detail() {
                       <Location />
                     </Box>
                   </Modal>
-                  <Reservation className={styles.detailUpperButton} />
+                  <Reservation
+                    onClick={() => {
+                      fetch("URL")
+                        .then((response) => response.json())
+                      setReservation(true);
+                    }}
+                    className={styles.detailUpperButton}
+                  />
+                  <Modal
+                    open={onReservation}
+                    onClose={() => {
+                      setReservation(false);
+                    }}
+                    
+                  >
+                    <Box
+                      style={{
+                        position: "absolute",                        
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        backgroundColor: "#ffffff",
+                        width: 1000,
+                        height: 500,
+                        border: "2px solid #000",
+                        boxShadow: 24,
+                         
+                      }}
+                    >
+                      <Typography
+                        style={{
+                          marginTop: 100,
+                          fontSize: 50,
+                          marginLeft:180,
+                          
+                        }}
+                      >
+                        대여 예약이 완료 되었습니다.
+                      </Typography>
+
+                      <Button
+                        variant="contained"
+                        sx={{
+                          fontSize: 50,                         
+                          marginLeft:55,
+                          marginTop:25,
+                          alignItems: "flex-end",
+                          justifyContent: "center",
+                          
+                        }}
+                        onClick={() => setReservation(false)}
+                      >
+                        닫기
+                      </Button>
+                    </Box>
+                  </Modal>
                 </Box>
               </Box>
             </Box>

@@ -1,5 +1,6 @@
 import {Box, Card, CardActionArea} from "@material-ui/core";
 import React from "react";
+
 import {useStyles} from "../../styles";
 import {ReactComponent as MainIcon} from "../../images/Frame 1.svg";
 import {ReactComponent as Signup} from "../../images/Signup.svg";

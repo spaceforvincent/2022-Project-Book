@@ -131,6 +131,7 @@ export default function VirtualKeyboard() {
           <Search
             value={keyword}
             onChange={onChangeData}
+            style={{boxShadow: '0px 0px 0px 3px black', borderRadius:30}}
             ref={inputRef}
             onSelect={() => {
               inputWrapper?.checkChangedSelect();

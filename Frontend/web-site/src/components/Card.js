@@ -1,8 +1,9 @@
 import "./card.scss";
 import {useNavigate} from "react-router-dom";
 
-export const Card = ({board_id, title, content, img_url, username, date}) => {
+export const Card = ({board_id, title, content, id, date}) => {
   const navigate = useNavigate();
+
   return (
     <div className="card-wrapper" onClick={() => {
       navigate(`/board/${board_id}`)
@@ -13,8 +14,8 @@ export const Card = ({board_id, title, content, img_url, username, date}) => {
       </div>
 
       <div className="card-footer">
-        <div className="username">{username}</div>
-        <div className="date">{date}</div>
+        <div className="username">작성자 : {id}</div>
+        <div className="date">작성일 : {date}</div>
       </div>
     </div>
   );

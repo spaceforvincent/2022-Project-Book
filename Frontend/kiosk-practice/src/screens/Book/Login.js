@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useStyles } from "../../styles";
 import { Box, CardActionArea, Fade, Grid } from "@material-ui/core";
+
 import logo from "../../images/homeBtn.svg";
+
 import Timer from './Timer';
 import { ReactComponent as Home } from "../../images/homeBtn.svg";
 
