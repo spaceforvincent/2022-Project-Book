@@ -15,7 +15,7 @@ export default function LendScreen() {
       <Fade in={true}>
         <CardActionArea>
           <Borrow1></Borrow1>
-          <Borrow2></Borrow2>
+          {/* <Borrow2></Borrow2> */}
           <Borrow3></Borrow3>
         </CardActionArea>
       </Fade>

@@ -41,7 +41,6 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    background: "#6069BE",
   },
   subTitleMessage: {
     fontFamily: "'Noto Sans'",
@@ -55,7 +54,6 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    background: "#6069BE",
     marginTop: 100,
     marginBottom: 100,
   },
