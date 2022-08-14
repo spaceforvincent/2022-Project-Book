@@ -22,8 +22,6 @@ const AddBoard = () => {
   }, [title, content]);
 
   const handleSubmit = useCallback(async () => {
-    axios.defaults.withCredentials = true;
-
     const inputData = {
       "id" : jwtUtils.getId(token),
       "title" : title, 
@@ -44,7 +42,7 @@ const AddBoard = () => {
 
       if (data === "success") {
         window.alert("등록이 완료되었습니다.");
-        navigate("/");
+        navigate("/myboard-list");
       }
       
     } catch (e) {
@@ -57,7 +55,7 @@ const AddBoard = () => {
   return (
     <div className="addBoard-wrapper">
       <div className="addBoard-header">
-        등록하기
+        작성하기
       </div>
 
       <div className="submitButton">

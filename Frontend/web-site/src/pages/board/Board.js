@@ -1,17 +1,15 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState} from "react";
 import axios from "axios";
+import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import "./board.scss";
 import {jwtUtils} from "../../utils/jwtUtils";
-import {Button, Dialog, DialogContent, IconButton} from "@mui/material";
 import {useSelector} from "react-redux";
-import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
-import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefaultOutlined";
-import api from "../../utils/api";
-import moment from "moment";
 import Comments from "../../components/Comments";
+
+// css
+import "./board.scss";
+import moment from "moment";
+import {Button, Dialog, DialogContent, IconButton} from "@mui/material";
+import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefaultOutlined";
 
 const Board = () => {
   // URL 파라미터 받기 - board의 id
@@ -27,22 +25,24 @@ const Board = () => {
   // board 가져오기
   useEffect(() => {
     const getBoard = async () => {
-      const {data} = await axios.get();
+      const url = "http://i7d211.p.ssafy.io:8081/board/boardDetail"
+      const {data} = await axios.get(`${url}?boardId=${board_id}`);
       return data;
     }
     getBoard().then(result => setBoard(result)).then(() => setIsLoaded(true));
-  }, [])
+  }, [board_id])
   
   return (
     <React.Fragment>
       {isLoaded && (
         <div className="board-wrapper">
           {
-            // 해당 글의 작성자가 로그인을 했을 때만 수정, 삭제 버튼이 보임
-            jwtUtils.isAuth(token) && jwtUtils.getId(token) === board.user.id &&
+            // 해당 글의 작성자가 로그인을 했을 때만 삭제 버튼이 보임
+            jwtUtils.isAuth(token) && jwtUtils.getId(token) === board.id &&
             <div className="edit-delete-button">
               <Button
-                variant="outlined" color="error" endIcon={<DeleteForeverOutlinedIcon/>}
+                variant="outlined" 
+                color="error" 
                 className="delete-button"
                 onClick={() => {
                   setShow(true)
@@ -50,36 +50,40 @@ const Board = () => {
               >
                 삭제
               </Button>
-              <Button
-                variant="outlined" endIcon={<BuildOutlinedIcon/>}
+              
+              {/* <Button
+                variant="outlined" 
                 onClick={() => {
                   navigate(`/edit-board/${board_id}`)
                 }}
               >
                 수정
-              </Button>
+              </Button> */}
             </div>
           }
           <div className="board-header">
-            <div className="board-header-username">{board.user.username}</div>
-            <div className="board-header-date">{moment(board.created).add(9, "hour").format('YYYY-MM-DD')}</div>
+            <div className="board-header-username">작성자 :  {board.id}</div>
+            <div className="board-header-date">작성일 : {moment(board.created_date).add(9, "hour").format('YYYY-MM-DD')}</div>
           </div>
+
           <hr/>
           <div className="board-body">
-            <div className="board-image">
-              <img src={`/api/image/view/${board_id}`} alt="이미지 없음"/>
-            </div>
             <div className="board-title-content">
-              <div className="board-title">{board.title}</div>
-              <div className="board-content">{board.content}</div>
+              <div className="board-title">제목 : {board.title}</div>
+              <div className="board-content">내용  : {board.story}</div>
             </div>
           </div>
+
           <hr/>
           <div className="board-footer">
-            <Comments board_id={board_id}/>
+            <Comments 
+               key={board_id}
+               board_id={board_id}
+            />
           </div>
         </div>
       )}
+
       {/*modal*/}
       <Dialog open={show}>
         <DialogContent style={{position: "relative"}}>
@@ -98,13 +102,19 @@ const Board = () => {
                 onClick={async () => {
                   setShow(false);
                   // 모달의 예 버튼 클릭시 게시물 삭제
-                  await api.delete(`/api/board/${board_id}`);
-                  alert("게시물이 삭제되었습니다😎");
-                  window.location.href = "/myboard-list";
+                  const config = {
+                    headers:{
+                      'X-AUTH-TOKEN': token,
+                    }
+                  }
+                  await axios.delete(`/board/board?boardId=${board_id}`, config);
+                  alert("게시물이 삭제되었습니다.");
+                  navigate("/myboard-list");
                 }}
               >
                 예
               </Button>
+
               <Button
                 variant="outlined"
                 color="primary"
