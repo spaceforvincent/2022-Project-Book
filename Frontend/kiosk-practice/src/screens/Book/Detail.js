@@ -54,28 +54,6 @@ export default function Detail() {
   useEffect(() => {
     getBook();
   }, []);
-  const BookReservation = async () => {
-    const json = await (
-      await fetch(
-        `http://i7d211.p.ssafy.io:8081/book/borrowReservation`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "X-AUTH-TOKEN": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWFpbDMiLCJpYXQiOjE2NjAzMDkxMjcsImV4cCI6MTY2MDMxMDkyN30.3Men7esCj5Q_HH8D_2PeEQD-U3fyZmHME2vFqrzFoQk"
-          },
-          params: JSON.stringify({
-            title: "Test",
-            body: "Testing!",
-            userId: 1,
-          }),
-        }
-      )
-    )
-    
-  };
-  useEffect(() => {
-    getBook();
-  }, []);
 
   return (
     <div>
