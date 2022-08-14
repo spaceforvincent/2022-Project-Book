@@ -68,7 +68,7 @@ export default function RecommendScreen() {
                 <Box>
 
                 <img src={agegroup} alt="agegroup" style={{width:"90%", height:"100%"}}></img>
-                <Typography sx={{ fontSize: 50, marginTop:10 }}>연령인식 추천</Typography>
+                <Typography sx={{ fontSize: 50, marginTop:10 }}>연령대별 추천</Typography>
                 </Box>
               </Button>
             </Box>
