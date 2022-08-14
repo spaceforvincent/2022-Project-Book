@@ -38,6 +38,7 @@ export default function Detail() {
   const [onLocation, setLocation] = useState(false);
   const [lookReview, setLookReview] = useState(false);
   const [book, setBook] = useState([]);
+
   const getBook = async () => {
     const json = await (
       await fetch(
@@ -48,6 +49,9 @@ export default function Detail() {
     ).json();
     setBook(json);
   };
+
+  
+
   useEffect(() => {
     getBook();
   }, []);

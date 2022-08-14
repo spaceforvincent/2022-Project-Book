@@ -1,24 +1,27 @@
-import { CardActionArea, Fade, Grid, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { useStyles } from "../../styles";
-import { ReactComponent as BtnMiniSearchPressed } from "../../images/btnmini-search-pressed.svg";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-export default function SearchResult() {
-    const styles = useStyles();
+import React from "react";
+import {useStyles} from "../../styles";
 
+function Borrow_book({
+    cover,
+    title,
+    publish_date,
+    genre,
+}) {
+    const styles = useStyles();
     return (
-        <Box>
-            <BtnMiniSearchPressed className={styles.innerwrapBtn} />
-            <Box className={styles.innerwrapBtn}>
-                책이름:<br></br>
-                작가이름:<br></br>
-                출판사:<br></br>
-                반납일자:<br></br>
-            </Box>
-        </Box>
+        <div>
+            <img src={cover} alt={title}/>
+            <div>
+                <h2 className={styles.movie__title}>
+                    {title}
+                </h2>
+                <h3>{publish_date}</h3>
+                <ul>
+                    {genre}
+                </ul>
+            </div>
+        </div>
     );
 }
+
+export default Borrow_book;

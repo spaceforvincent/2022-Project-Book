@@ -15,39 +15,48 @@ const Borrow_booklist = () => {
 
     const [books, setBooks] = useState([]);
 
+    const mounted = useRef(false);
+
     // test 용 함수
     const sendMsg = (answer) => {
-        console.log("sendMsg실행");
         socket.emit("isbndata", answer);
         url = answer;
     };
 
     // 소켓에서 입력받은 데이터 값 처리
-    async function getIsbn({data}) {
+    const getIsbn = (data) => {
         console.log("getIsbn실행");
         url = data;
         console.log(url);
-        getSocket(url);
     }
 
     // 입력받은 isbn 으로 책 정보 조회
 
-    async function getSocket({ data }) {
-        socket.on('isbnoutput', (data) => {
-            getIsbn(data);
-            const getBooks = async () => {
-                console.log("getBooks실행");
-                count = count + 1;
-                const json = await(
-                    await fetch(`http://i7d211.p.ssafy.io:8081/book/detail?ISBN=${url}`)
-                ).json();
-                console.log("getBooks (", count, ")결과 ", books, json);
-            };
-            getBooks();
-        });
-    }
 
-    useEffect(() => {}, []);
+    socket.on('isbnoutput', (data) => {
+        getIsbn(data);
+        const getBooks = async () => {
+            console.log("getBooks실행");
+            count = count + 1;
+            const json = await(
+                await fetch(`http://i7d211.p.ssafy.io:8081/book/detail?ISBN=${url}`)
+            ).json();
+    
+            setBooks((books) => [
+                ...books, json
+            ]);
+            console.log("getBooks (",count,")결과 ", books, json);
+        };
+        getBooks();
+    });
+
+    useEffect(() => {
+        console.log("useEffect실행");
+        if (!mounted.current) {
+            mounted.current = true;
+        } else {
+        }
+    }, []);
 
     return (
         <Box className={styles.container}>

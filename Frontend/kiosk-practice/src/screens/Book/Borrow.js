@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useStyles } from "../../styles";
-import { Box, CardActionArea, Fade } from "@material-ui/core";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+import { CardActionArea, Fade } from "@material-ui/core";
+
 import Borrow1 from "./Borrow1";
 import Borrow2 from "./Borrow2";
 import Borrow3 from "./Borrow3";
+import Borrow5 from "./Borrow5";
 
 export default function LendScreen() {
   const styles = useStyles();
@@ -13,7 +13,9 @@ export default function LendScreen() {
   return (
       <Fade in={true}>
         <CardActionArea>
+          <Borrow1></Borrow1>
           <Borrow2></Borrow2>
+          <Borrow3></Borrow3>
         </CardActionArea>
       </Fade>
   );

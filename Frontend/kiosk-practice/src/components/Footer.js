@@ -12,18 +12,10 @@ import {Box, Grid} from "@material-ui/core";
 import {useNavigate} from "react-router-dom";
 import {useLocation} from "react-router-dom"
 
-
-// function move(type) {
-//     if (type === 1) {
-//         socket.emit("send opper", "1");
-//     } else if (type === 2) {
-//         socket.emit("send opper", "2");
-//     } else if (type === 3) {
-//         socket.emit("send opper", "3");
-//     } else {
-//         socket.emit("send opper", "4");
-//     }
-// }
+// function move(type) {     if (type === 1) {         socket.emit("send opper",
+// "1");     } else if (type === 2) {         socket.emit("send opper", "2"); }
+// else if (type === 3) {         socket.emit("send opper", "3");     } else {
+// socket.emit("send opper", "4");     } }
 
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:9994");
@@ -32,47 +24,87 @@ const Footer = () => {
     const styles = useStyles();
     const sampleLocation = useLocation();
     const navigate = useNavigate();
-    console.log(sampleLocation.pathname);
 
     const sendMsg = (answer) => {
         console.log(answer);
         socket.emit("inputdata", answer);
-      };
+    };
 
     return (
         <Box >
-            <Grid container="container">
-                <Grid item="item" sm={12} className={styles.footer}>
-                    {
-                        sampleLocation.pathname === "/book/borrow"
-                            ? <BtnMiniRentalPressed className={styles.MiniButton}/>
-                            : <BtnMiniRental
-                                    className={styles.MiniButton}
-                                    onClick={() => {navigate("/book/borrow"); sendMsg(1) }}/>
-                    }
-                    {
-                        sampleLocation.pathname === "/book/return"
-                            ? <BtnMiniReturnPressed className={styles.MiniButton}/>
-                            : <BtnMiniReturn
-                                    className={styles.MiniButton}
-                                    onClick={() => {navigate("/book/return"); sendMsg(0) }}/>
-                    }
-                    {
-                        sampleLocation.pathname === "/book/recommend"
-                            ? <BtnMiniRecommendPressed className={styles.MiniButton}/>
-                            : <BtnMiniRecommend
-                                    className={styles.MiniButton}
-                                    onClick={() => {navigate("/book/recommend"); sendMsg(2) }}/>
-                    }
-                    {
-                        sampleLocation.pathname === "/book/search"
-                            ? <BtnMiniSearchPressed className={styles.MiniButton}/>
-                            : <BtnMiniSearch
-                                    className={styles.MiniButton}
-                                    onClick={() => {navigate("/book/search") }}/>
-                    }
-                </Grid>
-            </Grid>
+            {
+                sampleLocation.pathname === "/book/main"
+                    ? <Box className={[styles.MainButtons]}>
+                            <Grid item="item" sm={12}>
+                                <BtnMiniRental
+                                    className={styles.MainButton}
+                                    onClick={() => {
+                                        navigate("/book/borrow");
+                                        sendMsg(1)
+                                    }}/>
+                                <BtnMiniReturn
+                                    className={styles.MainButton}
+                                    onClick={() => {
+                                        navigate("/book/return");
+                                        sendMsg(0)
+                                    }}/>
+                            </Grid>
+                            <Grid item="item" sm={12}>
+                                <BtnMiniRecommend
+                                    className={styles.MainButton}
+                                    onClick={() => {
+                                        navigate("/book/recommend");
+                                        sendMsg(2)
+                                    }}/>
+                                <BtnMiniSearch
+                                    className={styles.MainButton}
+                                    onClick={() => {
+                                        navigate("/book/search")
+                                    }}/>
+                            </Grid>
+                        </Box>
+                    : <Grid item="item" sm={12} className={styles.footer}>
+                            {
+                                sampleLocation.pathname === "/book/borrow"
+                                    ? <BtnMiniRentalPressed className={styles.MiniButton}/>
+                                    : <BtnMiniRental
+                                            className={styles.MiniButton}
+                                            onClick={() => {
+                                                navigate("/book/borrow");
+                                                sendMsg(1)
+                                            }}/>
+                            }
+                            {
+                                sampleLocation.pathname === "/book/return"
+                                    ? <BtnMiniReturnPressed className={styles.MiniButton}/>
+                                    : <BtnMiniReturn
+                                            className={styles.MiniButton}
+                                            onClick={() => {
+                                                navigate("/book/return");
+                                                sendMsg(0)
+                                            }}/>
+                            }
+                            {
+                                sampleLocation.pathname === "/book/recommend"
+                                    ? <BtnMiniRecommendPressed className={styles.MiniButton}/>
+                                    : <BtnMiniRecommend
+                                            className={styles.MiniButton}
+                                            onClick={() => {
+                                                navigate("/book/recommend");
+                                                sendMsg(2)
+                                            }}/>
+                            }
+                            {
+                                sampleLocation.pathname === "/book/search"
+                                    ? <BtnMiniSearchPressed className={styles.MiniButton}/>
+                                    : <BtnMiniSearch
+                                            className={styles.MiniButton}
+                                            onClick={() => {
+                                                navigate("/book/search")
+                                            }}/>
+                            }
+                        </Grid>
+            }
         </Box>
     );
 }
