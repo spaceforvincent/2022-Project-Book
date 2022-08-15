@@ -1,23 +1,27 @@
-import { useState, useEffect, useCallback } from 'react';
+import {useState, useEffect, useCallback} from 'react';
 
-import React, { Component } from "react";
-import { useStyles } from "../../styles";
-import { ReactComponent as Accept } from "../../images/accept+.svg";
-import { ReactComponent as Cancle } from "../../images/cancle+.svg";
-import { Box, Grid } from "@material-ui/core";
+import React, {Component} from "react";
+import {useStyles} from "../../styles";
+import {ReactComponent as Accept} from "../../images/accept+.svg";
+import {ReactComponent as Cancle} from "../../images/cancle+.svg";
+import {Box, Grid} from "@material-ui/core";
 import Footer from "../../components/Footer";
+import AcceptBtn from "../../components/AcceptBtn";
 
 import Borrow_booklist from './Borrow_booklist';
 
 import io from "socket.io-client";
 import axios from 'axios';
 
-const Borrow1 = () => {
+const Borrow2 = (props) => {
+    const [sockets, setSockets] = useState([]);
+    const [books, setBooks] = useState([]);
+    const [data, setData] = useState(false);
 
-    // let isbndata = [];
+    props.setAccept(data);
+    console.log(data);
 
-    const socket = io.connect("http://localhost:9994");
-    const [books, setBook] = useState([]);
+    const socket = io.connect("http://192.168.0.35:9994");
 
     const getBook = (bookdata) => {
         axios
@@ -27,13 +31,30 @@ const Borrow1 = () => {
                 }
             })
             .then(function (response) {
-                return setBook(response.data)
+                setBooks(response.data)
+                console.log(books)
+                return books
             })
     }
 
-    socket.on('isbnoutput', (data) => {
-        getBook(data)
-    });
+    const otherbook = () => {
+        setSockets('connect')
+        socket.emit("inputdata", 1);
+    }
+
+    const finishbook = () => {
+        setSockets('disconnect')
+    }
+
+    useEffect(() => {
+        socket.on('isbnoutput', (data) => {
+            console.log(data)
+            getBook(data)
+        })
+        return() => {
+            socket.close()
+        }
+    }, [socket]);
 
     const styles = useStyles();
 
@@ -80,33 +101,42 @@ const Borrow1 = () => {
                 <br></br>
                 {todayTime().slice(0, 9)}
             </Box>
-            <Borrow_booklist />
+            <Box className={styles.padding}/>
+            {/* <Borrow_booklist/> */}
             <Box className={[styles.TitleMessage, styles.padding]}>
                 {weeksAfterdayTime().slice(0, 9)}
             </Box>
 
             <Box className={[styles.TitleMessage]}>
+
                 <div>
-                    <h1>
-                        {books.title}
-                    </h1>
+                    {books.title}
                 </div>
+
+                <button
+                    onClick={() => {
+                        otherbook()
+                    }}>
+                    더 빌릴래요!
+                </button>
+
+                <button
+                    onClick={() => {
+                        finishbook()
+                    }}>
+                    그만할래요!
+                </button>
+
                 <b>까지</b>
                 대여
                 <b>합니다.</b>
             </Box>
 
-            <Grid container="container">
-                <Grid item="item" sm={12} className={styles.footer}>
-                    <Accept className={styles.AcceptButton} />
+            <AcceptBtn setData={setData}/>
 
-                    <Cancle className={styles.AcceptButton} />
-                </Grid>
-            </Grid>
-
-            <Footer />
+            <Footer/>
         </Box>
     );
 }
 
-export default Borrow1;
+export default Borrow2;

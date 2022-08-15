@@ -10,12 +10,12 @@ export const useStyles = makeStyles((theme) => ({
   background: {
     background: "6069BE",
   },
-
+  
   booklistBox: {
     width: 500,
     height: 200,
   },
-
+  
   main: {
     flex: 1,
     overflow: "auto",
@@ -41,7 +41,6 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    background: "#6069BE",
   },
   subTitleMessage: {
     fontFamily: "'Noto Sans'",
@@ -55,7 +54,6 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    background: "#6069BE",
     marginTop: 100,
     marginBottom: 100,
   },
@@ -63,31 +61,38 @@ export const useStyles = makeStyles((theme) => ({
     width: 1100,
     height: 300,
   },
-
+  
   center: {
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
     backgroundColor: "rgba(15, 29, 160, 0.65)",
   },
-
+  
   largeLogo: {
     position: "relative",
     width: 983,
-    marginTop: 200,
-    marginBottom: 150,
+    marginTop: 100,
   },
-
+  
   MainButton: {
     position: "relative",
-    height: 608,
-    width: 672,
+    height: 500,
+    width: 500,
+    margin: 25,
   },
+
+  SignupButton: {
+    height: 300,
+    width: 550,
+  },
+
   HomeButton: {
     position: "relative",
     height: 300,
     width: 300,
   },
+  
   TitleButton: {
     display: "flex",
     alignItems: "center",
@@ -131,6 +136,12 @@ export const useStyles = makeStyles((theme) => ({
     width: 320,
     margin: 20,
   },
+  AcceptButton: {
+    position: "relative",
+    height: 222,
+    width: 588,
+    margin: 65,
+  },
   cards: {
     display: "flex",
     justifyContent: "center",
@@ -163,13 +174,10 @@ export const useStyles = makeStyles((theme) => ({
     marginRight: 30,
   },
   horizontalScroll: {
-    display: 'flex',
-    overflow: 'auto',
-    whiteSpace: 'nowrap',
-  },
-  AcceptButton: {
-    margin: 50,
-  },
+    display:'flex', 
+    overflow: 'auto', 
+    whiteSpace: 'nowrap'
+  }, 
   AcceptButtonText: {
     position: "absolute",
     top: "50 %",
@@ -185,8 +193,8 @@ export const useStyles = makeStyles((theme) => ({
     color: "#6069BE",
   },
   wrapper: {
-    display: 'flex',
-    overflow: 'auto',
+    display:'flex', 
+    overflow: 'auto', 
     whiteSpace: 'nowrap',
     width: 1300,
     height: 700,
@@ -234,8 +242,15 @@ export const useStyles = makeStyles((theme) => ({
     boxShadow: 24,
     p: 4,
   },
-  star: {
-    width: 300,
-    height: 60
+  star:{
+    width:300,
+    height:60
+  },
+  MainButtons:{
+    gridTemplateColumns: "1fr 1fr",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
   }
+
 }));

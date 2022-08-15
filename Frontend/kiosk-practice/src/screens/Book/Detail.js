@@ -41,6 +41,7 @@ export default function Detail() {
   const [selectedIndex, setSelectedIndex] = useState();
   const [reviewStory, setReviewStory] = useState();
   const [book, setBook] = useState([]);
+
   const getBook = async () => {
     const json = await (
       await fetch(
@@ -51,6 +52,9 @@ export default function Detail() {
     ).json();
     setBook(json);
   };
+
+  
+
   useEffect(() => {
     getBook();
   }, []);

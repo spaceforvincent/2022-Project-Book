@@ -14,7 +14,7 @@ io.sockets.on('connection', (socket) => {
 	
 	socket.join("output");
 	socket.join("isbnput");
-	socket.join("faceput")
+	socket.join("faceput");
 
 	socket.on('inputdata', (data) => {
 	console.log(data);

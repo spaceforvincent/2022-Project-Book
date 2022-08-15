@@ -69,7 +69,7 @@ function App() {
             <Route path="/book/searchresult" element={<SearchResult />} exact></Route>
             <Route path="/book/login" element={<Login />} exact></Route>
             <Route path="/book/detail/:id" element={<Detail />} exact></Route>
-
+            
             {/* user */}
             <Route path="/user/signup" element={<SignUp />} exact></Route>
             <Route path="/user/login" element={<LogIn />} exact></Route>
