@@ -15,8 +15,8 @@ export default function ReturnScreen(props) {
     const [Accept, setAccept] = useState(false);
 
     const refreshFunction = (newBook) => {
-        console.log(newBook);
         setbooks(books.concat(newBook));
+        console.log("borrow페이지 리스트",books);
     };
 
     console.log(Accept);

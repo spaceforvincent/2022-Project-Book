@@ -22,7 +22,6 @@ const Borrow2 = (props) => {
 
     const socket = io.connect("http://localhost:9994");
 
-
     const getBook = (bookdata) => {
         console.log(bookdata)
         axios
@@ -109,9 +108,13 @@ const Borrow2 = (props) => {
                 {weeksAfterdayTime().slice(0, 9)}
             </Box>
 
-            <div>
-                {books.title}
-            </div>
+            <Box>
+                {
+                    props.borrowList.map((BOOK) => (
+                        <div>{BOOK.title}여기는 외않되</div>
+                    ))
+                }
+            </Box>
 
             <button onClick={() => {
                     otherbook()
@@ -125,12 +128,14 @@ const Borrow2 = (props) => {
                 그만할래요!
             </button>
 
-            <button onClick={() => {
+            <button
+                onClick={() => {
                     getBook('9791197910821')
                 }}>
                 isbn을 추가해요!
             </button>
-            <button onClick={() => {
+            <button
+                onClick={() => {
                     getBook('9791165345990')
                 }}>
                 isbn을 추가해요2!
