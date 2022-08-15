@@ -74,9 +74,12 @@ const MyBook = () => {
   
   return (
     <div className="bookList-wrapper">
-      <Link to="/myboard-list">내 게시물</Link>
- 
-      <Link to="/mypage">회원정보</Link>
+      <div className="menu">
+        <Link to="/myboard-list">내 게시물</Link>
+  
+        <Link to="/mypage">회원정보</Link>
+      </div>
+      
 
       <div className="bookList-header">
         대여 기록

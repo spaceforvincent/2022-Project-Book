@@ -36,3 +36,14 @@
     margin: 1.5rem;
   }
 }
+
+.menu{
+  display: flex;
+  flex-wrap: wrap;
+  a {
+    font-size: 2rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    flex-shrink: 0;
+    margin: 0 1rem;
+  }
+}
