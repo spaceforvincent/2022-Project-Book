@@ -10,9 +10,15 @@ import BorrowLogin from "./BorrowLogin";
 
 export default function ReturnScreen(props) {
     const styles = useStyles();
-    const [books, setbooks] = useState([123]);
 
+    const [books, setbooks] = useState([]);
     const [Accept, setAccept] = useState(false);
+
+    const refreshFunction = (newBook) => {
+        console.log(newBook);
+        setbooks(books.concat(newBook));
+    };
+
     console.log(Accept);
 
     return (
@@ -20,10 +26,10 @@ export default function ReturnScreen(props) {
             <CardActionArea>
                 {
                     books.length === 0
-                        ? <Borrow1/>
+                        ? <Borrow1 borrowList={books} refreshFunction={refreshFunction}/>
                         : Accept
-                            ? <BorrowLogin/>
-                            : <Borrow2 setAccept={setAccept}/>
+                            ? <BorrowLogin  borrowList={books}/>
+                            : <Borrow2 setAccept={setAccept} borrowList={books} refreshFunction={refreshFunction}/>
                 }
             </CardActionArea>
         </Fade>

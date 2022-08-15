@@ -1,6 +1,6 @@
 import React from "react";
 import {useStyles} from "../styles";
-
+import {useNavigate} from "react-router-dom";
 import {ReactComponent as Accept} from "../images/accept+.svg";
 import {ReactComponent as Cancle} from "../images/cancle+.svg";
 
@@ -13,13 +13,17 @@ import {Box, Grid} from "@material-ui/core";
 
 const AcceptBtn = (props) => {
     const styles = useStyles();
-
+    const navigate = useNavigate();
     return (
         <Box >
             <Grid container="container">
                 <Grid item="item" sm={12} className={styles.footer}>
                     <Accept className={styles.AcceptButton} onClick={() => props.setData(true)}/>
-                    <Cancle className={styles.AcceptButton}/>
+                    <Cancle
+                        className={styles.AcceptButton}
+                        onClick={() => {
+                            navigate("/book/main");
+                        }}/>
                 </Grid>
             </Grid>
         </Box>

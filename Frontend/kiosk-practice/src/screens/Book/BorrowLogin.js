@@ -10,18 +10,17 @@ import {Button} from "@mui/material";
 axios.defaults.withCredentials = true;
 
 const submit = async () => {
-    const {email, password} = { email : "sanggom@ssaty.com", password : "sanggom1234!"};
+    const {email, password} = {
+        email: "sanggom@ssaty.com",
+        password: "sanggom1234!"
+    };
     try {
         const {data} = await axios.post(
             "http://i7d211.p.ssafy.io:8081/user/login",
             {email, password}
         );
 
-        // 로그인 성공시 -> 토큰값 있음
         if (data.token) {
-            // dispatch(setToken(data.token));
-
-            // const redirectUrl = searchParams.get("redirectUrl");
             console.log(data.token);
         } else {
             alert("이메일 혹은 비밀번호가 틀렸습니다.")
@@ -33,10 +32,10 @@ const submit = async () => {
     }
 };
 
-const Login = () => {
+const Login = (props) => {
     const styles = useStyles();
     const navigate = useNavigate();
-    
+
     return (
         <Card>
             <CardActionArea>
@@ -45,6 +44,9 @@ const Login = () => {
                     <Box>
                         <button onClick={submit}>
                             Do Something!</button>
+                    </Box>
+                    <Box>
+                        { props.books.title }
                     </Box>
                 </Box>
             </CardActionArea>

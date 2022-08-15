@@ -2,8 +2,6 @@ import {useState, useEffect, useCallback} from 'react';
 
 import React, {Component} from "react";
 import {useStyles} from "../../styles";
-import {ReactComponent as Accept} from "../../images/accept+.svg";
-import {ReactComponent as Cancle} from "../../images/cancle+.svg";
 import {Box, Grid} from "@material-ui/core";
 import Footer from "../../components/Footer";
 import AcceptBtn from "../../components/AcceptBtn";
@@ -19,11 +17,14 @@ const Borrow2 = (props) => {
     const [data, setData] = useState(false);
 
     props.setAccept(data);
+
     console.log(data);
 
-    const socket = io.connect("http://192.168.0.35:9994");
+    const socket = io.connect("http://localhost:9994");
+
 
     const getBook = (bookdata) => {
+        console.log(bookdata)
         axios
             .get("http://i7d211.p.ssafy.io:8081/book/detail", {
                 params: {
@@ -32,7 +33,9 @@ const Borrow2 = (props) => {
             })
             .then(function (response) {
                 setBooks(response.data)
-                console.log(books)
+                props.refreshFunction(response.data);
+                console.log("헬롱!", books)
+                console.log("발롱!", props.borrowList)
                 return books
             })
     }
@@ -101,29 +104,37 @@ const Borrow2 = (props) => {
                 <br></br>
                 {todayTime().slice(0, 9)}
             </Box>
-            <Box className={styles.padding}/>
-            {/* <Borrow_booklist/> */}
+            <Box className={styles.padding}/> {/* <Borrow_booklist/> */}
             <Box className={[styles.TitleMessage, styles.padding]}>
                 {weeksAfterdayTime().slice(0, 9)}
             </Box>
 
-                <div>
-                    {books.title}
-                </div>
+            <div>
+                {books.title}
+            </div>
 
-                <button
-                    onClick={() => {
-                        otherbook()
-                    }}>
-                    더 빌릴래요!
-                </button>
+            <button onClick={() => {
+                    otherbook()
+                }}>
+                더 빌릴래요!
+            </button>
 
-                <button
-                    onClick={() => {
-                        finishbook()
-                    }}>
-                    그만할래요!
-                </button>
+            <button onClick={() => {
+                    finishbook()
+                }}>
+                그만할래요!
+            </button>
+
+            <button onClick={() => {
+                    getBook('9791197910821')
+                }}>
+                isbn을 추가해요!
+            </button>
+            <button onClick={() => {
+                    getBook('9791165345990')
+                }}>
+                isbn을 추가해요2!
+            </button>
 
             <Box className={[styles.TitleMessage]}>
                 <b>까지</b>

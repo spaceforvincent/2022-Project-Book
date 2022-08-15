@@ -10,13 +10,20 @@ import Footer from "../../components/Footer";
 export default function HomeScreen(props) {
     const styles = useStyles();
     const navigate = useNavigate();
+
+    const logout = async () => {
+
+    };
+
     return (
         <Card>
             <CardActionArea>
                 <Box className={[styles.center]}>
                     <MainIcon className={styles.largeLogo}/>
                     <Box>
-                        <Signup className={styles.SignupButton} onClick={() => navigate("/book/Login")}/>
+                        <Signup
+                            className={styles.SignupButton}
+                            onClick={() => navigate("/book/Login")}/>
                         <Footer/>
                     </Box>
                 </Box>
