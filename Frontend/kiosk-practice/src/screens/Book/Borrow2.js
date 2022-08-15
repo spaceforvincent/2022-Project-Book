@@ -107,8 +107,6 @@ const Borrow2 = (props) => {
                 {weeksAfterdayTime().slice(0, 9)}
             </Box>
 
-            <Box className={[styles.TitleMessage]}>
-
                 <div>
                     {books.title}
                 </div>
@@ -127,6 +125,7 @@ const Borrow2 = (props) => {
                     그만할래요!
                 </button>
 
+            <Box className={[styles.TitleMessage]}>
                 <b>까지</b>
                 대여
                 <b>합니다.</b>

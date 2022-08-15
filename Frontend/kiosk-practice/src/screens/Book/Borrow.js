@@ -6,7 +6,7 @@ import {CardActionArea, Fade} from "@material-ui/core";
 import Borrow1 from "./Borrow1";
 import Borrow2 from "./Borrow2";
 import Borrow3 from "./Borrow3";
-import Borrow5 from "./Borrow5";
+import BorrowLogin from "./BorrowLogin";
 
 export default function ReturnScreen(props) {
     const styles = useStyles();
@@ -22,7 +22,7 @@ export default function ReturnScreen(props) {
                     books.length === 0
                         ? <Borrow1/>
                         : Accept
-                            ? <Borrow3/>
+                            ? <BorrowLogin/>
                             : <Borrow2 setAccept={setAccept}/>
                 }
             </CardActionArea>
