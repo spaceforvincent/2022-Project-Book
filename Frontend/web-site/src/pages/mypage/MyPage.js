@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 
 // css
-//import "./MyPage.scss";
+import "./myPage.scss";
 
 
 const MyPage = () => {
@@ -30,14 +30,16 @@ const MyPage = () => {
   }, [token]);
   
   return (
-    <div>
-      <Link to="/myboard-list">내 게시물</Link>
+    <div className="home-wrapper">
+      <div className="menu">
+        <Link to="/myboard-list">내 게시물</Link>
 
-      <Link to="/mybook">대여기록</Link>
-
-      <div>회원 정보</div>
+        <Link to="/mybook">대여기록</Link>
+      </div>
+    
+      <div className="home-title">회원 정보</div>
       
-      <div>
+      <div className="home-contents">
         <div>계정 : {userProfile.email} </div>
         <div>이름 : {userProfile.name} </div>
         <div>연락처 : {userProfile.phonenumber} </div>

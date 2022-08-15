@@ -9,12 +9,15 @@
   }
 }
 
+
 .home-wrapper{
   margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: 'Noto Sans KR', sans-serif;
+  
+
   .home-title{
     opacity: 0;
     animation: smoothAppear 1s forwards;
