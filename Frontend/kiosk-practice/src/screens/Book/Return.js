@@ -6,12 +6,13 @@ import Return1 from "./Return1";
 import Return2 from "./Return2";
 import Return3 from "./Return3";
 
-export default function ReturnScreen() {
+export default function ReturnScreen(props) {
     const styles = useStyles();
-    const [books, setbooks] = useState([]);
-    console.log(books.length);
-    let booksLength = books.lengt;
+    const [books, setbooks] = useState([123]);
+
+
     const [Accept, setAccept] = useState(false);
+    console.log(Accept);
 
     return (
         <Fade in={true}>
@@ -21,7 +22,7 @@ export default function ReturnScreen() {
                         ? <Return1/>
                         : Accept
                             ? <Return3/>
-                            : <Return2/>
+                            : <Return2 setAccept={setAccept}/>
                 }
             </CardActionArea>
         </Fade>

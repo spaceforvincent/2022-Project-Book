@@ -11,14 +11,14 @@ import {Box, Grid} from "@material-ui/core";
 // else if (type === 3) {         socket.emit("send opper", "3");     } else {
 // socket.emit("send opper", "4");     } }
 
-const AcceptBtn = () => {
+const AcceptBtn = (props) => {
     const styles = useStyles();
 
     return (
         <Box >
             <Grid container="container">
                 <Grid item="item" sm={12} className={styles.footer}>
-                    <Accept className={styles.AcceptButton}/>
+                    <Accept className={styles.AcceptButton} onClick={() => props.setData(true)}/>
                     <Cancle className={styles.AcceptButton}/>
                 </Grid>
             </Grid>

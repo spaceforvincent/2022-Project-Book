@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { useStyles } from "../../styles";
 import { Box } from "@material-ui/core";
 import Footer from "../../components/Footer";
@@ -6,8 +6,10 @@ import AcceptBtn from "../../components/AcceptBtn";
 
 import Borrow_booklist from './Borrow_booklist';
 
-const Borrow1 = () => {
+const Borrow2 = (props) => {
     const styles = useStyles();
+    const [data, setData] = useState(false);
+
 
     const todayTime = () => {
         let now = new Date();
@@ -23,11 +25,10 @@ const Borrow1 = () => {
             '토'
         ];
         let dayOfWeek = week[now.getDay()];
-
         return todayMonth + "월" + todayDate + "일 " + dayOfWeek + "요일";
     }
-
-
+    props.setAccept(data);
+    console.log(data);
     return (
         <Box className={styles.center}>
             <Box className={[styles.TitleMessage, styles.padding]}>
@@ -35,15 +36,15 @@ const Borrow1 = () => {
                 {todayTime().slice(0, 9)}
             </Box>
             <Box className={styles.padding} />
-            <Borrow_booklist />
+            {/* <Borrow_booklist /> */}
 
             <Box className={[styles.TitleMessage]}>
                 반납&nbsp;합니다
             </Box>
-            <AcceptBtn />
+            <AcceptBtn setData={setData}/>
             <Footer />
         </Box>
     );
 }
 
-export default Borrow1;
+export default Borrow2;

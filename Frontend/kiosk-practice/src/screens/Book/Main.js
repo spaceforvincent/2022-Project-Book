@@ -13,9 +13,8 @@ export default function HomeScreen(props) {
     return (
         <Card>
             <CardActionArea>
-                {/* Box는 html의 div와 비슷 */}
                 <Box className={[styles.center]}>
-                    <MainIcon className={styles.largeLogo}/> {/* bottom */}
+                    <MainIcon className={styles.largeLogo}/>
                     <Box>
                         <Signup className={styles.SignupButton} onClick={() => navigate("/book/Login")}/>
                         <Footer/>

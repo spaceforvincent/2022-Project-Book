@@ -1,29 +1,35 @@
-import { useState, useEffect, useCallback } from 'react';
+import {useState, useEffect, useCallback} from 'react';
 
-import React, { Component } from "react";
-import { useStyles } from "../../styles";
-import { ReactComponent as Accept } from "../../images/accept+.svg";
-import { ReactComponent as Cancle } from "../../images/cancle+.svg";
-import { Box, Grid } from "@material-ui/core";
-import Header from "../../components/Header";
+import React, {Component} from "react";
+import {useStyles} from "../../styles";
+import {ReactComponent as Accept} from "../../images/accept+.svg";
+import {ReactComponent as Cancle} from "../../images/cancle+.svg";
+import {Box, Grid} from "@material-ui/core";
 import Footer from "../../components/Footer";
+import AcceptBtn from "../../components/AcceptBtn";
 
 import Borrow_booklist from './Borrow_booklist';
 
 import io from "socket.io-client";
 import axios from 'axios';
 
-const Borrow1 = () => {
-
+const Borrow2 = (props) => {
     const [sockets, setSockets] = useState([]);
     const [books, setBooks] = useState([]);
+    const [data, setData] = useState(false);
+
+    props.setAccept(data);
+    console.log(data);
 
     const socket = io.connect("http://192.168.0.35:9994");
 
     const getBook = (bookdata) => {
-        axios.get("http://i7d211.p.ssafy.io:8081/book/detail", {
-            params: { ISBN: bookdata }
-        })
+        axios
+            .get("http://i7d211.p.ssafy.io:8081/book/detail", {
+                params: {
+                    ISBN: bookdata
+                }
+            })
             .then(function (response) {
                 setBooks(response.data)
                 console.log(books)
@@ -40,20 +46,17 @@ const Borrow1 = () => {
         setSockets('disconnect')
     }
 
-
     useEffect(() => {
         socket.on('isbnoutput', (data) => {
             console.log(data)
             getBook(data)
-        }) 
-        return () => {
+        })
+        return() => {
             socket.close()
         }
-      }, [socket]);
-
+    }, [socket]);
 
     const styles = useStyles();
-
 
     const todayTime = () => {
         let now = new Date();
@@ -94,11 +97,12 @@ const Borrow1 = () => {
     return (
         <Box className={styles.center}>
             <Box className={[styles.TitleMessage, styles.padding]}>
-                오늘 <br></br>
+                오늘
+                <br></br>
                 {todayTime().slice(0, 9)}
             </Box>
-            <Box className={styles.padding} />
-            <Borrow_booklist />
+            <Box className={styles.padding}/>
+            {/* <Borrow_booklist/> */}
             <Box className={[styles.TitleMessage, styles.padding]}>
                 {weeksAfterdayTime().slice(0, 9)}
             </Box>
@@ -106,32 +110,33 @@ const Borrow1 = () => {
             <Box className={[styles.TitleMessage]}>
 
                 <div>
-                    { books.title }
+                    {books.title}
                 </div>
-                
-                <button onClick={ () => { otherbook() }}>
+
+                <button
+                    onClick={() => {
+                        otherbook()
+                    }}>
                     더 빌릴래요!
                 </button>
 
-                <button onClick={ () => { finishbook()}}>
+                <button
+                    onClick={() => {
+                        finishbook()
+                    }}>
                     그만할래요!
                 </button>
 
-                <b>까지</b> 대여 <b>합니다.</b>
+                <b>까지</b>
+                대여
+                <b>합니다.</b>
             </Box>
 
-            <Box className={styles.wrapBtn}>
-                <Box className={styles.innerwrapBtn}>
-                    <Accept className={styles.AcceptButton} />
-                </Box>
-                <Box className={styles.innerwrapBtn}>
-                    <Cancle className={styles.AcceptButton} />
-                </Box>
-            </Box>
+            <AcceptBtn setData={setData}/>
 
-            <Footer />
+            <Footer/>
         </Box>
     );
 }
 
-export default Borrow1;
+export default Borrow2;
