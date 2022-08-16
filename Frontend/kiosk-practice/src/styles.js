@@ -153,16 +153,16 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     marginLeft: 50,
     marginRight: 50,
-    margin: 110,
+    margin: 100,
   },
   detailUpperButton: {
     marginLeft: 20,
     marginRight: 20,
-    marginBottom: 100
+    marginBottom: 100,
+    marginTop:-100
   },
   detailBorrowStatus: {
-    marginLeft: 10,
-    marginRight: 10,
+    margin : 10
   },
   RelatedBooks: {
     backgroundColor: "#223069",

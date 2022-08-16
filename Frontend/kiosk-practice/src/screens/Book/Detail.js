@@ -55,8 +55,6 @@ export default function Detail() {
     setLoading(false); //로딩풀기
   };
 
-  
-
   useEffect(() => {
     getBook();
   }, []);
@@ -70,16 +68,14 @@ export default function Detail() {
               style={{
                 width: 1440,
                 height: 2560,
-                display:'flex',
+                display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 backgroundColor: "rgba(15, 29, 160, 0.65)",
               }}
             >
               <strong className={[styles.main, styles.center]}>
-                <h2>
-                Loading...
-                </h2>
+                <h2>Loading...</h2>
               </strong>
             </Box>
           ) : (
@@ -93,7 +89,7 @@ export default function Detail() {
                     alt="cover"
                   ></img>
                   <Typography
-                    style={{ color: "#FFCB45", fontSize: 70, marginTop: 70 }}
+                    style={{ color: "#FFCB45", fontSize: 70, marginTop: 50 }}
                   >
                     {book.star === 5 ? (
                       <Star5 className={styles.star} />
@@ -116,7 +112,7 @@ export default function Detail() {
                     ) : book.star >= 0.5 ? (
                       <Star05 className={styles.star} />
                     ) : (
-                      <Star0 />
+                      <Star0 className={styles.star} />
                     )}{" "}
                     {book.reviews && book.reviews.length > 0
                       ? Math.round(book.star * 10) / 10
@@ -125,14 +121,29 @@ export default function Detail() {
                 </Box>
 
                 <Box>
-                  <Box style={{ overflow: "auto" }}>
+                  <Box style={{ marginTop: 100, overflow: "auto" }}>
+                    <Box style={{display:'flex', justifyContent:'center', marginLeft:50}}>
+                    <Typography
+                      style={{
+                        fontSize: 50,
+                        fontWeight: "bold",
+                        color: "white",
+                        marginTop: -150,
+                        marginBottom: 50,
+                        position: "fixed",
+                      }}
+                    >
+                      {book.title}
+                    </Typography>
+                    </Box>
                     <Typography
                       component="h3"
                       variant="h3"
                       style={{
                         color: "#ffffff",
                         marginLeft: 40,
-                        height: 500,
+                        height: 450,
+                        marginTop:20
                       }}
                     >
                       {onReview
@@ -145,10 +156,10 @@ export default function Detail() {
                                     <Table>
                                       <TableBody>
                                         <TableRow key={review.review_id}>
-                                          <TableCell align="center">
+                                          <TableCell>
                                             <Typography
                                               style={{
-                                                fontSize: 30,
+                                                fontSize: 40,
                                                 marginLeft: "auto",
                                                 marginRight: "auto",
                                                 color: "#ffffff",
@@ -182,7 +193,7 @@ export default function Detail() {
                                               )}
                                             </Box>
                                           </TableCell>
-                                          <TableCell align="center">
+                                          <TableCell>
                                             <Typography
                                               onClick={() => {
                                                 setLookReview(!lookReview);
@@ -199,7 +210,7 @@ export default function Detail() {
                                               {review.title}
                                             </Typography>
                                           </TableCell>
-                                          <TableCell align="center">
+                                          <TableCell align="right">
                                             <Typography
                                               style={{
                                                 fontSize: 40,
@@ -236,12 +247,12 @@ export default function Detail() {
                             ))
                           : "등록된 리뷰가 없습니다."
                         : book.content
-                        ? book.content
+                        ? book.content.slice(0, 140) + "..."
                         : "표시할 책 내용이 없습니다."}
                     </Typography>
                   </Box>
 
-                  <Box style={{ marginLeft: 30 }}>
+                  <Box style={{ marginLeft: 30, marginTop: 70, marginBottom:30 }}>
                     <ShowReview
                       onClick={() => {
                         setReview(!onReview);
@@ -323,8 +334,9 @@ export default function Detail() {
                   display: "flex",
                   justifyContent: "end",
                   alignItems: "center",
-                  marginTop: -240,
+                  marginTop: -250,
                   marginRight: 50,
+                  marginBottom: 100,
                 }}
               >
                 <BorrowStatus style={{ alignItems: "center" }} />
@@ -353,10 +365,16 @@ export default function Detail() {
                   alt="dummy"
                 ></img>
               </Box>
-              <Box style={{ display: "flex", justifyContent: "start" }}>
-                <RelatedBooks />
-              </Box>
               <Box className={styles.RelatedBooks}>
+                <Box
+                  style={{
+                    display: "flex",
+                    justifyContent: "start",
+                    marginTop: -50,
+                  }}
+                >
+                  <RelatedBooks />
+                </Box>
                 <Box className={styles.horizontalScroll}>
                   {book.related_books &&
                     book.related_books.map((related_book) => (
@@ -371,7 +389,7 @@ export default function Detail() {
                           height={500}
                           className={styles.RelatedBookList}
                           src={related_book.cover}
-                          alt="dummy"
+                          alt="related"
                         />
                       </div>
                     ))}
