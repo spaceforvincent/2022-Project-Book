@@ -51,7 +51,7 @@ export default function Detail() {
       )
     ).json();
     setBook(json);
-    setLoading(false);
+    setLoading(false); //로딩풀기
   };
   useEffect(() => {
     getBook();
