@@ -67,12 +67,7 @@ export default function RecommendScreen() {
             >
               50대
             </Button>
-            <Button
-              style={{ backgroundColor: "navy", fontSize: 50, color: "white" }}
-              onClick={() => {setAge(60)}}
-            >
-              60대
-            </Button>
+            
           </Box>
           <Box className={styles.outerWrapperSearch}>
             <Box style={{ marginTop: -50 }} className={styles.wrapperSearch}>
@@ -213,33 +208,6 @@ export default function RecommendScreen() {
                   </Box>
                 )) : Age===50 ? Books.fifty &&
                 Books.fifty.map((Book) => (
-                  <Box
-                    onClick={() => {
-                      navigate(`/book/detail/${Book.isbn}`);
-                    }}
-                    style={{ display: "flex", border:'2px solid #ffffff' }}
-                  >
-                    <img
-                      src={Book.cover}
-                      alt="cover"
-                      style={{ margin: 50, width: "250px", height: "350px" }}
-                    ></img>
-                    <Box
-                      style={{ alignItems: "center", justifyContent: "center" }}
-                    >
-                      <Typography
-                        style={{ color: "white", margin: 50, marginTop: 100 }}
-                        variant="h5
-                    "
-                        component="h5"
-                      >
-                        {Book.title}
-                      </Typography>
-                    </Box>
-                    
-                  </Box>
-                )) : Age===60 ? Books.sixty &&
-                Books.sixty.map((Book) => (
                   <Box
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
