@@ -10,37 +10,73 @@ import {Pagination} from "@mui/material";
 import {Card} from "../../components/Card";
 import "../board-list/boardList.scss";
 
+
+// 한 페이지당 표시할 수
+var totalPost = 8
+
+// 페이지에 맞는 게시글 불러올 함수
+const getBoardList = async (token, page) => {
+  const url = "http://i7d211.p.ssafy.io:8081/board/boardAll"
+  const id = jwtUtils.getId(token);
+  const {data} = await axios.get(`${url}?boardType=notice`);
+
+  var temp = []
+  var newData = []
+
+  for (var i=0; i < data.length; i++) {
+    if (data[i].id === id) {
+      temp.push(data[i]) 
+    }
+  }
+
+  for (var j = (page-1)*totalPost; j < page*totalPost; j ++) {
+    // 총 게시글 수 보다 많아지면 중단
+    if (j >= temp.length) {
+      break
+
+    } else {
+      newData.push(temp[j])
+    }
+  }
+
+  return newData;
+}
+
 const MyBoardList = () => {
+  const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const [boardList, setBoardList] = useState([]);
   const [searchParams] = useSearchParams();
-  // user의 id를 알아내기 위해 token 가져오기
   const token = useSelector(state => state.Auth.token);
 
   useEffect(() => {
     // 페이지에 해당하는 게시물 가져오기
-    const getBoardList = async () => {
-      // const page_number = searchParams.get("page");
-      const url = "http://i7d211.p.ssafy.io:8081/board/boardAll"
-      const id = jwtUtils.getId(token);
-      const {data} = await axios.get(`${url}?boardType=notice&id=${id}`);
-      return data;
-    }
+    getBoardList(token, page)
 
     // 현재 페이지에 해당하는 게시물로 상태 변경하기
-    getBoardList().then(result => setBoardList(result));
+    .then(result => setBoardList(result));
 
     // 게시물 전체 갯수 구하기
     const getTotalBoard = async () => {
       const url = "http://i7d211.p.ssafy.io:8081/board/boardAll"
       const id = jwtUtils.getId(token);
-      const {data} = await axios.get(`${url}?boardType=notice&id=${id}`);
-      return data.total;
+      const {data} = await axios.get(`${url}?boardType=notice`);
+      
+      var newData = []
+
+      for (var i=0; i < data.length; i++) {
+        if (data[i].id === id) {
+          newData.push(data[i]) 
+        }
+      }
+
+      return newData.length;
     }
 
     // 페이지 카운트 구하기
-    getTotalBoard().then(result => setPageCount(Math.ceil(result / 4)));
-  }, [token])
+    getTotalBoard().then(result => setPageCount(Math.ceil(result / totalPost)));
+      console.log()
+  }, [searchParams, token, page])
 
   return (
     <div className="boardList-wrapper">
@@ -50,7 +86,9 @@ const MyBoardList = () => {
 
       <div className="boardList-body">
         {boardList.map((item, index) => (
-          <Card key={item.board_id} 
+          <Card 
+            key={item.board_id}
+            board_id={item.board_id}
             id={item.id} 
             date={moment(item.created_date).add(9, "hour").format('YYYY-MM-DD')}
             title={item.title} 
@@ -65,11 +103,14 @@ const MyBoardList = () => {
         <Pagination
           variant="outlined" 
           color="primary" 
-          page={Number(searchParams.get("page"))}
+          page={Number(page)}
           count={pageCount} 
           size="large"
           onChange={(e, value) => {
-            window.location.href = `/myboard-list?page=${value}`;
+            setPage(value)
+
+            getBoardList(token, value)
+            .then(result => setBoardList(result));
           }}
           showFirstButton
           showLastButton

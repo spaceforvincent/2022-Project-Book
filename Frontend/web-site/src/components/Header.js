@@ -33,12 +33,16 @@ const Header = () => {
           <span>북 극 성</span>
         </Link>
       </div>
+
       <div className="header-menu">
         <Link to="/board-list">게시판</Link>
-        <Link to="/add-board">글쓰기</Link>
+
+        {/* 로그인 유무 판단*/}
         {isAuth ? (
           <>
-            <Link to="/myboard-list">내 게시물</Link>
+            <Link to="/add-board">글쓰기</Link>
+            <Link to="/mypage">회원정보</Link>
+            {/* <Link to="/myboard-list">내 게시물</Link> */}
             <Link to="#" onClick={logout}>로그아웃</Link>
           </>
         ) : (
