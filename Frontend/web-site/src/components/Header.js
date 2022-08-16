@@ -35,7 +35,7 @@ const Header = () => {
       </div>
 
       <div className="header-menu">
-        <Link to="/board-list">게시판</Link>
+        <Link to="/board-list?boardType=notice">게시판</Link>
 
         {/* 로그인 유무 판단*/}
         {isAuth ? (

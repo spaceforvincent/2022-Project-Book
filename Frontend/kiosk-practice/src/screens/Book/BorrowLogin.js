@@ -11,8 +11,6 @@ import io from "socket.io-client";
 
 axios.defaults.withCredentials = true;
 
-
-
 const Login = (props) => {
 
     const [sockets, setSockets] = useState([]);
@@ -35,7 +33,6 @@ const Login = (props) => {
     const navigate = useNavigate();
 
     const submit = async () => {
-
         // const { email, password } = {
         //     email: "sanggom@ssaty.com",
         //     password: "sanggom1234!"

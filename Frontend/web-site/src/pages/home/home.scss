@@ -9,65 +9,76 @@
   }
 }
 
+@media all and (min-width: 1024px){
+  .background{
+    margin-top: -7rem;
+    height: 90vh;
+    width: 100vw;
+    background-image: url("../../images/PC.png");
+    background-size: auto 100vh;
+    background-repeat: no-repeat;
+    background-position: center top;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .background{
+    margin-top: -7rem;
+    height: 100vh;
+    width: 100vw;
+    
+    background-image: url("../../images/Mobile.png");
+    background-size: auto 100vh;
+    background-repeat: no-repeat;
+    background-position: center top;
+  }
+}
+
 
 .home-wrapper{
   margin-top: 5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  font-family: 'Noto Sans KR', sans-serif;
-  
+  align-items: center; 
+  line-height: 10vh;
 
-  .home-title{
+  .home-titles{
     opacity: 0;
     animation: smoothAppear 1s forwards;
     animation-delay: 0.5s;
     margin: 15px 0;
-    font-size: 2.4rem;
-    font-weight: bold;
-    color: midnightblue;
+
     span{
-      font-size: 2.7rem;
-      font-family: 'Pacifico', cursive;
+      font-weight: bold;
+      font-size: 3rem;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: white;
     }
   }
+
   .home-contents{
     opacity: 0;
     animation: smoothAppear 1s forwards;
     animation-delay: 1s;
     margin: 15px 0;
-    font-size: 1.5rem;
-    color: #282c34;
+
+    span{
+      font-size: 2rem;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: white;
+    }
   }
-  .about-project{
+  
+  .home-about{
     opacity: 0;
     animation: smoothAppear 1s forwards;
     animation-delay: 1.5s;
     margin: 15px 0;
-    font-size: 1.5rem;
-    color: #282c34;
-    text-align: center;
+
     span{
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: blue;
-    }
-  }
-  .my-website{
-    opacity: 0;
-    animation: smoothAppear 1s forwards;
-    animation-delay: 2.0s;
-    margin: 15px 0;
-    text-align: center;
-    .my-website-title{
-      margin-bottom: 5px;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: midnightblue;
-    }
-    a{
-      font-size: 1.5rem;
-      margin: 0 10px;
+      font-size: 2rem;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: white;
     }
   }
 }

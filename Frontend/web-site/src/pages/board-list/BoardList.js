@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {useSearchParams} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 
 // css
 import {Pagination} from "@mui/material";
@@ -13,9 +13,9 @@ import moment from "moment";
 var totalPost = 8
 
 // 페이지에 맞는 게시글 불러올 함수
-const getBoardList = async (page) => {
+const getBoardList = async (page, boardType) => {
   const url = "http://i7d211.p.ssafy.io:8081/board/boardAll"
-  const {data} = await axios.get(`${url}?boardType=notice`);
+  const {data} = await axios.get(`${url}?boardType=${boardType}`);
 
   var newData = []
 
@@ -36,11 +36,12 @@ const BoardList = () => {
   const [pageCount, setPageCount] = useState(0);
   const [boardList, setBoardList] = useState([]);
   const [searchParams] = useSearchParams();
+  const boardType = searchParams.get("boardType");
   
 
   useEffect(() => {
     // 페이지에 해당하는 게시물 가져오기
-    getBoardList(page)
+    getBoardList(page, boardType)
 
     // 현재 페이지에 해당하는 게시물로 상태 변경하기
     .then(result => setBoardList(result));
@@ -48,19 +49,31 @@ const BoardList = () => {
     // 게시물 전체 갯수 구하기
     const getTotalBoard = async () => {
       const url = "http://i7d211.p.ssafy.io:8081/board/boardAll"
-      const {data} = await axios.get(`${url}?boardType=notice`);
+      const {data} = await axios.get(`${url}?boardType=${boardType}`);
 
       return data.length;
     }
 
     // 페이지 카운트 구하기: (전체 board 갯수) / (한 페이지 갯수) 결과 올림
     getTotalBoard().then(result => setPageCount(Math.ceil(result / totalPost)));
-  }, [page, searchParams])
+  }, [page, searchParams, boardType])
 
   return (
     <div className="boardList-wrapper">
+      <div className="menu">
+        <Link to="/board-list?boardType=notice">공지</Link>
+
+        <Link to="/board-list?boardType=introduce">소개</Link>
+
+        <Link to="/board-list?boardType=suggestion">건의</Link>
+
+        <Link to="/board-list?boardType=FAQ">FAQ</Link>
+
+        <Link to="/board-list?boardType=complaint">불편사항</Link>
+      </div>
+
       <div className="boardList-header">
-        전체 게시물
+        {boardType}
       </div>
 
       <div className="boardList-body">

@@ -9,7 +9,7 @@ import Footer from "../../components/Footer";
 export default function RecommendScreen() {
   const styles = useStyles();
   const navigate = useNavigate();
-  const [Age,setAge] = useState(0);
+  const [Age, setAge] = useState(0);
   const [Books, setBooks] = useState([]);
   const getBooks = async () => {
     const json = await (
@@ -31,58 +31,193 @@ export default function RecommendScreen() {
             className={styles.subTitleMessage}
             style={{ display: "flex", justifyContent: "space-evenly" }}
           >
-            <Button
-              style={{ backgroundColor: "navy", fontSize: 50, color: "white" }}
-              onClick={() => {setAge(0)}}
-            >
-              유아
-            </Button>
-            <Button
-              style={{ backgroundColor: "navy", fontSize: 50, color: "white" }}
-              onClick={() => {setAge(10)}}
-            >
-              10대
-            </Button>
-            <Button
-              style={{ backgroundColor: "navy", fontSize: 50, color: "white" }}
-              onClick={() => {setAge(20)}}
-            >
-              20대
-            </Button>
-            <Button
-              style={{ backgroundColor: "navy", fontSize: 50, color: "white" }}
-              onClick={() => {setAge(30)}}
-            >
-              30대
-            </Button>
-            <Button
-              style={{ backgroundColor: "navy", fontSize: 50, color: "white" }}
-              onClick={() => {setAge(40)}}
-            >
-              40대
-            </Button>
-            <Button
-              style={{ backgroundColor: "navy", fontSize: 50, color: "white" }}
-              onClick={() => {setAge(50)}}
-            >
-              50대
-            </Button>
-            <Button
-              style={{ backgroundColor: "navy", fontSize: 50, color: "white" }}
-              onClick={() => {setAge(60)}}
-            >
-              60대
-            </Button>
+            {Age === 0 ? (
+              <Button
+                style={{
+                  backgroundColor: "white",
+                  fontSize: 50,
+                  color: "black",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(0);
+                }}
+              >
+                유아
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  backgroundColor: "navy",
+                  fontSize: 50,
+                  color: "white",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(0);
+                }}
+              >
+                유아
+              </Button>
+            )}
+
+            {Age === 10 ? (
+              <Button
+                style={{
+                  backgroundColor: "white",
+                  fontSize: 50,
+                  color: "black",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(10);
+                }}
+              >
+                10대
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  backgroundColor: "navy",
+                  fontSize: 50,
+                  color: "white",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(10);
+                }}
+              >
+                10대
+              </Button>
+            )}
+
+            {Age === 20 ? (
+              <Button
+                style={{
+                  backgroundColor: "white",
+                  fontSize: 50,
+                  color: "black",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(20);
+                }}
+              >
+                20대
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  backgroundColor: "navy",
+                  fontSize: 50,
+                  color: "white",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(20);
+                }}
+              >
+                20대
+              </Button>
+            )}
+            {Age === 30 ? (
+              <Button
+                style={{
+                  backgroundColor: "white",
+                  fontSize: 50,
+                  color: "black",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(30);
+                }}
+              >
+                30대
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  backgroundColor: "navy",
+                  fontSize: 50,
+                  color: "white",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(30);
+                }}
+              >
+                30대
+              </Button>
+            )}
+            {Age === 40 ? (
+              <Button
+                style={{
+                  backgroundColor: "white",
+                  fontSize: 50,
+                  color: "black",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(40);
+                }}
+              >
+                40대
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  backgroundColor: "navy",
+                  fontSize: 50,
+                  color: "white",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(40);
+                }}
+              >
+                40대
+              </Button>
+            )}
+            {Age === 50 ? (
+              <Button
+                style={{
+                  backgroundColor: "white",
+                  fontSize: 50,
+                  color: "black",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(50);
+                }}
+              >
+                50대
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  backgroundColor: "navy",
+                  fontSize: 50,
+                  color: "white",
+                  padding:20
+                }}
+                onClick={() => {
+                  setAge(50);
+                }}
+              >
+                50대
+              </Button>
+            )}
           </Box>
           <Box className={styles.outerWrapperSearch}>
             <Box style={{ marginTop: -50 }} className={styles.wrapperSearch}>
-              {Age === 0 ? Books.zero &&
+              {Age === 0 ? (
+                Books.zero &&
                 Books.zero.map((Book) => (
                   <Box
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border:'2px solid #ffffff' }}
+                    style={{ display: "flex", border: "2px solid #ffffff" }}
                   >
                     <img
                       src={Book.cover}
@@ -101,15 +236,16 @@ export default function RecommendScreen() {
                         {Book.title}
                       </Typography>
                     </Box>
-                    
                   </Box>
-                )) : Age === 10 ? Books.ten &&
+                ))
+              ) : Age === 10 ? (
+                Books.ten &&
                 Books.ten.map((Book) => (
                   <Box
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border:'2px solid #ffffff' }}
+                    style={{ display: "flex", border: "2px solid #ffffff" }}
                   >
                     <img
                       src={Book.cover}
@@ -128,15 +264,16 @@ export default function RecommendScreen() {
                         {Book.title}
                       </Typography>
                     </Box>
-                    
                   </Box>
-                )) : Age === 20 ? Books.twenty &&
+                ))
+              ) : Age === 20 ? (
+                Books.twenty &&
                 Books.twenty.map((Book) => (
                   <Box
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border:'2px solid #ffffff' }}
+                    style={{ display: "flex", border: "2px solid #ffffff" }}
                   >
                     <img
                       src={Book.cover}
@@ -155,15 +292,16 @@ export default function RecommendScreen() {
                         {Book.title}
                       </Typography>
                     </Box>
-                    
                   </Box>
-                )) : Age===30 ? Books.thirty &&
+                ))
+              ) : Age === 30 ? (
+                Books.thirty &&
                 Books.thirty.map((Book) => (
                   <Box
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border:'2px solid #ffffff' }}
+                    style={{ display: "flex", border: "2px solid #ffffff" }}
                   >
                     <img
                       src={Book.cover}
@@ -182,15 +320,16 @@ export default function RecommendScreen() {
                         {Book.title}
                       </Typography>
                     </Box>
-                    
                   </Box>
-                )) : Age===40 ? Books.forty &&
+                ))
+              ) : Age === 40 ? (
+                Books.forty &&
                 Books.forty.map((Book) => (
                   <Box
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border:'2px solid #ffffff' }}
+                    style={{ display: "flex", border: "2px solid #ffffff" }}
                   >
                     <img
                       src={Book.cover}
@@ -209,15 +348,16 @@ export default function RecommendScreen() {
                         {Book.title}
                       </Typography>
                     </Box>
-                    
                   </Box>
-                )) : Age===50 ? Books.fifty &&
+                ))
+              ) : Age === 50 ? (
+                Books.fifty &&
                 Books.fifty.map((Book) => (
                   <Box
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border:'2px solid #ffffff' }}
+                    style={{ display: "flex", border: "2px solid #ffffff" }}
                   >
                     <img
                       src={Book.cover}
@@ -236,36 +376,11 @@ export default function RecommendScreen() {
                         {Book.title}
                       </Typography>
                     </Box>
-                    
                   </Box>
-                )) : Age===60 ? Books.sixty &&
-                Books.sixty.map((Book) => (
-                  <Box
-                    onClick={() => {
-                      navigate(`/book/detail/${Book.isbn}`);
-                    }}
-                    style={{ display: "flex", border:'2px solid #ffffff' }}
-                  >
-                    <img
-                      src={Book.cover}
-                      alt="cover"
-                      style={{ margin: 50, width: "250px", height: "350px" }}
-                    ></img>
-                    <Box
-                      style={{ alignItems: "center", justifyContent: "center" }}
-                    >
-                      <Typography
-                        style={{ color: "white", margin: 50, marginTop: 100 }}
-                        variant="h5
-                    "
-                        component="h5"
-                      >
-                        {Book.title}
-                      </Typography>
-                    </Box>
-                    
-                  </Box>
-                )) : <></>}
+                ))
+              ) : (
+                <></>
+              )}
             </Box>
           </Box>
           <Box>
