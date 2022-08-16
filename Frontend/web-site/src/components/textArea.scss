@@ -1,15 +1,30 @@
+@media all and (min-width: 1024px){
+  .textArea-wrapper{
+    width: 85vw;
+
+    .text {
+      height: 45vh;
+    }
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .textArea-wrapper{
+    width: 75vw;
+    
+    .text {
+      height: 70vh;
+    }
+  }
+}
+
 .textArea-wrapper {
   margin: 0 10px;
   display: flex;
   flex-direction: column;
 
-  width: 80%;
-
   .title {
     margin-bottom: 0.7rem;
-  }
-  .text {
-    height: 600px
   }
 
   input, textarea {

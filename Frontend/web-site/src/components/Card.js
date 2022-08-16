@@ -5,7 +5,7 @@ export const Card = ({board_id, title, content, id, date}) => {
   const navigate = useNavigate();
 
   return (
-    <div className="card-wrapper" onClick={() => {
+    <div className="cards-wrapper" onClick={() => {
       navigate(`/board/${board_id}`)
     }}>
       <div className="card-body-text">

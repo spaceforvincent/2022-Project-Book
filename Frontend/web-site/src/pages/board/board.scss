@@ -11,18 +11,20 @@
 
 @media all and (min-width: 1024px){
   .board-wrapper{
-    width: 75%;
+    width: 60vw;
+
     .board-body{
-      height: 1000px;
+      height: 40vh;
     }
   }
 }
 
 @media all and (max-width: 1024px) {
   .board-wrapper{
-    width: 75%;
+    width: 70vw;
+    
     .board-body{
-       height: 800px;
+       height: 55vh;
      }
   }
 }
