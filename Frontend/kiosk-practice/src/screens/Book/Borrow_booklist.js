@@ -1,21 +1,43 @@
-import React from "react";
-import { useStyles } from "../../styles";
-import { Box } from "@material-ui/core";
-import { useLocation } from "react-router-dom"
-import BookItem from "./Borrow_book"
+import { Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
-const Borrow_booklist = () => {
-    const styles = useStyles();
+export default function Borrow_booklist() {
+  const [Books, setBooks] = useState([]);
+  const [isbnNum, setIsbn] = useState() 
+  const getBook = async () => {
+    const json = await (
+      await fetch(
+        `http://i7d211.p.ssafy.io:8081/book/detail?ISBN=${isbnNum}`
+      )
+    ).json();
+    setBooks(Books.concat(json));
+    console.log(json)
+  };
 
-    return (
-        <Box className={[styles.outerWrapper]}>
-            <Box className={[styles.wrapper]}>
-                <BookItem />
-                <BookItem />
-                <BookItem />
-            </Box>
-        </Box>
-    );
+
+  const showBook = () => {
+    console.log(Books);
+  };
+
+  return (
+    <div>
+      <Button
+        style={{ fontSize:100, width: 500, height: 500 }}
+        onClick={() => {
+          setIsbn(9791197910821);
+        }}
+      >
+        isbn값 바꾸기
+      </Button> 
+      <Button
+        style={{ fontSize:100, width: 500, height: 500 }}
+        onClick={() => {
+          getBook();
+          showBook();
+        }}
+      >
+        리스트에 넣기
+      </Button>
+    </div>
+  );
 }
-
-export default Borrow_booklist;

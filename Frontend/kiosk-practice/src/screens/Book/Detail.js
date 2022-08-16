@@ -34,6 +34,7 @@ export default function Detail() {
   const styles = useStyles();
   const url = window.location.pathname;
   const regex = /[0-9]/g; //숫자만 추출
+  const [loading, setLoading] = useState(true);
   const [onReview, setReview] = useState(false);
   const [onLocation, setLocation] = useState(false);
   const [lookReview, setLookReview] = useState(false);
@@ -50,6 +51,7 @@ export default function Detail() {
       )
     ).json();
     setBook(json);
+    setLoading(false);
   };
   useEffect(() => {
     getBook();
@@ -59,307 +61,321 @@ export default function Detail() {
     <div>
       <Fade in={true}>
         <CardActionArea>
-          <Box className={[styles.center]}>
-            <Header />
-            <Box container className={styles.detailUpper}>
-              <Box>
-                <img
-                  style={{ width: "430px", height: "660px" }}
-                  src={book.cover}
-                  alt="cover"
-                ></img>
-                <Typography
-                  style={{ color: "#FFCB45", fontSize: 70, marginTop: 70 }}
-                >
-                  {book.star === 5 ? (
-                    <Star5 className={styles.star} />
-                  ) : book.star >= 4.5 ? (
-                    <Star45 className={styles.star} />
-                  ) : book.star >= 4 ? (
-                    <Star4 className={styles.star} />
-                  ) : book.star >= 3.5 ? (
-                    <Star35 className={styles.star} />
-                  ) : book.star >= 3 ? (
-                    <Star3 className={styles.star} />
-                  ) : book.star >= 2.5 ? (
-                    <Star25 className={styles.star} />
-                  ) : book.star >= 2 ? (
-                    <Star2 className={styles.star} />
-                  ) : book.star >= 1.5 ? (
-                    <Star15 className={styles.star} />
-                  ) : book.star >= 1 ? (
-                    <Star1 className={styles.star} />
-                  ) : book.star >= 0.5 ? (
-                    <Star05 className={styles.star} />
-                  ) : (
-                    <Star0 />
-                  )}{" "}
-                  {book.reviews && book.reviews.length > 0
-                    ? Math.round(book.star * 10) / 10
-                    : "0.0"}
-                </Typography>
-              </Box>
-
-              <Box>
-                <Box style={{ overflow: "auto" }}>
+          {loading ? (
+            <Box
+              style={{
+                width: 1440,
+                height: 2560,
+                display:'flex',
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "rgba(15, 29, 160, 0.65)",
+              }}
+            >
+              <strong className={[styles.main, styles.center]}>
+                <h2>
+                Loading...
+                </h2>
+              </strong>
+            </Box>
+          ) : (
+            <Box className={[styles.center]}>
+              <Header />
+              <Box container className={styles.detailUpper}>
+                <Box>
+                  <img
+                    style={{ width: "430px", height: "660px" }}
+                    src={book.cover}
+                    alt="cover"
+                  ></img>
                   <Typography
-                    component="h3"
-                    variant="h3"
-                    style={{
-                      color: "#ffffff",
-                      marginLeft: 40,
-                      height: 500,
-                    }}
+                    style={{ color: "#FFCB45", fontSize: 70, marginTop: 70 }}
                   >
-                    {onReview
-                      ? book.reviews.length > 0
-                        ? book.reviews &&
-                          book.reviews.map((review) => (
-                            <Box>
-                              <Box>
-                                <TableContainer>
-                                  <Table>
-                                    <TableBody>
-                                      <TableRow key={review.review_id}>
-                                        <TableCell align="center">
-                                          <Typography
-                                            style={{
-                                              fontSize: 30,
-                                              marginLeft: "auto",
-                                              marginRight: "auto",
-                                              color: "#ffffff",
-                                            }}
-                                          >
-                                            {review.id}
-                                          </Typography>
-                                          <Box>
-                                            {review.star === 5 ? (
-                                              <Star5 />
-                                            ) : review.star === 4.5 ? (
-                                              <Star45 />
-                                            ) : review.star === 4 ? (
-                                              <Star4 />
-                                            ) : review.star === 3.5 ? (
-                                              <Star35 />
-                                            ) : review.star === 3 ? (
-                                              <Star3 />
-                                            ) : review.star === 2.5 ? (
-                                              <Star25 />
-                                            ) : review.star === 2 ? (
-                                              <Star2 />
-                                            ) : review.star === 1.5 ? (
-                                              <Star15 />
-                                            ) : review.star === 1 ? (
-                                              <Star1 />
-                                            ) : review.star === 0.5 ? (
-                                              <Star05 />
-                                            ) : (
-                                              <Star0 />
-                                            )}
-                                          </Box>
-                                        </TableCell>
-                                        <TableCell align="center">
-                                          <Typography
-                                            onClick={() => {
-                                              setLookReview(!lookReview);
-                                              setSelectedIndex(
-                                                review.review_id
-                                              );
-                                              setReviewStory(review.story);
-                                            }}
-                                            style={{
-                                              fontSize: 40,
-                                              color: "#ffffff",
-                                            }}
-                                          >
-                                            {review.title}
-                                          </Typography>
-                                        </TableCell>
-                                        <TableCell align="center">
-                                          <Typography
-                                            style={{
-                                              fontSize: 40,
-                                              color: "#ffffff",
-                                            }}
-                                          >
-                                            {review.created_date.slice(0, 10)}
-                                          </Typography>
-                                        </TableCell>
-                                      </TableRow>
-                                    </TableBody>
-                                  </Table>
-                                </TableContainer>
-                              </Box>
-                              <Box>
-                                {lookReview &&
-                                selectedIndex === review.review_id ? (
-                                  <Box
-                                    style={{
-                                      width: "100%",
-                                      border: "2px solid #000",
-                                      boxShadow: 24,
-                                    }}
-                                  >
-                                    <Typography style={{ fontSize: 40 }}>
-                                      {reviewStory}
-                                    </Typography>
-                                  </Box>
-                                ) : (
-                                  <></>
-                                )}
-                              </Box>
-                            </Box>
-                          ))
-                        : "등록된 리뷰가 없습니다."
-                      : book.content
-                      ? book.content
-                      : "표시할 책 내용이 없습니다."}
+                    {book.star === 5 ? (
+                      <Star5 className={styles.star} />
+                    ) : book.star >= 4.5 ? (
+                      <Star45 className={styles.star} />
+                    ) : book.star >= 4 ? (
+                      <Star4 className={styles.star} />
+                    ) : book.star >= 3.5 ? (
+                      <Star35 className={styles.star} />
+                    ) : book.star >= 3 ? (
+                      <Star3 className={styles.star} />
+                    ) : book.star >= 2.5 ? (
+                      <Star25 className={styles.star} />
+                    ) : book.star >= 2 ? (
+                      <Star2 className={styles.star} />
+                    ) : book.star >= 1.5 ? (
+                      <Star15 className={styles.star} />
+                    ) : book.star >= 1 ? (
+                      <Star1 className={styles.star} />
+                    ) : book.star >= 0.5 ? (
+                      <Star05 className={styles.star} />
+                    ) : (
+                      <Star0 />
+                    )}{" "}
+                    {book.reviews && book.reviews.length > 0
+                      ? Math.round(book.star * 10) / 10
+                      : "0.0"}
                   </Typography>
                 </Box>
 
-                <Box style={{ marginLeft: 30 }}>
-                  <ShowReview
-                    onClick={() => {
-                      setReview(!onReview);
-                    }}
-                    className={styles.detailUpperButton}
-                  />
-                  <BookLocation
-                    onClick={() => {
-                      setLocation(true);
-                    }}
-                    className={styles.detailUpperButton}
-                  />
-                  <Modal
-                    open={onLocation}
-                    onClose={() => {
-                      setLocation(false);
-                    }}
-                  >
-                    <Box className={styles.modal}>
-                      <Location />
-                    </Box>
-                  </Modal>
-                  <Reservation
-                    onClick={() => {
-                      fetch("URL")
-                        .then((response) => response.json())
-                      setReservation(true);
-                    }}
-                    className={styles.detailUpperButton}
-                  />
-                  <Modal
-                    open={onReservation}
-                    onClose={() => {
-                      setReservation(false);
-                    }}
-                    
-                  >
-                    <Box
+                <Box>
+                  <Box style={{ overflow: "auto" }}>
+                    <Typography
+                      component="h3"
+                      variant="h3"
                       style={{
-                        position: "absolute",                        
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        backgroundColor: "#ffffff",
-                        width: 1000,
+                        color: "#ffffff",
+                        marginLeft: 40,
                         height: 500,
-                        border: "2px solid #000",
-                        boxShadow: 24,
-                         
                       }}
                     >
-                      <Typography
-                        style={{
-                          marginTop: 100,
-                          fontSize: 50,
-                          marginLeft:180,
-                          
-                        }}
-                      >
-                        대여 예약이 완료 되었습니다.
-                      </Typography>
+                      {onReview
+                        ? book.reviews.length > 0
+                          ? book.reviews &&
+                            book.reviews.map((review) => (
+                              <Box>
+                                <Box>
+                                  <TableContainer>
+                                    <Table>
+                                      <TableBody>
+                                        <TableRow key={review.review_id}>
+                                          <TableCell align="center">
+                                            <Typography
+                                              style={{
+                                                fontSize: 30,
+                                                marginLeft: "auto",
+                                                marginRight: "auto",
+                                                color: "#ffffff",
+                                              }}
+                                            >
+                                              {review.id}
+                                            </Typography>
+                                            <Box>
+                                              {review.star === 5 ? (
+                                                <Star5 />
+                                              ) : review.star === 4.5 ? (
+                                                <Star45 />
+                                              ) : review.star === 4 ? (
+                                                <Star4 />
+                                              ) : review.star === 3.5 ? (
+                                                <Star35 />
+                                              ) : review.star === 3 ? (
+                                                <Star3 />
+                                              ) : review.star === 2.5 ? (
+                                                <Star25 />
+                                              ) : review.star === 2 ? (
+                                                <Star2 />
+                                              ) : review.star === 1.5 ? (
+                                                <Star15 />
+                                              ) : review.star === 1 ? (
+                                                <Star1 />
+                                              ) : review.star === 0.5 ? (
+                                                <Star05 />
+                                              ) : (
+                                                <Star0 />
+                                              )}
+                                            </Box>
+                                          </TableCell>
+                                          <TableCell align="center">
+                                            <Typography
+                                              onClick={() => {
+                                                setLookReview(!lookReview);
+                                                setSelectedIndex(
+                                                  review.review_id
+                                                );
+                                                setReviewStory(review.story);
+                                              }}
+                                              style={{
+                                                fontSize: 40,
+                                                color: "#ffffff",
+                                              }}
+                                            >
+                                              {review.title}
+                                            </Typography>
+                                          </TableCell>
+                                          <TableCell align="center">
+                                            <Typography
+                                              style={{
+                                                fontSize: 40,
+                                                color: "#ffffff",
+                                              }}
+                                            >
+                                              {review.created_date.slice(0, 10)}
+                                            </Typography>
+                                          </TableCell>
+                                        </TableRow>
+                                      </TableBody>
+                                    </Table>
+                                  </TableContainer>
+                                </Box>
+                                <Box>
+                                  {lookReview &&
+                                  selectedIndex === review.review_id ? (
+                                    <Box
+                                      style={{
+                                        width: "100%",
+                                        border: "2px solid #000",
+                                        boxShadow: 24,
+                                      }}
+                                    >
+                                      <Typography style={{ fontSize: 40 }}>
+                                        {reviewStory}
+                                      </Typography>
+                                    </Box>
+                                  ) : (
+                                    <></>
+                                  )}
+                                </Box>
+                              </Box>
+                            ))
+                          : "등록된 리뷰가 없습니다."
+                        : book.content
+                        ? book.content
+                        : "표시할 책 내용이 없습니다."}
+                    </Typography>
+                  </Box>
 
-                      <Button
-                        variant="contained"
-                        sx={{
-                          fontSize: 50,                         
-                          marginLeft:55,
-                          marginTop:25,
-                          alignItems: "flex-end",
-                          justifyContent: "center",
-                          
+                  <Box style={{ marginLeft: 30 }}>
+                    <ShowReview
+                      onClick={() => {
+                        setReview(!onReview);
+                      }}
+                      className={styles.detailUpperButton}
+                    />
+                    <BookLocation
+                      onClick={() => {
+                        setLocation(true);
+                      }}
+                      className={styles.detailUpperButton}
+                    />
+                    <Modal
+                      open={onLocation}
+                      onClose={() => {
+                        setLocation(false);
+                      }}
+                    >
+                      <Box className={styles.modal}>
+                        <Location />
+                      </Box>
+                    </Modal>
+                    <Reservation
+                      onClick={() => {
+                        fetch("URL").then((response) => response.json());
+                        setReservation(true);
+                      }}
+                      className={styles.detailUpperButton}
+                    />
+                    <Modal
+                      open={onReservation}
+                      onClose={() => {
+                        setReservation(false);
+                      }}
+                    >
+                      <Box
+                        style={{
+                          position: "absolute",
+                          top: "50%",
+                          left: "50%",
+                          transform: "translate(-50%, -50%)",
+                          backgroundColor: "#ffffff",
+                          width: 1000,
+                          height: 500,
+                          border: "2px solid #000",
+                          boxShadow: 24,
                         }}
-                        onClick={() => setReservation(false)}
                       >
-                        닫기
-                      </Button>
-                    </Box>
-                  </Modal>
+                        <Typography
+                          style={{
+                            marginTop: 100,
+                            fontSize: 50,
+                            marginLeft: 180,
+                          }}
+                        >
+                          대여 예약이 완료 되었습니다.
+                        </Typography>
+
+                        <Button
+                          variant="contained"
+                          sx={{
+                            fontSize: 50,
+                            marginLeft: 55,
+                            marginTop: 25,
+                            alignItems: "flex-end",
+                            justifyContent: "center",
+                          }}
+                          onClick={() => setReservation(false)}
+                        >
+                          닫기
+                        </Button>
+                      </Box>
+                    </Modal>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
-            <Box
-              style={{
-                display: "flex",
-                justifyContent: "end",
-                alignItems: "center",
-                marginTop: -240,
-                marginRight: 50,
-              }}
-            >
-              <BorrowStatus style={{ alignItems: "center" }} />
-              <img
-                className={styles.detailBorrowStatus}
-                src={book.cover}
-                style={{ width: 125, height: 200 }}
-                alt="dummy"
-              ></img>
-              <img
-                className={styles.detailBorrowStatus}
-                style={{ width: 125, height: 200 }}
-                src={book.cover}
-                alt="dummy"
-              ></img>
-              <img
-                className={styles.detailBorrowStatus}
-                src={book.cover}
-                style={{ width: 125, height: 200 }}
-                alt="dummy"
-              ></img>
-              <img
-                className={styles.detailBorrowStatus}
-                src={book.cover}
-                style={{ width: 125, height: 200 }}
-                alt="dummy"
-              ></img>
-            </Box>
-            <Box style={{ display: "flex", justifyContent: "start" }}>
-              <RelatedBooks />
-            </Box>
-            <Box className={styles.RelatedBooks}>
-              <Box className={styles.horizontalScroll}>
-                {book.related_books &&
-                  book.related_books.map((related_book) => (
-                    <div
-                      onClick={() => {
-                        navigate(`/book/detail/${related_book.isbn}`);
-                        navigate(0);
-                      }}
-                    >
-                      <img
-                        width={350}
-                        height={500}
-                        className={styles.RelatedBookList}
-                        src={related_book.cover}
-                        alt="dummy"
-                      />
-                    </div>
-                  ))}
+              <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "end",
+                  alignItems: "center",
+                  marginTop: -240,
+                  marginRight: 50,
+                }}
+              >
+                <BorrowStatus style={{ alignItems: "center" }} />
+                <img
+                  className={styles.detailBorrowStatus}
+                  src={book.cover}
+                  style={{ width: 125, height: 200 }}
+                  alt="dummy"
+                ></img>
+                <img
+                  className={styles.detailBorrowStatus}
+                  style={{ width: 125, height: 200 }}
+                  src={book.cover}
+                  alt="dummy"
+                ></img>
+                <img
+                  className={styles.detailBorrowStatus}
+                  src={book.cover}
+                  style={{ width: 125, height: 200 }}
+                  alt="dummy"
+                ></img>
+                <img
+                  className={styles.detailBorrowStatus}
+                  src={book.cover}
+                  style={{ width: 125, height: 200 }}
+                  alt="dummy"
+                ></img>
               </Box>
+              <Box style={{ display: "flex", justifyContent: "start" }}>
+                <RelatedBooks />
+              </Box>
+              <Box className={styles.RelatedBooks}>
+                <Box className={styles.horizontalScroll}>
+                  {book.related_books &&
+                    book.related_books.map((related_book) => (
+                      <div
+                        onClick={() => {
+                          navigate(`/book/detail/${related_book.isbn}`);
+                          navigate(0);
+                        }}
+                      >
+                        <img
+                          width={350}
+                          height={500}
+                          className={styles.RelatedBookList}
+                          src={related_book.cover}
+                          alt="dummy"
+                        />
+                      </div>
+                    ))}
+                </Box>
+              </Box>
+              <Footer />
             </Box>
-            <Footer />
-          </Box>
+          )}
         </CardActionArea>
       </Fade>
     </div>
