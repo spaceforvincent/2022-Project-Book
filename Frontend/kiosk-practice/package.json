@@ -1,4 +1,5 @@
 {
+  "proxy": "http://i7d211.p.ssafy.io:8081",
   "name": "kiosk-practice",
   "version": "0.1.0",
   "private": true,

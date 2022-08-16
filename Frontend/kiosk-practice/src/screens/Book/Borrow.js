@@ -1,7 +1,7 @@
-import React, {useState} from "react";
-import {useStyles} from "../../styles";
+import React, { useState } from "react";
+import { useStyles } from "../../styles";
 
-import {CardActionArea, Fade} from "@material-ui/core";
+import { CardActionArea, Fade } from "@material-ui/core";
 
 import Borrow1 from "./Borrow1";
 import Borrow2 from "./Borrow2";
@@ -13,10 +13,11 @@ export default function ReturnScreen(props) {
 
     const [books, setbooks] = useState([]);
     const [Accept, setAccept] = useState(false);
+    const [Finished, setFinished] = useState(false);
 
     const refreshFunction = (newBook) => {
         setbooks(books.concat(newBook));
-        console.log("borrow페이지 리스트",books);
+        console.log("borrow페이지 리스트", books);
     };
 
     console.log(Accept);
@@ -26,10 +27,11 @@ export default function ReturnScreen(props) {
             <CardActionArea>
                 {
                     books.length === 0
-                        ? <Borrow1 borrowList={books} refreshFunction={refreshFunction}/>
-                        : Accept
-                            ? <BorrowLogin  borrowList={books}/>
-                            : <Borrow2 setAccept={setAccept} borrowList={books} refreshFunction={refreshFunction}/>
+                        ? <Borrow1 borrowList={books} refreshFunction={refreshFunction} />
+                        : Finished ? <Borrow3 />
+                            : Accept
+                                ? <BorrowLogin borrowList={books} setFinished={setFinished} />
+                                : <Borrow2 setAccept={setAccept} borrowList={books} refreshFunction={refreshFunction} />
                 }
             </CardActionArea>
         </Fade>
