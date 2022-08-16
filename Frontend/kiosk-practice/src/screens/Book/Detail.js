@@ -25,6 +25,7 @@ import { ReactComponent as Star4 } from "../../images/star4_day.svg";
 import { ReactComponent as Star45 } from "../../images/star4.5_day.svg";
 import { ReactComponent as Star5 } from "../../images/star5_day.svg";
 import { ReactComponent as Location } from "../../images/Location.svg";
+import { ReactComponent as DetailedLocation } from "../../images/DetailedLocation.svg";
 import { useStyles } from "../../styles";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -37,6 +38,7 @@ export default function Detail() {
   const [loading, setLoading] = useState(true);
   const [onReview, setReview] = useState(false);
   const [onLocation, setLocation] = useState(false);
+  const [onDetailedLocation, setDetailedLocation] = useState(false);
   const [lookReview, setLookReview] = useState(false);
   const [onReservation, setReservation] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState();
@@ -122,19 +124,25 @@ export default function Detail() {
 
                 <Box>
                   <Box style={{ marginTop: 100, overflow: "auto" }}>
-                    <Box style={{display:'flex', justifyContent:'center', marginLeft:50}}>
-                    <Typography
+                    <Box
                       style={{
-                        fontSize: 50,
-                        fontWeight: "bold",
-                        color: "white",
-                        marginTop: -150,
-                        marginBottom: 50,
-                        position: "fixed",
+                        display: "flex",
+                        justifyContent: "center",
+                        marginLeft: 50,
                       }}
                     >
-                      {book.title}
-                    </Typography>
+                      <Typography
+                        style={{
+                          fontSize: 50,
+                          fontWeight: "bold",
+                          color: "white",
+                          marginTop: -150,
+                          marginBottom: 50,
+                          position: "fixed",
+                        }}
+                      >
+                        {book.title}
+                      </Typography>
                     </Box>
                     <Typography
                       component="h3"
@@ -143,7 +151,7 @@ export default function Detail() {
                         color: "#ffffff",
                         marginLeft: 40,
                         height: 450,
-                        marginTop:20
+                        marginTop: 20,
                       }}
                     >
                       {onReview
@@ -252,7 +260,9 @@ export default function Detail() {
                     </Typography>
                   </Box>
 
-                  <Box style={{ marginLeft: 30, marginTop: 70, marginBottom:30 }}>
+                  <Box
+                    style={{ marginLeft: 30, marginTop: 70, marginBottom: 30 }}
+                  >
                     <ShowReview
                       onClick={() => {
                         setReview(!onReview);
@@ -269,10 +279,17 @@ export default function Detail() {
                       open={onLocation}
                       onClose={() => {
                         setLocation(false);
+                        setDetailedLocation(false);
                       }}
                     >
                       <Box className={styles.modal}>
-                        <Location />
+                        {onDetailedLocation ? (
+                          <DetailedLocation
+                            onClick={() => setDetailedLocation(false)}
+                          />
+                        ) : (
+                          <Location onClick={() => setDetailedLocation(true)} />
+                        )}
                       </Box>
                     </Modal>
                     <Reservation
