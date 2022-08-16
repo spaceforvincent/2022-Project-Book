@@ -54,7 +54,6 @@ const Footer = () => {
                                     className={styles.MainButton}
                                     onClick={() => {
                                         navigate("/book/recommend");
-                                        sendMsg(2)
                                     }}/>
                                 <BtnMiniSearch
                                     className={styles.MainButton}
@@ -91,7 +90,6 @@ const Footer = () => {
                                             className={styles.MiniButton}
                                             onClick={() => {
                                                 navigate("/book/recommend");
-                                                sendMsg(2)
                                             }}/>
                             }
                             {

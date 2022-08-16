@@ -8,21 +8,21 @@ import Return3 from "./Return3";
 
 export default function ReturnScreen(props) {
     const styles = useStyles();
-    const [books, setbooks] = useState([123]);
 
-
+    const [rbook, setRbook ]= useState([]);
     const [Accept, setAccept] = useState(false);
+
     console.log(Accept);
 
     return (
         <Fade in={true}>
             <CardActionArea>
                 {
-                    books.length === 0
-                        ? <Return1/>
+                    rbook.length === 0
+                        ? <Return1 rbook={rbook} setRbook={setRbook} />
                         : Accept
                             ? <Return3/>
-                            : <Return2 setAccept={setAccept}/>
+                            : <Return2 rbook={rbook} setRbook={setRbook} setAccept={setAccept}/>
                 }
             </CardActionArea>
         </Fade>

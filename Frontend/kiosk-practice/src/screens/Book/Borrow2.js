@@ -1,12 +1,10 @@
-import {useState, useEffect, useCallback} from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-import React, {Component} from "react";
-import {useStyles} from "../../styles";
-import {Box, Grid} from "@material-ui/core";
+import React, { Component } from "react";
+import { useStyles } from "../../styles";
+import { Box, Grid } from "@material-ui/core";
 import Footer from "../../components/Footer";
 import AcceptBtn from "../../components/AcceptBtn";
-
-import Borrow_booklist from './Borrow_booklist';
 
 import io from "socket.io-client";
 import axios from 'axios';
@@ -25,7 +23,7 @@ const Borrow2 = (props) => {
     const getBook = (bookdata) => {
         console.log(bookdata)
         axios
-            .get("http://i7d211.p.ssafy.io:8081/book/detail", {
+            .get("/book/detail", {
                 params: {
                     ISBN: bookdata
                 }
@@ -33,8 +31,6 @@ const Borrow2 = (props) => {
             .then(function (response) {
                 setBooks(response.data)
                 props.refreshFunction(response.data);
-                console.log("헬롱!", books)
-                console.log("발롱!", props.borrowList)
                 return books
             })
     }
@@ -53,10 +49,10 @@ const Borrow2 = (props) => {
             console.log(data)
             getBook(data)
         })
-        return() => {
+        return () => {
             socket.close()
         }
-    }, [socket]);
+    }, [sockets]);
 
     const styles = useStyles();
 
@@ -103,7 +99,7 @@ const Borrow2 = (props) => {
                 <br></br>
                 {todayTime().slice(0, 9)}
             </Box>
-            <Box className={styles.padding}/> {/* <Borrow_booklist/> */}
+            <Box className={styles.padding} /> {/* <Borrow_booklist/> */}
             <Box className={[styles.TitleMessage, styles.padding]}>
                 {weeksAfterdayTime().slice(0, 9)}
             </Box>
@@ -117,14 +113,14 @@ const Borrow2 = (props) => {
             </Box>
 
             <button onClick={() => {
-                    otherbook()
-                }}>
+                otherbook()
+            }}>
                 더 빌릴래요!
             </button>
 
             <button onClick={() => {
-                    finishbook()
-                }}>
+                finishbook()
+            }}>
                 그만할래요!
             </button>
 
@@ -147,9 +143,9 @@ const Borrow2 = (props) => {
                 <b>합니다.</b>
             </Box>
 
-            <AcceptBtn setData={setData}/>
+            <AcceptBtn setData={setData} />
 
-            <Footer/>
+            <Footer />
         </Box>
     );
 }
