@@ -1,9 +1,12 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState } from "react";
 import Footer from "../../components/Footer";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useStyles } from "../../styles";
 import { Box, Card, CardActionArea } from "@material-ui/core";
 import axios from "axios";
-
+import { ReactComponent as MainIcon } from "../../images/Frame 1.svg";
+import { Button } from "@mui/material";
+import { tokenToString } from "typescript";
 import { ReactComponent as Plus } from "../../images/plusBtn.svg";
 
 axios.defaults.withCredentials = true;
@@ -11,7 +14,7 @@ axios.defaults.withCredentials = true;
 const Login = (props) => {
     const styles = useStyles();
     const [page, setPage] = useState(1);
-    const [token, setToken] = useState("");
+
     const nextPage = () => {
         console.log(page)
         if (page >= props.borrowList.length) {
@@ -34,8 +37,7 @@ const Login = (props) => {
 
             if (data.token) {
                 console.log(data.token);
-                setToken(data.token)
-
+                Borrow(data.token);
 
             } else {
                 alert("이메일 혹은 비밀번호가 틀렸습니다.")
@@ -60,22 +62,9 @@ const Login = (props) => {
                 },
                 headers: headers // headers에 headers 객체 전달
             })))
-        axios
-            .get("/user/profileUsage", {
-                headers: headers // headers에 headers 객체 전달
-            })
-            .then(function (response) {
-                props.setBrbooks(props.brBooks.concat(response.data))
-                console.log(response.data)
-            })
+        props.setFinished(true);
+        props.setBrbooks();
     };
-
-    useEffect(() => {
-        if (token != "") {
-
-            Borrow(token);
-        }
-    }, [token]);
 
     return (
         <Box className={styles.center}>

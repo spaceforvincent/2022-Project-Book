@@ -5,16 +5,15 @@ import { useStyles } from "../../styles";
 import { Box, Grid } from "@material-ui/core";
 import Footer from "../../components/Footer";
 import AcceptBtn from "../../components/AcceptBtn";
-
-import Borrow_booklist from './Borrow_booklist';
-
+import { ReactComponent as Plus } from "../../images/plusBtn.svg";
 import io from "socket.io-client";
 import axios from 'axios';
 
 const Borrow2 = (props) => {
+    const styles = useStyles();
     const [sockets, setSockets] = useState([]);
-    const [books, setBooks] = useState([]);
     const [data, setData] = useState(false);
+    const [state, setState] = useState(false);
 
     props.setAccept(data);
 
@@ -24,6 +23,7 @@ const Borrow2 = (props) => {
 
     const getBook = (bookdata) => {
         console.log(bookdata)
+        setState(false)
         axios
             .get("/book/detail", {
                 params: {
@@ -31,21 +31,14 @@ const Borrow2 = (props) => {
                 }
             })
             .then(function (response) {
-                setBooks(response.data)
                 props.refreshFunction(response.data);
-                console.log("헬롱!", books)
-                console.log("발롱!", props.borrowList)
-                return books
             })
     }
 
     const otherbook = () => {
         setSockets('connect')
+        setState(true)
         socket.emit("inputdata", 1);
-    }
-
-    const finishbook = () => {
-        setSockets('disconnect')
     }
 
     useEffect(() => {
@@ -58,7 +51,6 @@ const Borrow2 = (props) => {
         }
     }, [socket]);
 
-    const styles = useStyles();
 
     const todayTime = () => {
         let now = new Date();
@@ -98,53 +90,69 @@ const Borrow2 = (props) => {
     }
     return (
         <Box className={styles.center}>
-            <Box className={[styles.TitleMessage, styles.padding]}>
-                오늘
-                <br></br>
-                {todayTime().slice(0, 9)}
-            </Box>
-            <Box className={styles.padding} /> {/* <Borrow_booklist/> */}
-            <Box className={[styles.TitleMessage, styles.padding]}>
-                {weeksAfterdayTime().slice(0, 9)}
-            </Box>
-
-            <Box>
-                {
-                    props.borrowList.map((BOOK) => (
-                        <div>{BOOK.title}여기는 외않되</div>
-                    ))
-                }
-            </Box>
-
-            <button onClick={() => {
-                otherbook()
-            }}>
-                더 빌릴래요!
-            </button>
-
-            <button onClick={() => {
-                finishbook()
-            }}>
-                그만할래요!
-            </button>
-
-            <button
-                onClick={() => {
-                    getBook('9791197910821')
+            <Box
+                className={[styles.Bigcard]}
+                style={{
+                    paddingTop: 50
                 }}>
-                isbn을 추가해요!
-            </button>
-            <button
-                onClick={() => {
-                    getBook('9791165345990')
-                }}>
-                isbn을 추가해요2!
-            </button>
+                <Box className={[styles.BigcardInner]}>
+                    {
+                        state
+                            ? <Box className={[styles.Card]}>
+                                <Box>
+                                    책을 올려주세요
+                                </Box>
+                                <Plus
+                                    onClick={() => {
+                                        getBook('9791165345990')
+                                    }} />
+                            </Box>
+                            : <Box className={[styles.Card]}>
+                                <img
+                                    src={props
+                                        .borrowList[props.borrowList.length - 1]
+                                        .cover}
+                                    style={{
+                                        width: "600px",
+                                        height: "750px",
+                                        boxShadow: "20px 60px 40px rgba(0, 0, 0, 0.25)",
+                                        margin: 50
+                                    }}
+                                    alt="dummy"></img>
+                                {
+                                    <Box>{
+                                        props
+                                            .borrowList[props.borrowList.length - 1]
+                                            .title
+                                    }</Box>
+                                }
+                                {
+                                    <Box
+                                        style={{
+                                            margin: 50
+                                        }}>{
+                                            props
+                                                .borrowList[props.borrowList.length - 1]
+                                                .author
+                                        }</Box>
+                                }
+                                <Plus
+                                    onClick={() => {
+                                        otherbook()
+                                    }} />
+                            </Box>
+                    }
+                    <Box
+                        className={[styles.TitleMessage]}
+                        style={{
+                            marginTop: 50
+                        }}>
+                        {weeksAfterdayTime().slice(0, 9)}
+                        까지<br></br>
+                        대여합니다
+                    </Box>
+                </Box>
 
-            <Box className={[styles.TitleMessage]}>
-                <b>까지</b>
-                대여
-                <b>합니다.</b>
             </Box>
 
             <AcceptBtn setData={setData} />
