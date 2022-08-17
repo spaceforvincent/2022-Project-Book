@@ -2,236 +2,354 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {Formik} from "formik";
 import * as Yup from "yup";
-
+import DatePicker from "react-datepicker";
+import {getMonth, getYear} from 'date-fns';
+import range from "lodash/range";
 // css 영역
+import "react-datepicker/dist/react-datepicker.css";
 import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {Button, TextField} from "@mui/material";
 import "./signUp.scss";
-
+import {useState} from "react";
 
 const SignUp = () => {
-  const navigate = useNavigate();
-  const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("올바른 이메일 형식이 아닙니다.")
-      .required("이메일을 입력하세요."),
-
-    password: Yup.string()
-      .required("비밀번호를 입력하세요.")
-      .matches(
-        /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W))(?=.*[!@#$%^*+=-]).{8,16}$/,
-        "비밀번호는 반드시 8~16자이며, 영문, 숫자, 특수문자를 포함해야 합니다."
-      ),
-
-    password2: Yup.string()
-      .oneOf([Yup.ref("password"), null], "비밀번호가 일치하지 않습니다.")
-      .required("필수 입력 값입니다."),
-
-    phonenumber: Yup.string()
-      .required("전화번호를 입력하세요.")
-      .matches(
-        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-        "전화번호 양식에 맞게 입력해주세요"),
-
-    address: Yup.string()
-      .required("주소를 입력하세요."),
-
-    name: Yup.string()
-      .min(2, "이름은 최소 2글자 이상입니다.")
-      .max(10, "이름은 최대 10글자입니다.")
-      .matches(
-        /^[가-힣a-zA-Z][^!@#$%^&*()_+\-=[]{};':"\\|,.<>\/?\s]*$/,
-        "이름에 특수문자가 포함되면 안되고 숫자로 시작하면 안됩니다."
-      )
-      .required("이름을 입력하세요."),
-
-    gender: Yup.string()
-      .oneOf(["남성","여성"],
-        "성별은 '남성' 혹은 '여성'으로 입력해야 합니다.")
-      .required("성별을 입력하세요."),
-
-    birthday: Yup.string()
-      .required("생일을 입력하세요.")
-      .matches(
-        /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,
-        "생일 양식(YYYY-MM-DD에 맞게 입력해주세요"),
-    
-  });
-  
-  const submit = async (values) => {
-    const {email, password, phonenumber, address, name, birthday} = values;
-    var {gender} = values;
-
-    if (gender.value === "남성") {
-      gender.value = "0";
-      
-    }else {
-      gender.value = "1";
+    const navigate = useNavigate();
+    const [startDate, setStartDate] = useState(new Date());
+    const [birthday, setBirthday] = useState();
+    const years = range(1990, getYear(new Date()) + 1, 1);
+    const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+    const coBr = (date) =>{
+      console.log(date);
     }
+    const validationSchema = Yup
+        .object()
+        .shape({
+            email: Yup
+                .string()
+                .email("올바른 이메일 형식이 아닙니다.")
+                .required("이메일을 입력하세요."),
 
-    const inputData = { email, password, phonenumber, address, name, gender, birthday }
+            password: Yup
+                .string()
+                .required("비밀번호를 입력하세요.")
+                .matches(
+                    /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W))(?=.*[!@#$%^*+=-]).{8,16}$/,
+                    "비밀번호는 반드시 8~16자이며, 영문, 숫자, 특수문자를 포함해야 합니다."
+                ),
 
-    try {
-      // console.log(inputData)
+            password2: Yup
+                .string()
+                .oneOf([
+                    Yup.ref("password"), null
+                ], "비밀번호가 일치하지 않습니다.")
+                .required("필수 입력 값입니다."),
 
-      const {data} = await axios.post("http://i7d211.p.ssafy.io:8081/user/signUp", 
-      inputData
-      );
+            phonenumber: Yup
+                .string()
+                .required("전화번호를 입력하세요.")
+                .matches(
+                    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+                    "전화번호 양식에 맞게 입력해주세요"
+                ),
 
-      // 회원가입 성공 -> 데이터 반환값 존재
-      if (data.name) {
-        toast.success(<h3>회원가입이 완료되었습니다.<br/>로그인 하세요.</h3>, {
-          position: "top-center",
-          autoClose: 2000
+            address: Yup
+                .string()
+                .required("주소를 입력하세요."),
+
+            name: Yup
+                .string()
+                .min(2, "이름은 최소 2글자 이상입니다.")
+                .max(10, "이름은 최대 10글자입니다.")
+                .matches(
+                    /^[가-힣a-zA-Z][^!@#$%^&*()_+\-=[]{};':"\\|,.<>\/?\s]*$/,
+                    "이름에 특수문자가 포함되면 안되고 숫자로 시작하면 안됩니다."
+                )
+                .required("이름을 입력하세요."),
+
+            gender: Yup
+                .string()
+                .oneOf([
+                    "남성", "여성"
+                ], "성별은 '남성' 혹은 '여성'으로 입력해야 합니다.")
+                .required("성별을 입력하세요."),
+
+            birthday: Yup
+                .string()
+                .required("생일을 입력하세요.")
+                .matches(
+                    /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,
+                    "생일 양식(YYYY-MM-DD에 맞게 입력해주세요"
+                )
         });
-        
-        setTimeout(()=> {
-          navigate("/login");
-        }, 2000);
-      }
 
-    } catch (e) {
-      // 서버에서 받은 에러 메시지 출력
-      console.log(e)
-    }
-  };
+    const submit = async (values) => {
+        const {
+            email,
+            password,
+            phonenumber,
+            address,
+            name,
+            birthday
+        } = values;
+        var {
+            gender
+        } = values;
 
-  return (
-    <Formik
-      initialValues={{
-        email: "", password: "", phonenumber: "", address: "", name: "", gender: "", birthday: ""
-      }}
-      validationSchema={validationSchema}
-      onSubmit={submit}
-      validateOnMount={true}
-    >
-      {({values, handleSubmit, handleChange, errors}) => (
-        <div className="signup-wrapper">
-          <ToastContainer/>
-          <form onSubmit={handleSubmit} autoComplete="off">
-            <div className="input-forms">
+        if (gender.value === "남성") {
+            gender.value = "0";
 
-              <div className="input-forms-item">
-                <div className="input-label">계정</div>
-                <TextField
-                  value={values.email}
-                  name="email"
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <div className="error-message">
-                  {errors.email}
-                </div>
-              </div>
+        } else {
+            gender.value = "1";
+        }
 
-              <div className="input-forms-item">
-                <div className="input-label">비밀번호</div>
-                <TextField autoComplete="off"
-                  value={values.password}
-                  name="password"
-                  variant="outlined"
-                  type="password"
-                  onChange={handleChange}
-                />
-                <div className="error-message">
-                  {errors.password}
-                </div>
-              </div>
+        const inputData = {
+            email,
+            password,
+            phonenumber,
+            address,
+            name,
+            gender,
+            birthday
+        }
 
-              <div className="input-forms-item">
-                <div className="input-label">비밀번호 확인</div>
-                <TextField autoComplete="off"
-                  value={values.password2}
-                  name="password2"
-                  variant="outlined"
-                  type="password"
-                  onChange={handleChange}
-                />
-                <div className="error-message">
-                  {errors.password2}
-                </div>
-              </div>
+        try {
+            // console.log(inputData)
 
-              <div className="input-forms-item">
-                <div className="input-label">전화번호</div>
-                <TextField
-                  value={values.phonenumber}
-                  name="phonenumber"
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <div className="error-message">
-                  {errors.phonenumber}
-                </div>
-              </div>
+            const {data} = await axios.post(
+                "http://i7d211.p.ssafy.io:8081/user/signUp",
+                inputData
+            );
 
-              <div className="input-forms-item">
-                <div className="input-label">주소</div>
-                <TextField
-                  value={values.address}
-                  name="address"
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <div className="error-message">
-                  {errors.address}
-                </div>
-              </div>
+            // 회원가입 성공 -> 데이터 반환값 존재
+            if (data.name) {
+                toast.success(<h3>회원가입이 완료되었습니다.<br/>로그인 하세요.</h3>, {
+                    position: "top-center",
+                    autoClose: 2000
+                });
 
-              <div className="input-forms-item">
-                <div className="input-label">이름</div>
-                <TextField
-                  value={values.username}
-                  name="name"
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <div className="error-message">
-                  {errors.name}
-                </div>
-              </div>
+                setTimeout(() => {
+                    navigate("/login");
+                }, 2000);
+            }
 
-              <div className="input-forms-item">
-                <div className="input-label">성별</div>
-                <TextField
-                  value={values.gender}
-                  name="gender"
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <div className="error-message">
-                  {errors.gender}
-                </div>
-              </div>
+        } catch (e) {
+            // 서버에서 받은 에러 메시지 출력
+            console.log(e)
+        }
+    };
 
-              <div className="input-forms-item">
-                <div className="input-label">생년월일</div>
-                <TextField
-                  value={values.birthday}
-                  name="birthday"
-                  variant="outlined"
-                  onChange={handleChange}
-                />
-                <div className="error-message">
-                  {errors.birthday}
-                </div>
-              </div>
+    return (
+        <Formik
+            initialValues={{
+                email: "",
+                password: "",
+                phonenumber: "",
+                address: "",
+                name: "",
+                gender: "",
+                birthday: ""
+            }}
+            validationSchema={validationSchema}
+            onSubmit={submit}
+            validateOnMount={true}>
+            {
+                ({values, handleSubmit, handleChange, errors}) => (
+                    <div className="signup-wrapper">
+                        <ToastContainer/>
+                        <form onSubmit={handleSubmit} autoComplete="off">
+                            <div className="input-forms">
 
-              <Button
-                color="primary"
-                variant="contained"
-                fullWidth
-                type="submit"
-              >
-                회원가입
-              </Button>
-            </div>
-          </form>
-        </div>
-      )}
-    </Formik>
-  );
+                                <div className="input-forms-item">
+                                    <div className="input-label">계정</div>
+                                    <TextField
+                                        value={values.email}
+                                        name="email"
+                                        variant="outlined"
+                                        onChange={handleChange}/>
+                                    <div className="error-message">
+                                        {errors.email}
+                                    </div>
+                                </div>
+
+                                <div className="input-forms-item">
+                                    <div className="input-label">비밀번호</div>
+                                    <TextField
+                                        autoComplete="off"
+                                        value={values.password}
+                                        name="password"
+                                        variant="outlined"
+                                        type="password"
+                                        onChange={handleChange}/>
+                                    <div className="error-message">
+                                        {errors.password}
+                                    </div>
+                                </div>
+
+                                <div className="input-forms-item">
+                                    <div className="input-label">비밀번호 확인</div>
+                                    <TextField
+                                        autoComplete="off"
+                                        value={values.password2}
+                                        name="password2"
+                                        variant="outlined"
+                                        type="password"
+                                        onChange={handleChange}/>
+                                    <div className="error-message">
+                                        {errors.password2}
+                                    </div>
+                                </div>
+
+                                <div className="input-forms-item">
+                                    <div className="input-label">전화번호</div>
+                                    <TextField
+                                        value={values.phonenumber}
+                                        name="phonenumber"
+                                        variant="outlined"
+                                        onChange={handleChange}/>
+                                    <div className="error-message">
+                                        {errors.phonenumber}
+                                    </div>
+                                </div>
+
+                                <div className="input-forms-item">
+                                    <div className="input-label">주소</div>
+                                    <TextField
+                                        value={values.address}
+                                        name="address"
+                                        variant="outlined"
+                                        onChange={handleChange}/>
+                                    <div className="error-message">
+                                        {errors.address}
+                                    </div>
+                                </div>
+
+                                <div className="input-forms-item">
+                                    <div className="input-label">이름</div>
+                                    <TextField
+                                        value={values.username}
+                                        name="name"
+                                        variant="outlined"
+                                        onChange={handleChange}/>
+                                    <div className="error-message">
+                                        {errors.name}
+                                    </div>
+                                </div>
+
+                                <div className="input-forms-item">
+                                    <div className="input-label">성별</div>
+                                    {/* <TextField
+                                        value={values.gender}
+                                        name="gender"
+                                        variant="outlined"
+                                        onChange={handleChange}/> */
+                                    }
+                                    <div className="selectBox">
+                                        <select name="gender" className="select" onChange={handleChange}>
+                                            <option value="">성별 선택</option>
+                                            <option value="남성">남</option>
+                                            <option value="여성">여</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="error-message">
+                                        {errors.gender}
+                                    </div>
+                                </div>
+
+                                <div className="input-forms-item">
+                                    <div className="input-label">생년월일</div>
+                                    <TextField
+                                        value={values.birthday}
+                                        name="birthday"
+                                        variant="outlined"
+                                        onChange={handleChange}/>
+                                    <DatePicker
+                                        dateFormat="yyyy-MM-dd"
+                                        // className="selectBox"
+                                        onChange={(date) => setBirthday(date),handleChange}
+                                        value={birthday}
+                                        renderCustomHeader={({
+                                            date,
+                                            changeYear,
+                                            changeMonth,
+                                            decreaseMonth,
+                                            increaseMonth,
+                                            prevMonthButtonDisabled,
+                                            nextMonthButtonDisabled
+                                        }) => (
+                                            <div
+                                                style={{
+                                                    margin: 10,
+                                                    display: "flex",
+                                                    justifyContent: "center"
+                                                }}>
+                                                <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+                                                    {"<"}
+                                                </button>
+                                                <select
+                                                    value={getYear(date)}
+                                                    onChange={({target: {
+                                                            value
+                                                        }}) => changeYear(value)}>
+                                                    {
+                                                        years.map((option) => (
+                                                            <option key={option} value={option}>
+                                                                {option}
+                                                            </option>
+                                                        ))
+                                                    }
+                                                </select>
+
+                                                <select
+                                                    value={months[getMonth(date)]}
+                                                    onChange={({target: {
+                                                            value
+                                                        }}) => changeMonth(months.indexOf(value))}>
+                                                    {
+                                                        months.map((option) => (
+                                                            <option key={option} value={option}>
+                                                                {option}
+                                                            </option>
+                                                        ))
+                                                    }
+                                                </select>
+
+                                                <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+                                                    {">"}
+                                                </button>
+                                            </div>
+                                        )}
+                                        selected={startDate}
+                                        onChange={(date) => setStartDate(date)}/>
+                                    <div className="error-message">
+                                        {errors.birthday}
+                                    </div>
+                                </div>
+
+                                <Button color="primary" variant="contained" fullWidth="fullWidth" type="submit">
+                                    회원가입
+                                </Button>
+                            </div>
+                        </form>
+                    </div>
+                )
+            }
+        </Formik>
+    );
 };
 
 export default SignUp;
