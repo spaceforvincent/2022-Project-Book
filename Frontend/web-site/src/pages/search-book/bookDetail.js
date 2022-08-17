@@ -1,11 +1,10 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-// import {useSelector} from "react-redux";
 import Reviews from "../../components/Reviews";
 
 // css
-import "../board/board.scss";
+import "./bookDetail.scss";
 import moment from "moment";
 
 
@@ -29,20 +28,21 @@ const Board = () => {
     <div className="board-wrapper">
       <div className="board-header">
         <div className="board-header-username">{bookDetail.title}</div>
+        <div className="board-header-date">출간일: {moment(bookDetail.publish_date).add(9, "hour").format('YYYY-MM-DD')}</div>
       </div>
 
       <hr/>
+      
       <div className="board-body">
+        <div className="board-img">
+          <img src={bookDetail.cover} alt="이미지 없음"/>
+        </div>
+
         <div className="board-title-content">
-          <div className="board-content">{bookDetail.author}</div>
-          <div className="board-content">{bookDetail.story}</div>
-          <div className="book-card-body-img">
-            <img src={bookDetail.cover} alt="이미지 없음"/>
-          </div> {isbn}
-          <div className="board-header-date">출간일: {moment(bookDetail.publish_date).add(9, "hour").format('YYYY-MM-DD')}</div>
           <div className="board-content">장르 : {bookDetail.genre}</div>
-          <div className="board-content">리뷰 수 : {bookDetail.number_of_reviews}</div>
+          <div className="board-content">저자 : {bookDetail.author}</div>
           <div className="board-content">대여 횟수 : {bookDetail.number_of_rental}</div>
+          <div className="board-content">책 소개 : {bookDetail.content}</div>
         </div>
       </div>
 

@@ -179,6 +179,7 @@ const Comments = ({board_id}) => {
           <div className="modal">
             <div className="modal-title">로그인이 필요합니다.</div>
             <div className="modal-content">로그인 페이지로 이동하시겠습니까?</div>
+            <br/>
             <div className="modal-button">
               <Button
                 variant="outlined" color="error"

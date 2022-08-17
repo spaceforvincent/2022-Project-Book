@@ -1,24 +1,11 @@
-@media all and (min-width: 1200px) {
+@media all and (min-width: 1024px) {
   .card-wrapper {
-    width: 1000px;
-    height: 300px;
+    width: 80vw;
+    height: 20vh;
 
     &:hover {
-      width: 1050px;
-      height: 320px;
-      box-shadow: rgba(0, 0, 0, 0.9) 0px 22px 70px 4px;
-    }
-  }
-}
-
-@media all and (max-width: 1200px) {
-  .card-wrapper {
-    width: 900px;
-    height: 250px;
-
-    &:hover {
-      width: 950px;
-      height: 280px;
+      width: 85vw;
+      height: 25vh;
       box-shadow: rgba(0, 0, 0, 0.9) 0px 22px 70px 4px;
     }
   }
@@ -26,25 +13,12 @@
 
 @media all and (max-width: 1024px) {
   .card-wrapper {
-    width: 800px;
-    height: 200px;
+    width: 80vw;
+    height: 9vh;
 
     &:hover {
-      width: 850px;
-      height: 220px;
-      box-shadow: rgba(0, 0, 0, 0.9) 0px 22px 70px 4px;
-    }
-  }
-}
-
-@media all and (max-width: 768px) {
-  .card-wrapper {
-    width: 550px;
-    height: 200px;
-
-    &:hover {
-      width: 600px;
-      height: 220px;
+      width: 85vw;
+      height: 12vh;
       box-shadow: rgba(0, 0, 0, 0.9) 0px 22px 70px 4px;
     }
   }

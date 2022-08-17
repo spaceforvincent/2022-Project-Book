@@ -1,0 +1,56 @@
+.reviews-wrapper {
+  .reviews-header {
+    margin: 1rem 0;
+    display: flex;
+
+    .reviews-header-textarea {
+      flex: 2;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    button {
+      margin-left: 0.5rem;
+      font-size: 2rem;
+    }
+  }
+
+  .reviews-body {
+
+    .reviews-review {
+      margin: 0.5rem 0;
+
+      .review-username-date {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+
+        .review-date {
+          color: lightgray;
+        }
+      }
+
+      .review-content {
+        // \n(엔터)를 태그 안의 텍스트에 적용
+        white-space: pre-wrap;
+        word-break: break-all;
+        margin: 0.4rem auto;
+      }
+    }
+    .review-username {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: baseline;
+      font-weight: 600;
+    }
+
+  }
+  .reviews-footer{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+  }
+}

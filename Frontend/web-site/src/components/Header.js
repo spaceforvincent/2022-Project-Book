@@ -31,7 +31,7 @@ const Header = () => {
         <div className="header-wrapper">
             <div className="header-title">
                 <Link to="/">
-                    <img className="header-icon" src="image/HeaderCon.png" alt=""></img>
+                    <div className="header-icon"/>
                     <span>&nbsp;&nbsp;<i>BOOK극성</i>
                     </span>
                 </Link>

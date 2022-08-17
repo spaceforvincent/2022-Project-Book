@@ -5,9 +5,9 @@ import {jwtUtils} from "../utils/jwtUtils";
 import {useLocation, useNavigate} from "react-router-dom";
 
 // css
-import "./comments.scss";
+import "./reviews.scss";
 import moment from 'moment';
-import {Button, Dialog, DialogContent, IconButton, TextField, Pagination} from "@mui/material";
+import {Button, Dialog, DialogContent, IconButton, Pagination} from "@mui/material";
 import DisabledByDefaultOutlinedIcon from "@mui/icons-material/DisabledByDefaultOutlined";
 
 
@@ -95,7 +95,7 @@ const Reviews = ({isbn}) => {
 
       if (data === "success") {
         window.alert("등록이 완료되었습니다.");
-        navigate(`/bok/${isbn}`);
+        navigate(`/book/${isbn}`);
       }
   }, [isbn, title, content, star, token, navigate]);
 
@@ -114,36 +114,33 @@ const Reviews = ({isbn}) => {
   }
 
   return (
-    <div className="comments-wrapper">
-      <div className="comments-header">
-        <TextField
-          className="comments-header-textarea"
-          maxRows={3}
+    <div className="reviews-wrapper">
+      <div className="reviews-header">
+        <input
+          className="title"
           onClick={isLogin}
           onChange={(e) => {
             setTitle(e.target.value)
           }}
-          multiline placeholder="제목을 입력하세요."
+          placeholder="제목을 입력하세요."
         />
 
-        <TextField
-          className="comments-header-textarea"
-          maxRows={3}
+        <textarea
+          className="content"
           onClick={isLogin}
           onChange={(e) => {
             setContent(e.target.value)
           }}
-          multiline placeholder="리뷰 내용을 입력해주세요."
+          placeholder="리뷰 내용을 입력해주세요."
         />
 
-        <TextField
-          className="comments-header-textarea"
-          maxRows={3}
+        <input
+          className="star"
           onClick={isLogin}
           onChange={(e) => {
             setStar(e.target.value)
           }}
-          multiline placeholder="별점을 입력해주세요."
+          placeholder="별점을 입력해주세요."
         />
 
         {title !== "" & content !== "" & star !== ""? (
@@ -155,16 +152,16 @@ const Reviews = ({isbn}) => {
         )}
       </div>
 
-      <div className="comments-body">
+      <div className="reviews-body">
         {reviewList.map((item, index) => (
-          <div key={index} className="comments-comment">
-            <div className="comment-username-date">
+          <div key={index} className="reviews-review">
+            <div className="review-username-date">
               <div className="comment-date">작성일 : {moment(item.created_date).add(9, "hour").format('YYYY-MM-DD HH:mm:ss')}</div>
             </div>
-            <div className="comment-content">제목 : {item.title}</div>
-            <div className="comment-content">내용 : {item.story}</div>
-            <div className="comment-content">평점 : {item.star}</div>
-            <div className="comment-username">작성자 : {item.id}</div>
+            <div className="review-content">제목 : {item.title}</div>
+            <div className="review-content">내용 : {item.story}</div>
+            <div className="review-content">평점 : {item.star}</div>
+            <div className="review-username">작성자 : {item.id}</div>
             <hr/>
           </div>
         ))}
@@ -172,7 +169,7 @@ const Reviews = ({isbn}) => {
       {
 
       
-      <div className="comments-footer">
+      <div className="reviews-footer">
         <Pagination
           variant="outlined" 
           color="primary" 
@@ -206,6 +203,7 @@ const Reviews = ({isbn}) => {
           <div className="modal">
             <div className="modal-title">로그인이 필요합니다.</div>
             <div className="modal-content">로그인 페이지로 이동하시겠습니까?</div>
+            <br/>
             <div className="modal-button">
               <Button
                 variant="outlined" color="error"
