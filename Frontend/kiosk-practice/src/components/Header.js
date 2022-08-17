@@ -13,20 +13,20 @@ const Header = () => {
   const [book, setBook] = useState([]);
   const regex = /[0-9]/g; //숫자만 추출
 
-  const getBook = async () => {
-    const json = await (
-      await fetch(
-        `http://i7d211.p.ssafy.io:8081/book/detail?ISBN=${sampleLocation.pathname
-          .slice(13, 26)}`
-      )
-    ).json();
-    setBook(json);
-    console.log(sampleLocation.pathname)
-  };
+  // const getBook = async () => {
+  //   const json = await (
+  //     await fetch(
+  //       `http://i7d211.p.ssafy.io:8081/book/detail?ISBN=${sampleLocation.pathname
+  //         .slice(13, 26)}`
+  //     )
+  //   ).json();
+  //   setBook(json);
+  //   console.log(sampleLocation.pathname)
+  // };
 
-  useEffect(() => {
-    getBook();
-  }, []);
+  // useEffect(() => {
+  //   getBook();
+  // }, []);
 
   return (
     <Box>
