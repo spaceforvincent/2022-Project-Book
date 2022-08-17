@@ -1,12 +1,12 @@
 import "./bookCard.scss";
-//import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 export const BookCard = ({isbn, title, cover}) => {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className="book-cards-wrapper" onClick={() => {
-      //navigate(`/book/${isbn}`)
+      navigate(`/book/${isbn}`)
     }}>
       <div className="book-card-body-img">
         <img src={cover} alt="이미지 없음"/>
