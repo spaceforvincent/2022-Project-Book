@@ -1,7 +1,7 @@
 import axios from "axios";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {Link, useSearchParams} from "react-router-dom";
+import {NavLink, useSearchParams} from "react-router-dom";
 
 // css
 import {Pagination} from "@mui/material";
@@ -36,6 +36,7 @@ const getBookList = async (token, page) => {
       newData.push(data[i])
     }
   }
+  console.log(newData)
   return newData;
 }
 
@@ -74,16 +75,11 @@ const MyBook = () => {
   
   return (
     <div className="bookList-wrapper">
-      <div className="menu">
-        <Link to="/myboard-list?boardType=notice&BT=공지">내 게시물</Link>
-  
-        <Link to="/mypage">회원정보</Link>
-      </div>
-      
-
-      <div className="bookList-header">
-        대여 기록
-      </div>
+            <div className="menu">
+                <NavLink to="/myboard-list?boardType=notice&BT=공지">내 게시물</NavLink>
+                <NavLink to="/mybook">대여기록</NavLink>
+                <NavLink to="/mypage">회원 정보</NavLink>
+            </div>
 
       <div className="bookList-body">
         {bookList.map((item, index) => (
@@ -93,6 +89,8 @@ const MyBook = () => {
             rental_date={moment(item.rental_date).add(9, "hour").format('YYYY-MM-DD')}
             return_date={moment(item.return_date).add(9, "hour").format('YYYY-MM-DD')}
             return_check={item.return_check} 
+            title={item.book.title}
+            cover={item.book.cover}
           />
         ))}
       </div>

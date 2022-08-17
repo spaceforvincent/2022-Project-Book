@@ -32,7 +32,7 @@
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
   background-color: #fff;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   transition: width 1s, height 1s, box-shadow 1s;
   cursor: pointer;
@@ -64,8 +64,17 @@
     }
 
     .card-body-text-content {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       color: darkslategray;
+    }
+    .finish {
+      color: green;
+      font-size: 2.5rem;
+    }
+  
+    .disfinish {
+      color: red;
+      font-size: 2.5rem;
     }
   }
 
@@ -78,4 +87,11 @@
     font-size: 1.1rem;
     justify-content: space-between;
   }
+
+  .text {
+    color: black;
+    font-size: 2.5rem;
+  }
+
+
 }
