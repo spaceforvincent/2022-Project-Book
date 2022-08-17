@@ -7,6 +7,7 @@ import Main from "./screens/Book/Main";
 import Borrow from "./screens/Book/Borrow";
 import Recommend from "./screens/Book/Recommend";
 import AgeRecommend from "./screens/Book/RecommendAge";
+import RecommendLoginCheck from "./screens/Book/RecommendLoginCheck";
 import Return from "./screens/Book/Return";
 import Search from "./screens/Book/Search";
 import Login from "./screens/Book/Login";
@@ -26,6 +27,7 @@ return (
                     <Route path="/book/return" element={<Return />} exact="exact"></Route>
                     <Route path="/book/recommend" element={<Recommend />} exact="exact"></Route>
                     <Route path="/book/recommend/age" element={<AgeRecommend />} exact="exact"></Route>
+                    <Route path="/book/recommend/check" element={<RecommendLoginCheck />} exact="exact"></Route>
                     <Route path="/book/search" element={<Search />} exact="exact"></Route>
                     <Route path="/book/searchresult" element={<SearchResult />} exact="exact"></Route>
                     <Route path="/book/login" element={<Login />} exact="exact"></Route>
