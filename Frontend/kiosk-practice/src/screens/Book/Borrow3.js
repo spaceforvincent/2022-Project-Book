@@ -14,6 +14,20 @@ const Borrow3 = (props) => {
     const [books, setBooks] = useState([]);
     const [Dbooks, setDBooks] = useState([]);
 
+<<<<<<< HEAD
+=======
+    const [page, setPage] = useState(1);
+
+    const nextPage = () => {
+        console.log(page)
+        if (page >= props.brBooks.length) {
+            setPage(1)
+        } else {
+            setPage(page + 1)
+        }
+    }
+
+>>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
     const getBorrow = (isbn) => {
         console.log(isbn)
 
@@ -41,31 +55,102 @@ const Borrow3 = (props) => {
 
     useEffect(() => {
         console.log(props.isbn)
+<<<<<<< HEAD
         getBorrow(props.isbn)
+=======
+>>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
     }, []);
 
     return (
         <Box className={styles.center}>
-            <Box className={[styles.TitleMessage, styles.padding]}>
-                대여&nbsp;현황
+            <Box
+                className={[styles.Bigcard]}
+                style={{
+                    paddingTop: 50
+                }}>
+                <Box
+                    className={[styles.BigcardInner]}
+                    onClick={() => {
+                        nextPage()
+                    }}>
+                    <Box className={[styles.TitleMessage,]} style={{
+                        margin: 50
+                    }}>
+                        대여&nbsp;현황
+                    </Box>
+                    {
+                        <Box className={[styles.Card]}>
+                            <Box>{page}/{props.brBooks.length}</Box>
+                            <img
+                                src={props
+                                    .brBooks[page - 1].book
+                                    .cover}
+                                style={{
+                                    width: "600px",
+                                    height: "750px",
+                                    boxShadow: "20px 60px 40px rgba(0, 0, 0, 0.25)",
+                                    margin: 50
+                                }}
+                                alt="dummy"></img>
+                            {
+                                <Box>{
+                                    props
+                                        .brBooks[page - 1]
+                                        .book.title
+                                }</Box>
+                            }
+                            {
+                                <Box
+                                    style={{
+                                        margin: 50
+                                    }}>{
+                                        props
+                                            .brBooks[page - 1]
+                                            .return_date.slice(0, 10)
+                                    }</Box>
+                            }
+                        </Box>
+                    }
+                    <Box className={[styles.TitleMessage]} style={{
+                        margin: 50
+                    }}>
+                        대여가&nbsp;완료되었습니다<br></br>
+                        감사합니다
+                    </Box>
+                </Box>
             </Box>
+
+
+
             {/* <Box>
                 {books.map((BOOK) => (<div>{BOOK.isbn}</div>))}
             </Box> */}
             <Box>
                 {Dbooks.map((book) => (<div>{book.title}</div>))}
             </Box>
-            <Box className={[styles.TitleMessage]}></Box>
-            <Box className={[styles.TitleMessage]}>
-                대여가&nbsp;완료되었습니다<br></br>
-                감사합니다
+<<<<<<< HEAD
+            {/* <Box>
+                {books.map((BOOK) => (<div>{BOOK.isbn}</div>))}
+            </Box> */}
+            <Box>
+                {Dbooks.map((book) => (<div>{book.title}</div>))}
             </Box>
+=======
+>>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
+            <Box className={[styles.TitleMessage]}></Box>
 
+<<<<<<< HEAD
             <Timer sec="10" /> {/*  <meta http-equiv="refresh" content="10; url=http://localhost:3000/book/main"
  *   />
 
  */
             }
+=======
+
+            <Timer sec="10" />
+            {/* <meta http-equiv="refresh" content="10; url=http://localhost:3000/book/main" /> */}
+
+>>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
 
             <Footer />
         </Box>

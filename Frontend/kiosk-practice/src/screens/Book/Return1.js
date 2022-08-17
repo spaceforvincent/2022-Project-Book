@@ -35,7 +35,11 @@ const Return1 = (props) => {
             console.log(data)
             getBook(data)
         })
+<<<<<<< HEAD
         return() => {
+=======
+        return () => {
+>>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
             socket.close()
         }
     }, [sockets]);
@@ -44,6 +48,12 @@ const Return1 = (props) => {
         <Box className={styles.center}>
             <Header />
             <MainIcon className={styles.largeLogo} />
+            <button
+                onClick={() => {
+                    getBook('9771228773007')
+                }}>
+                isbn을 추가해요!
+            </button>
             <Box className={[styles.TitleMessage, styles.padding]}>책을 올려주세요</Box>
             <Footer />
         </Box>

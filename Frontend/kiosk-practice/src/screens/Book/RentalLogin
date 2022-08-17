@@ -1,40 +1,20 @@
-import React, { Component, useState, useEffect } from "react";
-<<<<<<< HEAD
-import { useNavigate, useSearchParams } from "react-router-dom";
-=======
+import React, { Component, useState } from "react";
 import Footer from "../../components/Footer";
->>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useStyles } from "../../styles";
 import { Box, Card, CardActionArea } from "@material-ui/core";
 import axios from "axios";
-
+import { ReactComponent as MainIcon } from "../../images/Frame 1.svg";
+import { Button } from "@mui/material";
+import { tokenToString } from "typescript";
 import { ReactComponent as Plus } from "../../images/plusBtn.svg";
-
-import io from "socket.io-client";
 
 axios.defaults.withCredentials = true;
 
 const Login = (props) => {
-
-    const [sockets, setSockets] = useState([]);
-    const socket = io.connect("http://localhost:9994");
-    const [info, setInfo] = useState();
-
-
-    useEffect(() => {
-        socket.emit("inputdata", 4);
-        socket.on('isbnoutput', (data) => {
-            console.log(data)
-            setInfo(data)
-        })
-        return () => {
-            socket.close()
-        }
-    }, [sockets]);
-
     const styles = useStyles();
     const [page, setPage] = useState(1);
-    const [token, setToken] = useState("");
+
     const nextPage = () => {
         console.log(page)
         if (page >= props.borrowList.length) {
@@ -45,19 +25,10 @@ const Login = (props) => {
     }
 
     const submit = async () => {
-        // const { email, password } = {
-        //     email: "sanggom@ssaty.com",
-        //     password: "sanggom1234!"
-        // };
-
         const { email, password } = {
-            email: info.slice(0, info.indexOf('//')),
-            password: info.slice(info.indexOf('//') + 2)
+            email: "sanggom@ssaty.com",
+            password: "sanggom1234!"
         };
-        console.log(info)
-        console.log(info.slice(0, info.indexOf('//')));
-        console.log(info.slice(info.indexOf('//') + 2));
-
         try {
             const { data } = await axios.post(
                 "http://i7d211.p.ssafy.io:8081/user/login",
@@ -66,8 +37,7 @@ const Login = (props) => {
 
             if (data.token) {
                 console.log(data.token);
-                setToken(data.token)
-
+                Borrow(data.token);
 
             } else {
                 alert("이메일 혹은 비밀번호가 틀렸습니다.")
@@ -92,22 +62,9 @@ const Login = (props) => {
                 },
                 headers: headers // headers에 headers 객체 전달
             })))
-        axios
-            .get("/user/profileUsage", {
-                headers: headers // headers에 headers 객체 전달
-            })
-            .then(function (response) {
-                props.setBrbooks(props.brBooks.concat(response.data))
-                console.log(response.data)
-            })
+        props.setFinished(true);
+        props.setBrbooks();
     };
-
-    useEffect(() => {
-        if (token != "") {
-
-            Borrow(token);
-        }
-    }, [token]);
 
     return (
         <Box className={styles.center}>

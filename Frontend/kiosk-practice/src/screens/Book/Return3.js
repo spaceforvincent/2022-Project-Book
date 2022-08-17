@@ -1,29 +1,141 @@
-import React, {Component} from "react";
-import {useStyles} from "../../styles";
-import {Box, Grid} from "@material-ui/core";
+import React, { Component, useEffect } from "react";
+import { useState } from "react";
+import { useStyles } from "../../styles";
+import { Box } from "@material-ui/core";
 import Footer from "../../components/Footer";
-import Borrow_booklist from './Borrow_booklist';
 import Timer from './Timer';
-const Return3 = () => {
+
+import RentalStatus from './RentalStatus';
+
+import axios from 'axios';
+
+const Return3 = (props) => {
     const styles = useStyles();
+    const [books, setBooks] = useState([]);
+    const [Dbooks, setDBooks] = useState([]);
+
+    const [page, setPage] = useState(1);
+
+    const nextPage = () => {
+        console.log(page)
+        if (page >= props.brBooks.length) {
+            setPage(1)
+        } else {
+            setPage(page + 1)
+        }
+    }
+
+    const SeeME = () => {
+        console.log(props.brBooks)
+    }
+
+    const getBorrow = (isbn) => {
+        console.log(isbn)
+
+        axios
+            .put("/book/return", {}, {
+                params: {
+                    ISBN: isbn
+                }
+            })
+            .then(function (response) {
+                setBooks(response.data)
+                getBook(response.data)
+            })
+    }
+
+    const getBook = (data) => {
+        data.map((BOOK) => (console.log(BOOK.isbn), axios.get("/book/detail", {
+            params: {
+                ISBN: BOOK.isbn
+            }
+        }).then(function (response) {
+            setDBooks(Dbooks.concat(response.data));
+        })))
+    }
+
+    useEffect(() => {
+        console.log(props.isbn)
+    }, []);
+
     return (
         <Box className={styles.center}>
-            <Box className={[styles.TitleMessage, styles.padding]}>
-                대여&nbsp;현황
+            <Box
+                className={[styles.Bigcard]}
+                style={{
+                    paddingTop: 50
+                }}>
+                <Box
+                    className={[styles.BigcardInner]}
+                    onClick={() => {
+                        nextPage()
+                    }}>
+                    <Box
+                        className={[styles.TitleMessage]}
+                        style={{
+                            margin: 50
+                        }}>
+                        대여&nbsp;현황
+                    </Box>
+                    {
+                        <Box className={[styles.Card]}>
+                            <Box>{page}/{props.brBooks.length}</Box>
+                            <img
+                                src={props
+                                    .brBooks[page - 1]
+                                    .cover}
+                                style={{
+                                    width: "600px",
+                                    height: "750px",
+                                    boxShadow: "20px 60px 40px rgba(0, 0, 0, 0.25)",
+                                    margin: 50
+                                }}
+                                alt="dummy"></img>
+                            {
+                                <Box>{
+                                    props
+                                        .brBooks[page - 1]
+                                        .title
+                                }</Box>
+                            }
+                            {
+                                <Box
+                                    style={{
+                                        margin: 50
+                                    }}>{
+                                        props
+                                            .brBooks[page - 1]
+                                            .return_date
+                                            .slice(0, 10)
+                                    }</Box>
+                            }
+                        </Box>
+                    }
+                    <Box
+                        className={[styles.TitleMessage]}
+                        style={{
+                            margin: 50
+                        }}>
+                        반납이&nbsp;완료되었습니다<br></br>
+                        감사합니다
+                    </Box>
+                </Box>
             </Box>
-            <Box className={styles.padding}/> {/* <Borrow_booklist/> */}
-            <Box className={[styles.TitleMessage, styles.padding]}></Box>
-            <Box className={[styles.TitleMessage]}>
-                반납이&nbsp;완료되었습니다<br></br>
-                감사합니다
+            <Box onClick={() => {
+                SeeME()
+            }}>살려주세요 살려주세요 살려주세요</Box>
+            <Box>
+                {Dbooks.map((book) => (<div>{book.title}</div>))}
             </Box>
+            <Box className={[styles.TitleMessage]}></Box>
 
-            <Timer sec="10"/>
-            <meta http-equiv="refresh" content="10; url=http://localhost:3000/book/main"/>
+            <Timer sec="10" /> {/*  <meta http-equiv="refresh" content="10; url=http://localhost:3000/book/main"
+ *  /> 
+ */
+            }
 
-            <Footer/>
+            <Footer />
         </Box>
     );
 }
-
 export default Return3;
