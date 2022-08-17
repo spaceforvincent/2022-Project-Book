@@ -38,8 +38,8 @@ const Header = () => {
             </div>
 
             <div className="header-menu">
-                <NavLink to="/board-list?boardType=notice" activeStyle={{color: "red"}}>게시판</NavLink>
-                <NavLink to="/search-book" activeStyle={{color: "red"}}>도서 검색</NavLink>
+                <NavLink to="/board-list?boardType=notice" >게시판</NavLink>
+                <NavLink to="/search-book">도서 검색</NavLink>
 
                 {/* 로그인 유무 판단*/}
                 {
@@ -49,8 +49,8 @@ const Header = () => {
                         } > 로그아웃</Link> </>
                         : (
                             <>
-                                <NavLink to="/login" activeStyle={{color: "red"}}>로그인</NavLink>
-                                < NavLink to = "/sign-up" activeStyle = {{color: "red"}}> 회원가입</NavLink> </>
+                                <NavLink to="/login" >로그인</NavLink>
+                                < NavLink to = "/sign-up" > 회원가입</NavLink> </>
                         )
                 }
             </div>

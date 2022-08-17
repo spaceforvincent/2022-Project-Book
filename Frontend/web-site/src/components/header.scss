@@ -12,6 +12,7 @@ a {
 
 .active {
   color: midnightblue;
+  font-weight: bold;
 }
 
 .header-wrapper {
@@ -56,7 +57,7 @@ a {
             flex-shrink: 0;
             margin: 0 1rem;
             font-style: normal;
-            font-weight: 550;
+            font-weight: 600;
         }
     }
 }
