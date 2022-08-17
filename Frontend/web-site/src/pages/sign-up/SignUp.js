@@ -1,17 +1,17 @@
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
-import {Formik} from "formik";
+import { useNavigate } from "react-router-dom";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
-import {getMonth, getYear} from 'date-fns';
+import { getMonth, getYear } from 'date-fns';
 import range from "lodash/range";
 // css 영역
 import "react-datepicker/dist/react-datepicker.css";
-import {toast, ToastContainer} from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {Button, TextField} from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import "./signUp.scss";
-import {useState} from "react";
+import { useState } from "react";
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -32,9 +32,11 @@ const SignUp = () => {
         "November",
         "December"
     ];
-    const coBr = (date) =>{
-      console.log(date);
-    }
+
+
+
+
+
     const validationSchema = Yup
         .object()
         .shape({
@@ -129,14 +131,14 @@ const SignUp = () => {
         try {
             // console.log(inputData)
 
-            const {data} = await axios.post(
+            const { data } = await axios.post(
                 "http://i7d211.p.ssafy.io:8081/user/signUp",
                 inputData
             );
 
             // 회원가입 성공 -> 데이터 반환값 존재
             if (data.name) {
-                toast.success(<h3>회원가입이 완료되었습니다.<br/>로그인 하세요.</h3>, {
+                toast.success(<h3>회원가입이 완료되었습니다.<br />로그인 하세요.</h3>, {
                     position: "top-center",
                     autoClose: 2000
                 });
@@ -167,9 +169,9 @@ const SignUp = () => {
             onSubmit={submit}
             validateOnMount={true}>
             {
-                ({values, handleSubmit, handleChange, errors}) => (
+                ({ values, handleSubmit, handleChange, errors }) => (
                     <div className="signup-wrapper">
-                        <ToastContainer/>
+                        <ToastContainer />
                         <form onSubmit={handleSubmit} autoComplete="off">
                             <div className="input-forms">
 
@@ -179,7 +181,7 @@ const SignUp = () => {
                                         value={values.email}
                                         name="email"
                                         variant="outlined"
-                                        onChange={handleChange}/>
+                                        onChange={handleChange} />
                                     <div className="error-message">
                                         {errors.email}
                                     </div>
@@ -193,7 +195,7 @@ const SignUp = () => {
                                         name="password"
                                         variant="outlined"
                                         type="password"
-                                        onChange={handleChange}/>
+                                        onChange={handleChange} />
                                     <div className="error-message">
                                         {errors.password}
                                     </div>
@@ -207,7 +209,7 @@ const SignUp = () => {
                                         name="password2"
                                         variant="outlined"
                                         type="password"
-                                        onChange={handleChange}/>
+                                        onChange={handleChange} />
                                     <div className="error-message">
                                         {errors.password2}
                                     </div>
@@ -219,7 +221,7 @@ const SignUp = () => {
                                         value={values.phonenumber}
                                         name="phonenumber"
                                         variant="outlined"
-                                        onChange={handleChange}/>
+                                        onChange={handleChange} />
                                     <div className="error-message">
                                         {errors.phonenumber}
                                     </div>
@@ -231,7 +233,7 @@ const SignUp = () => {
                                         value={values.address}
                                         name="address"
                                         variant="outlined"
-                                        onChange={handleChange}/>
+                                        onChange={handleChange} />
                                     <div className="error-message">
                                         {errors.address}
                                     </div>
@@ -243,7 +245,7 @@ const SignUp = () => {
                                         value={values.username}
                                         name="name"
                                         variant="outlined"
-                                        onChange={handleChange}/>
+                                        onChange={handleChange} />
                                     <div className="error-message">
                                         {errors.name}
                                     </div>
@@ -277,63 +279,6 @@ const SignUp = () => {
                                         name="birthday"
                                         variant="outlined"
                                         onChange={handleChange}>{birthday}</TextField>
-                                    <DatePicker
-                                        dateFormat="yyyy-MM-dd"
-                                        // className="selectBox"
-                                        onChange={(date) => setBirthday(date), console.log(birthday)}
-                                        renderCustomHeader={({
-                                            date,
-                                            changeYear,
-                                            changeMonth,
-                                            decreaseMonth,
-                                            increaseMonth,
-                                            prevMonthButtonDisabled,
-                                            nextMonthButtonDisabled
-                                        }) => (
-                                            <div
-                                                style={{
-                                                    margin: 10,
-                                                    display: "flex",
-                                                    justifyContent: "center"
-                                                }}>
-                                                <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-                                                    {"<"}
-                                                </button>
-                                                <select
-                                                    value={getYear(date)}
-                                                    onChange={({target: {
-                                                            value
-                                                        }}) => changeYear(value)}>
-                                                    {
-                                                        years.map((option) => (
-                                                            <option key={option} value={option}>
-                                                                {option}
-                                                            </option>
-                                                        ))
-                                                    }
-                                                </select>
-
-                                                <select
-                                                    value={months[getMonth(date)]}
-                                                    onChange={({target: {
-                                                            value
-                                                        }}) => changeMonth(months.indexOf(value))}>
-                                                    {
-                                                        months.map((option) => (
-                                                            <option key={option} value={option}>
-                                                                {option}
-                                                            </option>
-                                                        ))
-                                                    }
-                                                </select>
-
-                                                <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-                                                    {">"}
-                                                </button>
-                                            </div>
-                                        )}
-                                        selected={startDate}
-                                        onChange={(date) => setStartDate(date)}/>
                                     <div className="error-message">
                                         {errors.birthday}
                                     </div>
