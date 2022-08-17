@@ -115,6 +115,46 @@ const Reviews = ({isbn}) => {
 
   return (
     <div className="reviews-wrapper">
+      <div className="header">리뷰 목록</div>
+      <hr/>
+      <div className="reviews-body">
+        {reviewList.map((item, index) => (
+          <div key={index} className="reviews-review">
+            <div className="review-username-date">
+              <div className="comment-date">작성일 : {moment(item.created_date).add(9, "hour").format('YYYY-MM-DD HH:mm:ss')}</div>
+            </div>
+            <div className="review-content">제목 : {item.title}</div>
+            <div className="review-content">내용 : {item.story}</div>
+            <div className="review-content">평점 : {item.star}</div>
+            <div className="review-username">작성자 : {item.id}</div>
+            <hr/>
+          </div>
+        ))}
+      </div>
+
+      {
+      <div className="reviews-footer">
+        <Pagination
+          variant="outlined" 
+          color="primary" 
+          page={Number(page)}
+          count={pageCount} 
+          size="large"
+          onChange={(e, value) => {
+            setPage(value)
+
+            getReviewList(isbn, value)
+            .then(result => setReviewList(result));
+          }}
+          showFirstButton 
+          showLastButton
+        />
+      </div>     
+      }
+      
+      <hr/>
+      <div className="header">리뷰 작성</div>
+      <hr/>
       <div className="reviews-header">
         <input
           className="title"
@@ -146,48 +186,10 @@ const Reviews = ({isbn}) => {
         {title !== "" & content !== "" & star !== ""? (
           <Button variant="outlined" onClick={submit}>등록</Button>
         ) : (
-          <Button variant="outlined" disabled={true}>
-            등록
-          </Button>
+          <Button variant="outlined" disabled={true}>등록</Button>
         )}
       </div>
 
-      <div className="reviews-body">
-        {reviewList.map((item, index) => (
-          <div key={index} className="reviews-review">
-            <div className="review-username-date">
-              <div className="comment-date">작성일 : {moment(item.created_date).add(9, "hour").format('YYYY-MM-DD HH:mm:ss')}</div>
-            </div>
-            <div className="review-content">제목 : {item.title}</div>
-            <div className="review-content">내용 : {item.story}</div>
-            <div className="review-content">평점 : {item.star}</div>
-            <div className="review-username">작성자 : {item.id}</div>
-            <hr/>
-          </div>
-        ))}
-      </div>
-      {
-
-      
-      <div className="reviews-footer">
-        <Pagination
-          variant="outlined" 
-          color="primary" 
-          page={Number(page)}
-          count={pageCount} 
-          size="large"
-          onChange={(e, value) => {
-            setPage(value)
-
-            getReviewList(isbn, value)
-            .then(result => setReviewList(result));
-          }}
-          showFirstButton 
-          showLastButton
-        />
-      </div>
-        
-      }
 
       {/* modal */}
       <Dialog open={show}>

@@ -1,19 +1,56 @@
 .reviews-wrapper {
-  .reviews-header {
-    margin: 1rem 0;
+  .header {
+    font-family: 'Noto Sans KR', sans-serif;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+  }
 
-    .reviews-header-textarea {
-      flex: 2;
+  .reviews-header {
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0;
 
+    .title {
+      margin-bottom: 0.7rem;
+    }
+
+    .content {
+      height: 20vh;
+    }
+
+    input, textarea {
       &::-webkit-scrollbar {
         display: none;
+      }
+  
+      resize: none;
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: 'Noto Sans KR', sans-serif;
+      border: 1px solid black;
+      border-radius: 5px;
+      transition: border 1s;
+      padding: 5px;
+      box-sizing: border-box;
+  
+      &:focus {
+        outline: none;
+        border: 3px solid skyblue;
       }
     }
 
     button {
+      padding: 10px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-left: 0.5rem;
-      font-size: 2rem;
+      font-size: 1rem;
     }
   }
 
