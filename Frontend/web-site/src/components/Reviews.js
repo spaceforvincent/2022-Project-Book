@@ -95,6 +95,7 @@ const Reviews = ({isbn}) => {
 
       if (data === "success") {
         window.alert("등록이 완료되었습니다.");
+        
         navigate(`/book/${isbn}`);
       }
   }, [isbn, title, content, star, token, navigate]);
@@ -121,12 +122,13 @@ const Reviews = ({isbn}) => {
         {reviewList.map((item, index) => (
           <div key={index} className="reviews-review">
             <div className="review-username-date">
+              <div className="review-username">작성자 : {item.id}</div>
               <div className="comment-date">작성일 : {moment(item.created_date).add(9, "hour").format('YYYY-MM-DD HH:mm:ss')}</div>
             </div>
             <div className="review-content">제목 : {item.title}</div>
             <div className="review-content">내용 : {item.story}</div>
             <div className="review-content">평점 : {item.star}</div>
-            <div className="review-username">작성자 : {item.id}</div>
+            
             <hr/>
           </div>
         ))}
@@ -173,15 +175,24 @@ const Reviews = ({isbn}) => {
           }}
           placeholder="리뷰 내용을 입력해주세요."
         />
-
-        <input
-          className="star"
-          onClick={isLogin}
-          onChange={(e) => {
+        
+        <select name="selectStar" id="star" onChange={(e) => {
             setStar(e.target.value)
-          }}
-          placeholder="평점을 입력해주세요."
-        />
+          }}> 
+          <option hidden="" disabled="disabled" selected="selected" value="">==평점==</option>
+
+          <option value="0">0</option>
+      
+          <option value="1">1</option>
+       
+          <option value="2">2</option>
+     
+          <option value="3">3</option>
+  
+          <option value="4">4</option>
+    
+          <option value="5">5</option>
+        </select>
 
         {title !== "" & content !== "" & star !== ""? (
           <Button variant="outlined" onClick={submit}>등록</Button>

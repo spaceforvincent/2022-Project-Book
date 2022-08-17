@@ -23,9 +23,18 @@
       height: 20vh;
     }
 
-    .star {
+    select {
       margin-top: 1rem;
       margin-bottom: 1rem;
+      text-align-last: center;
+      text-align: center;
+
+      -webkit-appearance:none;
+      -moz-appearance:none; 
+      appearance:none; 
+
+      width: 80px;
+      height: 30px;
     }
 
     input, textarea {

@@ -36,7 +36,7 @@ const getBookList = async (token, page) => {
       newData.push(data[i])
     }
   }
-  console.log(newData)
+
   return newData;
 }
 

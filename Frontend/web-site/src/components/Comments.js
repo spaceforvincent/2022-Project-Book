@@ -91,6 +91,7 @@ const Comments = ({board_id}) => {
 
       if (data === "success") {
         window.alert("등록이 완료되었습니다.");
+        
         navigate(`/board/${board_id}`);
       }
   }, [board_id, content, token, navigate]);
