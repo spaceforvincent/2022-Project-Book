@@ -180,7 +180,7 @@ const Reviews = ({isbn}) => {
           onChange={(e) => {
             setStar(e.target.value)
           }}
-          placeholder="별점을 입력해주세요."
+          placeholder="평점을 입력해주세요."
         />
 
         {title !== "" & content !== "" & star !== ""? (

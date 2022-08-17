@@ -43,11 +43,15 @@
     justify-content: center;
 
     .disable-button{
+      background-color: snow;
       font-size: 2rem;
+      color: black;
       cursor: not-allowed;
     }
 
     .success-button{
+      background-color: snow;
+      color: black;
       font-size: 2rem;
     }
   }

@@ -16,18 +16,25 @@
     margin: 1rem 0;
 
     .title {
-      margin-bottom: 0.7rem;
+      margin-bottom: 1rem;
     }
 
     .content {
       height: 20vh;
     }
 
+    .star {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
     input, textarea {
       &::-webkit-scrollbar {
         display: none;
       }
-  
+      
+      width: 60%;
+
       resize: none;
       font-size: 1rem;
       font-weight: 500;

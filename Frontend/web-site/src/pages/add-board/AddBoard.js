@@ -88,7 +88,7 @@ const AddBoard = () => {
             variant="outlined"
             size="large"
           >
-            제목과 내용을 모두 입력하세요.
+            제목과 내용을 모두 입력하세요
           </Button>
         )}
       </div>
