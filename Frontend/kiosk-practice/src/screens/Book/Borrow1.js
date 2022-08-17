@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback, Component } from 'react';
-import { useStyles } from "../../styles";
-import { Box, Grid } from "@material-ui/core";
+import React, {useState, useEffect, useCallback, Component} from 'react';
+import {useStyles} from "../../styles";
+import {Box, Grid} from "@material-ui/core";
 
-import { ReactComponent as MainIcon } from "../../images/Frame 1.svg";
+import {ReactComponent as MainIcon} from "../../images/Frame 1.svg";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -49,15 +49,15 @@ const Borrow1 = (props) => {
             console.log(data)
             getBook(data)
         })
-        return () => {
+        return() => {
             socket.close()
         }
     }, [socket]);
 
     return (
         <Box className={styles.center}>
-            <Header />
-            <MainIcon className={styles.largeLogo} />
+            <Header/>
+            <MainIcon className={styles.largeLogo}/>
             <button
                 onClick={() => {
                     getBook('9771228773007')
@@ -65,7 +65,7 @@ const Borrow1 = (props) => {
                 isbn을 추가해요!
             </button>
             <Box className={[styles.TitleMessage, styles.padding]}>책을 올려주세요</Box>
-            <Footer />
+            <Footer/>
         </Box>
     );
 }

@@ -5,11 +5,9 @@ import { useStyles } from "../../styles";
 import { Box, Grid } from "@material-ui/core";
 import Footer from "../../components/Footer";
 import AcceptBtn from "../../components/AcceptBtn";
-<<<<<<< HEAD
 
-=======
 import { ReactComponent as Plus } from "../../images/plusBtn.svg";
->>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
+
 import io from "socket.io-client";
 import axios from 'axios';
 
@@ -36,10 +34,7 @@ const Borrow2 = (props) => {
             })
             .then(function (response) {
                 props.refreshFunction(response.data);
-<<<<<<< HEAD
-                return books
-=======
->>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
+
             })
     }
 

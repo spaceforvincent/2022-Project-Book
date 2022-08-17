@@ -153,11 +153,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     marginLeft: 50,
     marginRight: 50,
-<<<<<<< HEAD
-    margin: 100,
-=======
     margin: 110
->>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
   },
   detailUpperButton: {
     marginLeft: 20,
@@ -166,12 +162,8 @@ export const useStyles = makeStyles((theme) => ({
     marginTop:-100
   },
   detailBorrowStatus: {
-<<<<<<< HEAD
-    margin : 10
-=======
     marginLeft: 10,
     marginRight: 10
->>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
   },
   RelatedBooks: {
     backgroundColor: "#223069",

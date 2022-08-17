@@ -35,11 +35,8 @@ const Return1 = (props) => {
             console.log(data)
             getBook(data)
         })
-<<<<<<< HEAD
-        return() => {
-=======
+
         return () => {
->>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
             socket.close()
         }
     }, [sockets]);

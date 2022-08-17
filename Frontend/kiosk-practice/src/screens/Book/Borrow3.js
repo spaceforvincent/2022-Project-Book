@@ -14,8 +14,7 @@ const Borrow3 = (props) => {
     const [books, setBooks] = useState([]);
     const [Dbooks, setDBooks] = useState([]);
 
-<<<<<<< HEAD
-=======
+
     const [page, setPage] = useState(1);
 
     const nextPage = () => {
@@ -26,8 +25,6 @@ const Borrow3 = (props) => {
             setPage(page + 1)
         }
     }
-
->>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
     const getBorrow = (isbn) => {
         console.log(isbn)
 
@@ -55,10 +52,7 @@ const Borrow3 = (props) => {
 
     useEffect(() => {
         console.log(props.isbn)
-<<<<<<< HEAD
-        getBorrow(props.isbn)
-=======
->>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
+
     }, []);
 
     return (
@@ -128,29 +122,13 @@ const Borrow3 = (props) => {
             <Box>
                 {Dbooks.map((book) => (<div>{book.title}</div>))}
             </Box>
-<<<<<<< HEAD
-            {/* <Box>
-                {books.map((BOOK) => (<div>{BOOK.isbn}</div>))}
-            </Box> */}
-            <Box>
-                {Dbooks.map((book) => (<div>{book.title}</div>))}
-            </Box>
-=======
->>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
+
             <Box className={[styles.TitleMessage]}></Box>
 
-<<<<<<< HEAD
-            <Timer sec="10" /> {/*  <meta http-equiv="refresh" content="10; url=http://localhost:3000/book/main"
- *   />
-
- */
-            }
-=======
 
             <Timer sec="10" />
             {/* <meta http-equiv="refresh" content="10; url=http://localhost:3000/book/main" /> */}
 
->>>>>>> c274628882b2a3509cc7fd088fae5c3e11954807
 
             <Footer />
         </Box>
