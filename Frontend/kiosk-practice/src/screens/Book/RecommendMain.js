@@ -11,45 +11,45 @@ import agegroup from "../../images/agegroup.png";
 import axios from 'axios';
 import io from "socket.io-client";
 
-export default function RecommendScreen(props) {
+export default function RecommendMain(props) {
 
   const styles = useStyles();
   const navigate = useNavigate();
 
 
   const socket = io.connect("http://localhost:9994");
-
   const [sockets, setSockets] = useState([]);
 
   const sendMsg = (answer) => {
     console.log(answer);
     socket.emit("inputdata", answer);
+    props.setScreen(false)
   };
 
-  const getFace = (facedata) => {
-    console.log(facedata)
-    axios
-        .get("http://i7d211.p.ssafy.io:8081/book/emotion", {
-            params: {
-                emotion: facedata
-            }
-        })
-        .then(function (response) {
-            props.setFaces(response.data)
-            console.log(props.faces)
-            return
-        })
-    }
+  // const getFace = (facedata) => {
+  //   console.log(facedata)
+  //   axios
+  //       .get("http://i7d211.p.ssafy.io:8081/book/emotion", {
+  //           params: {
+  //               emotion: facedata
+  //           }
+  //       })
+  //       .then(function (response) {
+  //           props.setFaces(response.data)
+  //           console.log(props.faces)
+  //           return
+  //       })
+  //   }
 
-  useEffect(() => {
-    socket.on('faceoutput', (data) => {
-        console.log(data)
-        getFace(data)
-    })
-    return() => {
-        socket.close()
-    }
-  }, [sockets]);
+  // useEffect(() => {
+  //   socket.on('faceoutput', (data) => {
+  //       console.log(data)
+  //       getFace(data)
+  //   })
+  //   return() => {
+  //       socket.close()
+  //   }
+  // }, [sockets]);
 
   return (
     <Fade in={true}>
@@ -76,8 +76,8 @@ export default function RecommendScreen(props) {
             >
               <Button
                 onClick = {() => {
-                  sendMsg(3)
-                  props.setCamera(true)
+                  sendMsg(2)
+                  props.setScreen(false)
                   props.setEmotion(true)
                 }}
                 variant="contained"

@@ -20,7 +20,7 @@ export default function RecommendEmotion(props) {
               <Box>
                 <Header />
                 <Box className={styles.subTitleMessage}>
-                  <h1>니 감정입니다</h1>
+                  <h1>니 감정입니다 : { props.faces }</h1>
                 </Box>
                 <Box className={styles.outerWrapperSearch}>
                   <Box className={[styles.main, styles.wrapperSearch]}>
