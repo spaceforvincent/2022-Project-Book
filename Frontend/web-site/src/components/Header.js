@@ -1,59 +1,62 @@
 import "./header.scss";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {jwtUtils} from "../utils/jwtUtils";
 import {useEffect, useState} from "react";
 import {setToken} from "../redux/reducers/AuthReducer";
 
 const Header = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const token = useSelector(state => state.Auth.token);
-  const [isAuth, setIsAuth] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const token = useSelector(state => state.Auth.token);
+    const [isAuth, setIsAuth] = useState(false);
 
-  useEffect(() => {
-    if (jwtUtils.isAuth(token)) {
-      setIsAuth(true);
+    useEffect(() => {
+        if (jwtUtils.isAuth(token)) {
+            setIsAuth(true);
 
-    } else {
-      setIsAuth(false);
-    }
-  }, [token]);
+        } else {
+            setIsAuth(false);
+        }
+    }, [token]);
 
-  const logout = async () => {
-    await dispatch(setToken(""));
-    alert("로그아웃 되었습니다.");
-    navigate("/");
-  };
-  
-  return (
-    <div className="header-wrapper">
-      <div className="header-title">
-        <Link to="/">
-          <span>북 극 성</span>
-        </Link>
-      </div>
+    const logout = async () => {
+        await dispatch(setToken(""));
+        alert("로그아웃 되었습니다.");
+        navigate("/");
+    };
 
-      <div className="header-menu">
-        <Link to="/board-list?boardType=notice">게시판</Link>
 
-        <Link to="/search-book">도서 검색</Link>
+    return (
+        <div className="header-wrapper">
+            <div className="header-title">
+                <Link to="/">
+                    <img className="header-icon" src="image/HeaderCon.png" alt=""></img>
+                    <span>&nbsp;&nbsp;<i>BOOK극성</i>
+                    </span>
+                </Link>
+            </div>
 
-        {/* 로그인 유무 판단*/}
-        {isAuth ? (
-          <>
-            <Link to="/mypage">회원정보</Link>
-            <Link to="#" onClick={logout}>로그아웃</Link>
-          </>
-        ) : (
-          <>
-            <Link to="/login">로그인</Link>
-            <Link to="/sign-up">회원가입</Link>
-          </>
-        )}
-      </div>
-    </div>
-  );
+            <div className="header-menu">
+                <NavLink to="/board-list?boardType=notice" activeStyle={{color: "red"}}>게시판</NavLink>
+                <NavLink to="/search-book" activeStyle={{color: "red"}}>도서 검색</NavLink>
+
+                {/* 로그인 유무 판단*/}
+                {
+                    isAuth
+                        ? <> <NavLink to = "/mypage" activeStyle= {{color: "red"}} > 회원정보</NavLink> < Link to = "#" onClick = {
+                            logout
+                        } > 로그아웃</Link> </>
+                        : (
+                            <>
+                                <NavLink to="/login" activeStyle={{color: "red"}}>로그인</NavLink>
+                                < NavLink to = "/sign-up" activeStyle = {{color: "red"}}> 회원가입</NavLink> </>
+                        )
+                }
+            </div>
+
+        </div>
+    );
 };
 
 export default Header;

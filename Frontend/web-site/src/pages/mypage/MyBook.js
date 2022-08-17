@@ -107,7 +107,6 @@ const MyBook = () => {
           size="large"
           onChange={(e, value) => {
             setPage(value)
-
             getBookList(value)
             .then(result => setBookList(result));
           }}
