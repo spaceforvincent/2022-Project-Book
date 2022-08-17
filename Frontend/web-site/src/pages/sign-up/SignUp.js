@@ -273,15 +273,14 @@ const SignUp = () => {
                                 <div className="input-forms-item">
                                     <div className="input-label">생년월일</div>
                                     <TextField
-                                        value={values.birthday}
+                                        value={birthday}
                                         name="birthday"
                                         variant="outlined"
-                                        onChange={handleChange}/>
+                                        onChange={handleChange}>{birthday}</TextField>
                                     <DatePicker
                                         dateFormat="yyyy-MM-dd"
                                         // className="selectBox"
-                                        onChange={(date) => setBirthday(date),handleChange}
-                                        value={birthday}
+                                        onChange={(date) => setBirthday(date), console.log(birthday)}
                                         renderCustomHeader={({
                                             date,
                                             changeYear,
