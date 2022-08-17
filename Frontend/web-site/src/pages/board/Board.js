@@ -69,8 +69,8 @@ const Board = () => {
           <hr/>
           <div className="board-body">
             <div className="board-title-content">
-              <div className="board-title">제목 : {board.title}</div>
-              <div className="board-content">내용  : {board.story}</div>
+              <div className="board-title">{board.title}</div>
+              <div className="board-content">{board.story}</div>
             </div>
           </div>
 

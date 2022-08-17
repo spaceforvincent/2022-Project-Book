@@ -1,6 +1,8 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {Link, useSearchParams} from "react-router-dom";
+import {Link, useSearchParams,} from "react-router-dom";
+import {jwtUtils} from "../../utils/jwtUtils";
+import {useSelector} from "react-redux";
 
 // css
 import {Pagination} from "@mui/material";
@@ -35,11 +37,39 @@ const BoardList = () => {
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const [boardList, setBoardList] = useState([]);
+  const [BT, setBT] = useState("");
+
   const [searchParams] = useSearchParams();
   const boardType = searchParams.get("boardType");
-  
+  const [isAuth, setIsAuth] = useState(false);
+  const token = useSelector(state => state.Auth.token);
+  const board_url = `/add-board?boardType=${boardType}&BT=${BT}`
 
   useEffect(() => {
+    // 로그인 유무
+    if (jwtUtils.isAuth(token)) {
+      setIsAuth(true);
+
+    } else {
+      setIsAuth(false);
+    }
+
+    if (boardType === "notice") {
+      setBT("공지");
+
+    }else if (boardType === "introduce") {
+      setBT("소개");
+
+    }else if (boardType === "suggestion") {
+      setBT("건의");
+
+    }else if (boardType === "FAQ") {
+      setBT("FAQ");
+
+    }else if (boardType === "complaint") {
+      setBT("불편사항");
+    }
+
     // 페이지에 해당하는 게시물 가져오기
     getBoardList(page, boardType)
 
@@ -56,7 +86,7 @@ const BoardList = () => {
 
     // 페이지 카운트 구하기: (전체 board 갯수) / (한 페이지 갯수) 결과 올림
     getTotalBoard().then(result => setPageCount(Math.ceil(result / totalPost)));
-  }, [page, searchParams, boardType])
+  }, [page, searchParams, boardType, token])
 
   return (
     <div className="boardList-wrapper">
@@ -70,10 +100,19 @@ const BoardList = () => {
         <Link to="/board-list?boardType=FAQ">FAQ</Link>
 
         <Link to="/board-list?boardType=complaint">불편사항</Link>
+        
+        {isAuth ? (
+          <>
+            <Link to={board_url}>새글 작성</Link>
+          </>
+        ) : (
+          <>
+          </>
+        )}
       </div>
 
       <div className="boardList-header">
-        {boardType}
+        {BT} 게시판
       </div>
 
       <div className="boardList-body">

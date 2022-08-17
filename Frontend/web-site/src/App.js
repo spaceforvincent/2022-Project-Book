@@ -11,6 +11,7 @@ import MyBoardList from "./pages/myboard-list/MyBoardList";
 import Board from "./pages/board/Board";
 import MyPage from "./pages/mypage/MyPage";
 import MyBook from "./pages/mypage/MyBook";
+import SearchBook from "./pages/search-book/SearchBook";
 //import EditBoard from "./pages/edit-board/EditBoard";
 
 
@@ -58,7 +59,10 @@ const App = () => {
         
         {/* 글 상세 페이지 */}
         <Route path="/board/:board_id" element={<Board/>}/>
-        
+              
+        {/* 도서 검색 페이지 */}
+        <Route path="/search-book" element={<SearchBook/>}/>
+
         {/* 글 수정 */}
         {/* <Route
           path="/edit-board/:board_id"

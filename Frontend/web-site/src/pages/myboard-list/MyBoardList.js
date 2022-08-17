@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {useSearchParams} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {jwtUtils} from "../../utils/jwtUtils";
 import moment from "moment";
@@ -15,10 +15,10 @@ import "../board-list/boardList.scss";
 var totalPost = 8
 
 // 페이지에 맞는 게시글 불러올 함수
-const getBoardList = async (token, page) => {
+const getBoardList = async (token, page, boardType) => {
   const url = "http://i7d211.p.ssafy.io:8081/board/boardAll"
   const id = jwtUtils.getId(token);
-  const {data} = await axios.get(`${url}?boardType=notice`);
+  const {data} = await axios.get(`${url}?boardType=${boardType}`);
 
   var temp = []
   var newData = []
@@ -47,11 +47,13 @@ const MyBoardList = () => {
   const [pageCount, setPageCount] = useState(0);
   const [boardList, setBoardList] = useState([]);
   const [searchParams] = useSearchParams();
+  const boardType = searchParams.get("boardType");
+  const BT = searchParams.get("BT");
   const token = useSelector(state => state.Auth.token);
 
   useEffect(() => {
     // 페이지에 해당하는 게시물 가져오기
-    getBoardList(token, page)
+    getBoardList(token, page, boardType)
 
     // 현재 페이지에 해당하는 게시물로 상태 변경하기
     .then(result => setBoardList(result));
@@ -60,7 +62,7 @@ const MyBoardList = () => {
     const getTotalBoard = async () => {
       const url = "http://i7d211.p.ssafy.io:8081/board/boardAll"
       const id = jwtUtils.getId(token);
-      const {data} = await axios.get(`${url}?boardType=notice`);
+      const {data} = await axios.get(`${url}?boardType=${boardType}`);
       
       var newData = []
 
@@ -76,12 +78,30 @@ const MyBoardList = () => {
     // 페이지 카운트 구하기
     getTotalBoard().then(result => setPageCount(Math.ceil(result / totalPost)));
       console.log()
-  }, [searchParams, token, page])
+  }, [searchParams, token, page, boardType])
 
   return (
     <div className="boardList-wrapper">
+      <div className="menu">
+        <Link to="/mypage">회원정보</Link>
+
+        <Link to="/mybook">대여기록</Link>
+      </div>
+      
+      <div className="menu">
+        <Link to="/myboard-list?boardType=notice&BT=공지">공지</Link>
+
+        <Link to="/myboard-list?boardType=introduce&BT=소개">소개</Link>
+
+        <Link to="/myboard-list?boardType=suggestion&BT=건의">건의</Link>
+
+        <Link to="/myboard-list?boardType=FAQ&BT=FAQ">FAQ</Link>
+
+        <Link to="/myboard-list?boardType=complaint&BT=불편사항">불편사항</Link>
+      </div>
+
       <div className="boardList-header">
-        내가 작성한 글
+        내가 작성한 {BT} 글
       </div>
 
       <div className="boardList-body">

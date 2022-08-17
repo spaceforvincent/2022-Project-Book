@@ -37,12 +37,12 @@ const Header = () => {
       <div className="header-menu">
         <Link to="/board-list?boardType=notice">게시판</Link>
 
+        <Link to="/search-book">도서 검색</Link>
+
         {/* 로그인 유무 판단*/}
         {isAuth ? (
           <>
-            <Link to="/add-board">글쓰기</Link>
             <Link to="/mypage">회원정보</Link>
-            {/* <Link to="/myboard-list">내 게시물</Link> */}
             <Link to="#" onClick={logout}>로그아웃</Link>
           </>
         ) : (

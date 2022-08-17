@@ -18,22 +18,21 @@ const SignUp = () => {
       .required("이메일을 입력하세요."),
 
     password: Yup.string()
-      .min(8, "비밀번호는 최소 8자리 이상입니다.")
-      .max(16, "비밀번호는 최대 16자리입니다.")
       .required("비밀번호를 입력하세요.")
       .matches(
-      // eslint-disable-next-line
-        /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[^\s]*$/,
-        "알파벳, 숫자, 공백을 제외한 특수문자를 모두 포함해야 합니다."
-      )
-      ,
+        /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W))(?=.*[!@#$%^*+=-]).{8,16}$/,
+        "비밀번호는 반드시 8~16자이며, 영문, 숫자, 특수문자를 포함해야 합니다."
+      ),
 
     password2: Yup.string()
       .oneOf([Yup.ref("password"), null], "비밀번호가 일치하지 않습니다.")
       .required("필수 입력 값입니다."),
 
     phonenumber: Yup.string()
-      .required("전화번호를 입력하세요."),
+      .required("전화번호를 입력하세요.")
+      .matches(
+        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+        "전화번호 양식에 맞게 입력해주세요"),
 
     address: Yup.string()
       .required("주소를 입력하세요."),
@@ -42,25 +41,34 @@ const SignUp = () => {
       .min(2, "이름은 최소 2글자 이상입니다.")
       .max(10, "이름은 최대 10글자입니다.")
       .matches(
-        // eslint-disable-next-line
-        /^[가-힣a-zA-Z][^!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?\s]*$/,
+        /^[가-힣a-zA-Z][^!@#$%^&*()_+\-=[]{};':"\\|,.<>\/?\s]*$/,
         "이름에 특수문자가 포함되면 안되고 숫자로 시작하면 안됩니다."
       )
       .required("이름을 입력하세요."),
 
     gender: Yup.string()
-      .oneOf(["0","1"],
-        "셩별은 '남성' 이면 '0'을 '여성' 이면 '1' 로 입력해야 합니다.")
+      .oneOf(["남성","여성"],
+        "성별은 '남성' 혹은 '여성'으로 입력해야 합니다.")
       .required("성별을 입력하세요."),
 
-    birthday: Yup.date()
-      .typeError("생일은 2022/01/01 과 같이 작성해야 합니다.")
-      .required("생일을 입력하세요."),
+    birthday: Yup.string()
+      .required("생일을 입력하세요.")
+      .matches(
+        /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,
+        "생일 양식(YYYY-MM-DD에 맞게 입력해주세요"),
     
   });
   
   const submit = async (values) => {
-    const {email, password, phonenumber, address, name, gender, birthday} = values;
+    const {email, password, phonenumber, address, name, birthday} = values;
+    var {gender} = values;
+
+    if (gender.value === "남성") {
+      gender.value = "0";
+      
+    }else {
+      gender.value = "1";
+    }
 
     const inputData = { email, password, phonenumber, address, name, gender, birthday }
 

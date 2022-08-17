@@ -27,6 +27,7 @@ const MyPage = () => {
 
       return data;
     }
+
     getUserProfile().then(result => setUserProfile(result));
 
     // 유저 프로필 사진 불러오기
@@ -40,9 +41,7 @@ const MyPage = () => {
       const {data} = await axios.get("/user/image", 
       config
       );
-      
-      console.log(token, data)
-
+    
       return data;
     }
     getUserImage().then(result => setUserImage(result));
@@ -51,7 +50,7 @@ const MyPage = () => {
   return (
     <div className="mypage-wrapper">
       <div className="menu">
-        <Link to="/myboard-list">내 게시물</Link>
+        <Link to="/myboard-list?boardType=notice&BT=공지">내 게시물</Link>
 
         <Link to="/mybook">대여기록</Link>
       </div>

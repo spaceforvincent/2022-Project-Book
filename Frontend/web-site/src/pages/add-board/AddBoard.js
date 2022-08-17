@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate, useSearchParams} from "react-router-dom";
 import {useCallback, useState} from "react";
 import {jwtUtils} from "../../utils/jwtUtils";
 
@@ -11,6 +11,9 @@ import "./addBoard.scss";
 
 const AddBoard = () => {
   const token = useSelector(state => state.Auth.token);
+  const [searchParams] = useSearchParams();
+  const boardType = searchParams.get("boardType");
+  const BT = searchParams.get("BT");
   const navigate = useNavigate();
 
   // 제목, 내용
@@ -26,7 +29,7 @@ const AddBoard = () => {
       "id" : jwtUtils.getId(token),
       "title" : title, 
       "story" : content,
-      "type" : "notice",
+      "type" : boardType,
     }
 
     const config = {
@@ -50,12 +53,24 @@ const AddBoard = () => {
       console.log(e)
     }
 
-  }, [navigate, token, content, title,]);
+  }, [navigate, token, content, title, boardType]);
 
   return (
     <div className="addBoard-wrapper">
+      <div className="menu">
+        <Link to="/board-list?boardType=notice">공지</Link>
+
+        <Link to="/board-list?boardType=introduce">소개</Link>
+
+        <Link to="/board-list?boardType=suggestion">건의</Link>
+
+        <Link to="/board-list?boardType=FAQ">FAQ</Link>
+
+        <Link to="/board-list?boardType=complaint">불편사항</Link>
+      </div>
+
       <div className="addBoard-header">
-        작성하기
+        {BT} 작성하기
       </div>
 
       <div className="submitButton">

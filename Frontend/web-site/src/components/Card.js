@@ -9,8 +9,8 @@ export const Card = ({board_id, title, content, id, date}) => {
       navigate(`/board/${board_id}`)
     }}>
       <div className="card-body-text">
-        <div className="card-body-text-title">제목 : {title}</div>
-        <div className="card-body-text-content">내용 : {content}</div>
+        <div className="card-body-text-title">{title}</div>
+        <div className="card-body-text-content">{content}</div>
       </div>
 
       <div className="card-footer">

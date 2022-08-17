@@ -1,41 +1,31 @@
 @media all and (min-width: 1024px) {
   .input-forms {
-    padding: 70px;
+    padding: 40px;
 
     input{
-      width: 750px;
+      width: 30vw;
     }
   }
 
 }
 @media all and (max-width: 1024px) {
   .input-forms {
-    padding: 60px;
+    padding: 30px;
 
     input{
-      width: 650px;
-    }
-  }
-}
-
-@media all and (max-width: 768px) {
-  .input-forms {
-    padding: 50px;
-    
-    input{
-      width: 550px;
+      width: 50vw;
     }
   }
 }
 
 .signup-wrapper {
-  margin-top: 5rem;
+  margin-top: 0rem;
   font-family: 'Noto Sans KR', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 50px;
+  padding: 20px;
   
   .input-forms {
     background-color: #ffffff;
@@ -44,15 +34,16 @@
     flex-direction: column;
 
     .input-label {
-      font-size: 2.5rem;
+      font-size: 1.5rem;
       font-weight: bold;
       color: #282c34;
     }
 
     .input-forms-item {
-      padding: 7px 0;
+      padding: 10px 0;
+      
       .error-message {
-        font-size: 2rem;
+        font-size: 1rem;
         color: blue;
         font-weight: bold;
       }
