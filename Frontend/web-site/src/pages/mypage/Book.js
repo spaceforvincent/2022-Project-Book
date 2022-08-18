@@ -1,4 +1,3 @@
-//import axios from "axios"; css
 import "./book.scss";
 
 export const Card = ({
@@ -9,21 +8,16 @@ export const Card = ({
     title,
     cover
 }) => {
-    // const getBookName = async (isbn) => {   const url =
-    // "http://i7d211.p.ssafy.io:8081/book/detail"   const {data} = await
-    // axios.get(`${url}?ISBN=${isbn}`);   return data.title; }
+
     return (
         <div className="card-wrapper">
             <img
                 src={cover}
                 style={{
-                    width: "150px",
-                    height: "150px",
-                    margin: 50
+                    margin: 10
                 }}
                 alt="dummy"></img>
             <div className="card-body-text">
-                {/* <div className="card-body-text-title">책 제목 : {}</div> */}
                 {
                     title.length > 25
                         ? <div className="card-body-text-content">
