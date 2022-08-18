@@ -20,13 +20,12 @@ const Return2 = (props) => {
     const [sockets, setSockets] = useState([]);
     const [data, setData] = useState(false);
     const [state, setState] = useState(false);
-    const [num, setNum] = useState(0);
 
-    props.setAccept(data);
     console.log(data);
     const socket = io.connect("http://localhost:9994");
 
     const getBook = (bookdata) => {
+        setState(false)
         console.log(bookdata)
         axios
             .get("/book/detail", {
@@ -62,8 +61,8 @@ const Return2 = (props) => {
                 }
             })
             .then(function (response) {
-                console.log(response.data, "HI")
-                props.setBrbooks(props.brBooks.concat(response.data.usage_list))
+                console.log(response.data)
+                props.setAccept(false)
             })
     }
 
