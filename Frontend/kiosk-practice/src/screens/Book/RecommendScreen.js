@@ -8,70 +8,131 @@ import {useNavigate} from 'react-router-dom';
 import Footer from "../../components/Footer";
 import io from "socket.io-client";
 import axios from 'axios';
+import * as faceApi from "face-api.js";
+
+
 
 export default function RecommendScreen(props) {
 
-  console.log("넘어왔다!")
 
-  const styles = useStyles();
+const MODEL_URL = process.env.PUBLIC_URL + '/models';
 
-  const socket = io.connect("http://localhost:9994");
-  const [sockets, setSockets] = useState([]);
+const expressionMap = {
+    neutral: "😶",
+    happy: "😄",
+    sad: "😞",
+    angry: "🤬",
+    fearful: "😖",
+    disgusted: "🤢",
+    surprised: "😲"
+  };
 
-  const videoRef = useRef(null)
+  const getKeyByValue = (object) => {
+    console.log(object)
+    const value = [object.angry, 
+      object.fearful,
+      object.disgusted,  
+      object.happy, 
+      object.neutral, 
+      object.sad, 
+      object.surprised]
+    const maxValue = Math.max.apply(Math, value)
+    console.log(value)
+    console.log(maxValue)
+    console.log(Object.keys(object))
+    const result = Object.keys(object).find(key => object[key] === maxValue)
+    console.log(result)
+    props.setEmotion(result)
+  }
 
-    const getFace = (facedata) => {
-    console.log(facedata)
-    axios
-        .get("http://i7d211.p.ssafy.io:8081/book/emotion", {
-            params: {
-                emotion: facedata
-            }
-        })
-        .then(function (response) {
-            props.setFaces(response.data)
-            console.log(props.faces)
-            return
-        })
+
+  const video = useRef();
+
+  const [expressions, setExpressions] = useState({})
+  const [pulldata, setPulldata] = useState(true)
+
+  useEffect(() => {
+    if (pulldata) {
+      run()
+    }
+    else {
+      getKeyByValue(expressions)
+    }
+  })
+
+  const log = (...args) => {
+    console.log(...args);
+  };
+
+  const run = async () => {
+    log("run started");
+    try {
+      await faceApi.nets.tinyFaceDetector.load(MODEL_URL);
+      await faceApi.loadFaceExpressionModel(MODEL_URL);
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
+        video
+      });
+
+      video.current.srcObject = mediaStream;
+    } catch (e) {
+      log(e.name, e.message, e.stack);
+    }
+  };
+
+  const onPlay = async () => {
+    if (
+      video.current.paused ||
+      video.current.ended ||
+      !faceApi.nets.tinyFaceDetector.params
+    ) {
+      setTimeout(() => onPlay());
+      return;
     }
 
-    const getWebcam = (callback) => {
-      try {
-        const constraints = {
-          'video': true,
-          'audio': false
-        }
-        navigator.mediaDevices.getUserMedia(constraints)
-          .then(callback);
-      } catch (err) {
-        console.log(err);
-        return undefined;
-      }
-    }
-    
-    const Styles = {
-      Video: { width: "100%", height: "100%", background: 'rgba(245, 240, 215, 0.5)' },
-      None: { display: 'none' },
-    }
-  
-    useEffect(() => {
-      getWebcam((stream => {
-        videoRef.current.srcObject = stream;
-      }));
-      socket.on('faceoutput', (data) => {
-          console.log(data)
-          getFace(data)
-      })
-      return() => {
-          socket.close()
-      }
-    }, [sockets]);
+    const options = new faceApi.TinyFaceDetectorOptions({
+      inputSize: 512,
+      scoreThreshold: 0.5
+    });
 
-    return(
-      <CardActionArea>
-    <div style={{ width: '100vw', height: '100vh', padding: '3em' }}>
-      <video ref={videoRef} autoPlay style={Styles.Video} /></div>
-          </CardActionArea>
-    )
-}
+    const result = await faceApi
+      .detectSingleFace(video.current, options)
+      .withFaceExpressions();
+
+    if (result) {
+      log(result);
+      setExpressions(result.expressions)
+      setPulldata(false)
+    }
+
+    setTimeout(() => onPlay(), 1000);
+  };
+
+    return (
+      <div className="App">
+        <h1>Face Recognition Webcam</h1>
+        <div>
+          {expressions.expressions}
+        </div>
+        <div style={{ width: "100%", height: "100vh", position: "relative" }}>
+          <video
+            ref={video}
+            autoPlay
+            muted
+            onPlay={onPlay}
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100vh",
+              left: 0,
+              right: 0,
+              bottom: 0,
+              top: 0
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
+
+
 
