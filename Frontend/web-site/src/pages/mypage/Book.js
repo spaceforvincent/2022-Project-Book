@@ -27,12 +27,12 @@ export const Card = ({
                 {
                     title.length > 25
                         ? <div className="card-body-text-content">
-                                <span className="text">{title}</span>
-                            </div>
+                            <span className="text">{title}</span>
+                        </div>
                         : <div className="card-body-text-content">
-                                <span className="text">{title}</span>
-                                <div className="text">&nbsp; </div>
-                            </div>
+                            <span className="text">{title}</span>
+                            <div className="text">&nbsp; </div>
+                        </div>
                 }
 
                 <div className="card-body-text-content">대여일 : {rental_date}</div>
