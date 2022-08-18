@@ -14,7 +14,7 @@ export default function RecommendScreen() {
   const [Books, setBooks] = useState([]);
   const getBooks = async () => {
     const json = await (
-      await fetch(`http://i7d211.p.ssafy.io:8081/book/ageRank`)
+      await fetch(`/book/ageRank`)
     ).json();
     setBooks(json);
   };

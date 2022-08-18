@@ -18,7 +18,7 @@ import RecommendResult from "./RecommendResult";
 export default function RecommendEmotionMaster(props) {
   const styles = useStyles();
   const navigate = useNavigate();
-  const [emotion, setEmotion] = useState("sad");
+  const [emotion, setEmotion] = useState("");
   const [BookList, setBookList] = useState([]);
   return (
     <Fade in={true}>
@@ -26,9 +26,9 @@ export default function RecommendEmotionMaster(props) {
         {emotion === "" ? (
           <RecommendScreen setEmotion={setEmotion} />
         ) : BookList.length === 0 ? (
-          <RecommendLoginCheck emotion={emotion} BookList = {BookList} setBookList={setBookList} />
+          <RecommendLoginCheck emotion={emotion} BookList={BookList} setBookList={setBookList} />
         ) : (
-          <RecommendResult emotion={emotion} BookList = {BookList}/>
+          <RecommendResult emotion={emotion} BookList={BookList} />
         )}
       </CardActionArea>
     </Fade>

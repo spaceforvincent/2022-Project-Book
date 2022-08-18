@@ -9,19 +9,10 @@ import emotions from "../../images/emotions.png";
 import agegroup from "../../images/agegroup.png";
 
 import axios from "axios";
-import io from "socket.io-client";
 
 export default function RecommendMain(props) {
   const styles = useStyles();
   const navigate = useNavigate();
-
-  const socket = io.connect("http://localhost:9994");
-  const [sockets, setSockets] = useState([]);
-
-  const sendMsg = (answer) => {
-    console.log(answer);
-    socket.emit("inputdata", answer);
-  };
 
   // const getFace = (facedata) => {   console.log(facedata)   axios
   // .get("http://i7d211.p.ssafy.io:8081/book/emotion", {           params: {
@@ -71,7 +62,6 @@ export default function RecommendMain(props) {
             >
               <Button
                 onClick={() => {
-                  sendMsg(2);
                   props.setScreen(1);
                 }}
                 variant="contained"
@@ -117,7 +107,7 @@ export default function RecommendMain(props) {
                 </Box>
               </Button>
               <Button
-              
+
                 onClick={() => {
                   props.setScreen(2)
                 }}
