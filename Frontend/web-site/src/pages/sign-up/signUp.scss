@@ -21,7 +21,7 @@
 
 .selectBox {
   position: relative;
-  width: 50vw;
+  width: 100px;
   height: 3rem;
   border-radius: 4px;
   border: 2px solid rgb(166, 166, 166);
@@ -36,6 +36,12 @@
   padding: 0 5px;
   position: relative;
   z-index: 3; // select가 위로 올라와야 함
+  text-align-last: center;
+  text-align: center;
+
+  -webkit-appearance:none;
+  -moz-appearance:none; 
+  appearance:none;
 }
 
 .signup-wrapper {

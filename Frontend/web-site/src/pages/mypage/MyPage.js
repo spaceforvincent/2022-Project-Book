@@ -9,9 +9,7 @@ import "./myPage.scss";
 const MyPage = () => {
     const token = useSelector(state => state.Auth.token);
     const [userProfile, setUserProfile] = useState([]);
-    const [userImage, setUserImage] = useState([]);
-
-    var base64Image = 'data:image/png;base64,{PLACE_YOUR_BASE64_DATA_HERE}';
+    // const [userImage, setUserImage] = useState([]);
 
     useEffect(() => {
         // 유저 프로필 불러오기
@@ -30,18 +28,18 @@ const MyPage = () => {
         getUserProfile().then(result => setUserProfile(result));
 
         // 유저 프로필 사진 불러오기
-        const getUserImage = async () => {
-            const config = {
-                headers: {
-                    'X-AUTH-TOKEN': token
-                }
-            }
+        // const getUserImage = async () => {
+        //     const config = {
+        //         headers: {
+        //             'X-AUTH-TOKEN': token
+        //         }
+        //     }
 
-            const {data} = await axios.get("/user/image", config);
+        //     const {data} = await axios.get("/user/image", config);
 
-            return data;
-        }
-        getUserImage().then(result => setUserImage(result));
+        //     return data;
+        // }
+        // getUserImage().then(result => setUserImage(result));
     }, [token]);
 
     return (
@@ -52,12 +50,14 @@ const MyPage = () => {
                 <NavLink to="/mypage">회원 정보</NavLink>
             </div>
 
-            <div className="user-image">
+            {/* <div className="user-image">
                 {userImage}
-            </div>
+            </div> */}
+
             <div style={{
-                    padding: "10rem"
+                    padding: "5rem"
                 }}></div>
+                
             <div className="mypage-contents">
                 <div>계정 : {userProfile.email}
                 </div>

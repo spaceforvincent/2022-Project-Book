@@ -2,10 +2,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import DatePicker from "react-datepicker";
-import { getMonth, getYear } from 'date-fns';
-import range from "lodash/range";
-import moment from 'moment';
 
 // css 영역
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,30 +9,9 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, TextField } from "@mui/material";
 import "./signUp.scss";
-import { useEffect, useState } from "react";
 
 const SignUp = () => {
     const navigate = useNavigate();
-    const [startDate, setStartDate] = useState(new Date());
-
-    const years = range(1990, getYear(new Date()) + 1, 1);
-    const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-    ];
-
-
-
 
     const validationSchema = Yup
         .object()
@@ -66,7 +41,7 @@ const SignUp = () => {
                 .required("전화번호를 입력하세요.")
                 .matches(
                     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-                    "전화번호 양식에 맞게 입력해주세요"
+                    "전화번호 양식에 맞게 입력해주세요."
                 ),
 
             address: Yup
@@ -78,15 +53,15 @@ const SignUp = () => {
                 .min(2, "이름은 최소 2글자 이상입니다.")
                 .max(10, "이름은 최대 10글자입니다.")
                 .matches(
-                    /^[가-힣a-zA-Z][^!@#$%^&*()_+\-=[]{};':"\\|,.<>\/?\s]*$/,
-                    "이름에 특수문자가 포함되면 안되고 숫자로 시작하면 안됩니다."
+                /^[가-힣]{2,4}$/,
+                    "이름은 2-4자 사이의 한글로 입력해 주세요."
                 )
                 .required("이름을 입력하세요."),
 
             gender: Yup
                 .string()
                 .oneOf([
-                    "남성", "여성"
+                    "0", "1"
                 ], "성별은 '남성' 혹은 '여성'으로 입력해야 합니다.")
                 .required("성별을 입력하세요."),
 
@@ -95,7 +70,7 @@ const SignUp = () => {
                 .required("생일을 입력하세요.")
                 .matches(
                     /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,
-                    "생일 양식(YYYY-MM-DD에 맞게 입력해주세요"
+                    "생일 양식(YYYY-MM-DD에 맞게 입력해주세요."
                 )
         });
 
@@ -106,18 +81,9 @@ const SignUp = () => {
             phonenumber,
             address,
             name,
+            gender,
             birthday
         } = values;
-        var {
-            gender
-        } = values;
-
-        if (gender.value === "남성") {
-            gender.value = "0";
-
-        } else {
-            gender.value = "1";
-        }
 
         const inputData = {
             email,
@@ -254,17 +220,12 @@ const SignUp = () => {
 
                                 <div className="input-forms-item">
                                     <div className="input-label">성별</div>
-                                    {/* <TextField
-                                        value={values.gender}
-                                        name="gender"
-                                        variant="outlined"
-                                        onChange={handleChange}/> */
-                                    }
+                                   
                                     <div className="selectBox">
                                         <select name="gender" className="select" onChange={handleChange}>
-                                            <option value="">성별 선택</option>
-                                            <option value="남성">남</option>
-                                            <option value="여성">여</option>
+                                            <option hidden="" disabled="disabled"  selected value="">성별 선택</option>
+                                            <option value="0">남</option>
+                                            <option value="1">여</option>
                                         </select>
                                     </div>
 
