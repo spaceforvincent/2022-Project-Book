@@ -179,7 +179,7 @@ const Reviews = ({isbn}) => {
         <select name="selectStar" id="star" onChange={(e) => {
             setStar(e.target.value)
           }}> 
-          <option hidden="" disabled="disabled" selected="selected" value="">==평점==</option>
+          <option hidden="" disabled="disabled"  selected value="">==평점==</option>
 
           <option value="0">0</option>
       

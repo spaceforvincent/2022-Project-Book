@@ -11,6 +11,8 @@ const MyPage = () => {
     const [userProfile, setUserProfile] = useState([]);
     const [userImage, setUserImage] = useState([]);
 
+    var base64Image = 'data:image/png;base64,{PLACE_YOUR_BASE64_DATA_HERE}';
+
     useEffect(() => {
         // 유저 프로필 불러오기
         const getUserProfile = async () => {
