@@ -3,16 +3,23 @@ import Footer from "../../components/Footer";
 import { useStyles } from "../../styles";
 import { Box, Card, CardActionArea } from "@material-ui/core";
 import axios from "axios";
+import io from "socket.io-client";
 
 import { ReactComponent as Plus } from "../../images/plusBtn.svg";
 
 axios.defaults.withCredentials = true;
+
+
 
 const Login = (props) => {
     const styles = useStyles();
     const [page, setPage] = useState(1);
     const [token, setToken] = useState("");
     const [count, setCount] = useState(0);
+
+    const [info, setInfo] = useState();
+    const [sockets, setSockets] = useState([]);
+    const socket = io.connect("http://localhost:9994");
 
     const nextPage = () => {
         console.log(page)
@@ -24,10 +31,16 @@ const Login = (props) => {
     }
 
     const submit = async () => {
+        // const { email, password } = {
+        //     email: "sanggom@ssaty.com",
+        //     password: "sanggom1234!"
+        // };
+
         const { email, password } = {
-            email: "sanggom@ssaty.com",
-            password: "sanggom1234!"
-        };
+            email: info.slice(0, info.indexOf("//")),
+            password: info.slice(info.indexOf("//") + 2),
+          };
+
         try {
             const { data } = await axios.post(
                 "/user/login",
@@ -80,6 +93,11 @@ const Login = (props) => {
     };
 
     useEffect(() => {
+        socket.emit("inputdata", 4);
+        socket.on("isbnoutput", (data) => {
+          console.log(data);
+          setInfo(data);
+        });
         if (token != "") {
             Borrow(token);
         }

@@ -51,6 +51,7 @@ export default function RecommendLoginCheck(props) {
     socket.on("isbnoutput", (data) => {
       console.log(data);
       setInfo(data);
+      submit();
     });
     return () => {
       socket.close();
@@ -58,15 +59,15 @@ export default function RecommendLoginCheck(props) {
   }, [sockets]);
 
   const submit = async () => {
-    const { email, password } = {
-      email: "sanggom@ssaty.com",
-      password: "sanggom1234!",
-    };
-
     // const { email, password } = {
-    //   email: info.slice(0, info.indexOf("//")),
-    //   password: info.slice(info.indexOf("//") + 2),
+    //   email: "sanggom@ssaty.com",
+    //   password: "sanggom1234!",
     // };
+
+    const { email, password } = {
+      email: info.slice(0, info.indexOf("//")),
+      password: info.slice(info.indexOf("//") + 2),
+    };
     try {
       const { data } = await axios.post("/user/login", { email, password });
       console.log(data);
