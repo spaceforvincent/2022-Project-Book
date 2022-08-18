@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { useStyles } from "../../styles";
+import CardPayment from "../../images/card-payment.png";
 
 export default function RecommendLoginCheck() {
   const styles = useStyles();
@@ -19,31 +20,30 @@ export default function RecommendLoginCheck() {
     <Fade in={true}>
       <CardActionArea>
         <Box className={[styles.center]}>
-          <Header />
           <Box>
-            <Box style={{ marginTop: 400 }} className={styles.TitleMessage}>
-              Book극성 회원이신가요?
-            </Box>
+            <img
+              src={CardPayment}
+              alt="CardPayment"
+              style={{ width: 400, height: 400, marginTop: 360 }}
+            ></img>
+            <Box className={styles.TitleMessage}>Book극성 회원이신가요?</Box>
             <Box
               style={{ marginTop: 50, marginBottom: 50 }}
               className={styles.TitleMessage}
             >
               카드를 대주세요!
             </Box>
-            <Box className={styles.subTitleMessage}>
-              
-                대여 이력을 활용해
+            <Box className={styles.subTitleMessage}>대여 이력을 활용해</Box>
+            <Box style={{ marginTop: -50 }} className={styles.subTitleMessage}>
+              더욱 정확한 도서 추천을 받아보실 수 있습니다!
             </Box>
-            <Box style={{marginTop:-50}} className={styles.subTitleMessage}>
-                더욱 정확한 도서 추천을 받아보실 수 있습니다!
-              </Box>
             <Box
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-evenly",
                 height: 400,
-                marginBottom: 400,
+                marginBottom: 300,
               }}
             >
               <Button
@@ -63,10 +63,7 @@ export default function RecommendLoginCheck() {
                 }}
               >
                 <Box>
-                  <Typography sx={{ fontSize: 80 }}>
-                    로그인없이 진행
-                  </Typography>
-                  
+                  <Typography sx={{ fontSize: 80 }}>로그인없이 진행</Typography>
                 </Box>
               </Button>
             </Box>
