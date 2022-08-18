@@ -4,16 +4,16 @@ export const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
 
   background: {
-    background: "6069BE"
+    background: "6069BE",
   },
 
   booklistBox: {
     width: 500,
-    height: 200
+    height: 200,
   },
 
   main: {
@@ -21,13 +21,13 @@ export const useStyles = makeStyles((theme) => ({
     overflow: "auto",
     flexDirection: "column",
     display: "flex",
-    color: "#ffffff"
+    color: "#ffffff",
   },
   title: {
     marginTop: 10,
     marginBottom: 100,
     width: 500,
-    height: 200
+    height: 200,
   },
   TitleMessage: {
     fontFamily: "'Noto Sans'",
@@ -40,7 +40,7 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
   },
   subTitleMessage: {
     fontFamily: "'Noto Sans'",
@@ -55,42 +55,42 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     textAlign: "center",
     marginTop: 100,
-    marginBottom: 100
+    marginBottom: 100,
   },
   ment: {
     width: 1100,
-    height: 300
+    height: 300,
   },
 
   center: {
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    backgroundColor: "rgba(15, 29, 160, 0.65)"
+    backgroundColor: "rgba(15, 29, 160, 0.65)",
   },
 
   largeLogo: {
     position: "relative",
     width: 983,
-    marginTop: 100
+    marginTop: 100,
   },
 
   MainButton: {
     position: "relative",
     height: 500,
     width: 500,
-    margin: 25
+    margin: 25,
   },
 
   SignupButton: {
     height: 300,
-    width: 550
+    width: 550,
   },
 
   HomeButton: {
     position: "relative",
     height: 300,
-    width: 300
+    width: 300,
   },
 
   TitleButton: {
@@ -100,14 +100,14 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: 150,
     marginRight: 150,
     height: 150,
-    width: 150
+    width: 150,
   },
   footer: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
   },
   Header: {
     display: "flex",
@@ -115,11 +115,11 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    paddingTop: 150
+    paddingTop: 150,
   },
   padding: {
     paddingTop: 190,
-    paddingBottom: 190
+    paddingBottom: 190,
   },
   searchResult: {
     display: "flex",
@@ -128,24 +128,24 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     textAlign: "center",
     paddingTop: 150,
-    paddingBottom: 150
+    paddingBottom: 150,
   },
   MiniButton: {
     position: "relative",
     height: 300,
     width: 320,
-    margin: 20
+    margin: 20,
   },
   AcceptButton: {
     position: "relative",
     height: 222,
     width: 588,
-    margin: 65
+    margin: 65,
   },
   cards: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   detailUpper: {
     display: "flex",
@@ -153,31 +153,31 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     marginLeft: 50,
     marginRight: 50,
-    margin: 110
+    margin: 110,
   },
   detailUpperButton: {
     marginLeft: 20,
     marginRight: 20,
     marginBottom: 100,
-    marginTop: -100
+    marginTop: -100,
   },
   detailBorrowStatus: {
     marginLeft: 10,
-    marginRight: 10
+    marginRight: 10,
   },
   RelatedBooks: {
     backgroundColor: "#223069",
     padding: 100,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   RelatedBookList: {
     marginLeft: 30,
-    marginRight: 30
+    marginRight: 30,
   },
   horizontalScroll: {
-    display: 'flex',
-    overflow: 'auto',
-    whiteSpace: 'nowrap'
+    display: "flex",
+    overflow: "auto",
+    whiteSpace: "nowrap",
   },
   AcceptButtonText: {
     position: "absolute",
@@ -191,23 +191,25 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: "130px",
     lineHeight: "177px",
     display: "flex",
-    color: "#6069BE"
+    color: "#6069BE",
   },
   wrapper: {
-    display: 'flex',
-    overflow: 'auto',
-    whiteSpace: 'nowrap',
+    display: "flex",
+    overflow: "auto",
+    whiteSpace: "nowrap",
     width: 1300,
     height: 700,
     background: "#223069",
-    boxShadow: "inset 4px 16px 40px rgba(0, 0, 0, 0.5), inset 0px 4px 4px rgba(0, 0, 0, 0.25)"
+    boxShadow:
+      "inset 4px 16px 40px rgba(0, 0, 0, 0.5), inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
   },
   wrapperSearch: {
     overflow: "scroll",
     width: 1300,
     height: 1600,
     background: "#223069",
-    boxShadow: "inset 4px 16px 40px rgba(0, 0, 0, 0.5), inset 0px 4px 4px rgba(0, 0, 0, 0.25)"
+    boxShadow:
+      "inset 4px 16px 40px rgba(0, 0, 0, 0.5), inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
   },
   outerWrapper: {
     verticalAlign: "middle",
@@ -215,7 +217,7 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
   },
   outerWrapperSearch: {
     verticalAlign: "middle",
@@ -223,13 +225,13 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
   },
   keyboard: {
-    marginTop: 130
+    marginTop: 130,
   },
   modal: {
-    display: 'flex',
+    display: "flex",
     width: 1376,
     height: 1280,
     position: "absolute",
@@ -239,17 +241,17 @@ export const useStyles = makeStyles((theme) => ({
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
-    p: 4
+    p: 4,
   },
   star: {
     width: 300,
-    height: 60
+    height: 60,
   },
   MainButtons: {
     gridTemplateColumns: "1fr 1fr",
     justifyContent: "center",
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
   },
   Bigcard: {
     verticalAlign: "middle",
@@ -259,17 +261,18 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     textAlign: "center",
     width: "100%",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   BigcardInner: {
     height: 1800,
-    background: "linear-gradient(180deg, #353F6B 0%, #353F6B 0.01%, #223069 100%)",
+    background:
+      "linear-gradient(180deg, #353F6B 0%, #353F6B 0.01%, #223069 100%)",
     borderRadius: "60px",
     width: "1300px",
     justifyContent: "center",
     display: "flex",
     alignItems: "center",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   Card: {
     background: "#FFFFFF",
@@ -287,16 +290,17 @@ export const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     fontWeight: "700",
     fontSize: "50px",
-    color: "#233173"
+    color: "#233173",
   },
   CardFont: {},
   RecommendBtn: {
-    background: "linear-gradient(180deg, #353F6B 0%, #353F6B 0.01%, #223069 100%)",
+    background:
+      "linear-gradient(180deg, #353F6B 0%, #353F6B 0.01%, #223069 100%)",
     borderRadius: "60px",
     padding: 10,
     height: 750,
     width: 500,
     alignItems: "center",
-    justifyContent: "center"
-  }
+    justifyContent: "center",
+  },
 }));

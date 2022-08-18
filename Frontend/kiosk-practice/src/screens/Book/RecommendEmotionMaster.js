@@ -10,29 +10,25 @@ import agegroup from "../../images/agegroup.png";
 import RecommendMain from "./RecommendMain";
 import RecommendEmotion from "./RecommendEmotion";
 import RecommendScreen from "./RecommendScreen";
-import RecommendAge from "./RecommendAge";
 
 import io from "socket.io-client";
 import RecommendLoginCheck from "./RecommendLoginCheck";
-import RecommendEmotionMaster from "./RecommendEmotionMaster";
+import RecommendResult from "./RecommendResult";
 
-export default function Recommend() {
+export default function RecommendEmotionMaster(props) {
   const styles = useStyles();
   const navigate = useNavigate();
-
   const [emotion, setEmotion] = useState("sad");
-  const [faces, setFaces] = useState([]);
-  const [screen, setScreen] = useState(0);
-
+  const [BookList, setBookList] = useState([]);
   return (
     <Fade in={true}>
       <CardActionArea>
-        {screen === 0 ? (
-          <RecommendMain setScreen={setScreen} />
-        ) : screen === 1 ? (
-          <RecommendEmotionMaster />
+        {emotion === "" ? (
+          <RecommendScreen setEmotion={setEmotion} />
+        ) : BookList.length === 0 ? (
+          <RecommendLoginCheck emotion={emotion} BookList = {BookList} setBookList={setBookList} />
         ) : (
-          <RecommendAge />
+          <RecommendResult emotion={emotion} BookList = {BookList}/>
         )}
       </CardActionArea>
     </Fade>
