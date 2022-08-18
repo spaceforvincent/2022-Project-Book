@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Typography } from "@mui/material";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { BorderColor } from "@material-ui/icons";
 
 export default function RecommendScreen() {
   const styles = useStyles();
@@ -29,15 +30,21 @@ export default function RecommendScreen() {
           <Header />
           <Box
             className={styles.subTitleMessage}
-            style={{ display: "flex", justifyContent: "space-evenly" }}
+            style={{ display: "flex", justifyContent: "center" }}
           >
             {Age === 0 ? (
               <Button
+                variant="outlined"
                 style={{
-                  backgroundColor: "white",
-                  fontSize: 50,
-                  color: "black",
-                  padding:20
+                  backgroundColor: "#223069",
+                  fontSize: 70,
+                  color: "white",
+                  padding: 20,
+                  marginTop: 20,
+                  fontWeight: "bold",
+                  borderBottom: 0,
+                  borderColor: "white",
+                  boxShadow: "inset 0px 100px 200px rgba(0, 0, 0, 0.5)",
                 }}
                 onClick={() => {
                   setAge(0);
@@ -47,11 +54,14 @@ export default function RecommendScreen() {
               </Button>
             ) : (
               <Button
+                variant="outlined"
                 style={{
                   backgroundColor: "navy",
-                  fontSize: 50,
+                  fontSize: 70,
                   color: "white",
-                  padding:20
+                  padding: 30,
+                  fontWeight: "bold",
+                  borderColor: "white",
                 }}
                 onClick={() => {
                   setAge(0);
@@ -63,11 +73,17 @@ export default function RecommendScreen() {
 
             {Age === 10 ? (
               <Button
+                variant="outlined"
                 style={{
-                  backgroundColor: "white",
-                  fontSize: 50,
-                  color: "black",
-                  padding:20
+                  backgroundColor: "#223069",
+                  fontSize: 70,
+                  color: "white",
+                  padding: 20,
+                  marginTop: 20,
+                  fontWeight: "bold",
+                  borderBottom: 0,
+                  borderColor: "white",
+                  boxShadow: "inset 0px 100px 200px rgba(0, 0, 0, 0.5)",
                 }}
                 onClick={() => {
                   setAge(10);
@@ -77,11 +93,14 @@ export default function RecommendScreen() {
               </Button>
             ) : (
               <Button
+                variant="outlined"
                 style={{
                   backgroundColor: "navy",
-                  fontSize: 50,
+                  fontSize: 70,
                   color: "white",
-                  padding:20
+                  padding: 30,
+                  fontWeight: "bold",
+                  borderColor: "white",
                 }}
                 onClick={() => {
                   setAge(10);
@@ -93,11 +112,17 @@ export default function RecommendScreen() {
 
             {Age === 20 ? (
               <Button
+                variant="outlined"
                 style={{
-                  backgroundColor: "white",
-                  fontSize: 50,
-                  color: "black",
-                  padding:20
+                  backgroundColor: "#223069",
+                  fontSize: 70,
+                  color: "white",
+                  padding: 20,
+                  marginTop: 20,
+                  fontWeight: "bold",
+                  borderBottom: 0,
+                  borderColor: "white",
+                  boxShadow: "inset 0px 100px 200px rgba(0, 0, 0, 0.5)",
                 }}
                 onClick={() => {
                   setAge(20);
@@ -107,11 +132,14 @@ export default function RecommendScreen() {
               </Button>
             ) : (
               <Button
+                variant="outlined"
                 style={{
                   backgroundColor: "navy",
-                  fontSize: 50,
+                  fontSize: 70,
                   color: "white",
-                  padding:20
+                  padding: 30,
+                  fontWeight: "bold",
+                  borderColor: "white",
                 }}
                 onClick={() => {
                   setAge(20);
@@ -122,11 +150,17 @@ export default function RecommendScreen() {
             )}
             {Age === 30 ? (
               <Button
+                variant="outlined"
                 style={{
-                  backgroundColor: "white",
-                  fontSize: 50,
-                  color: "black",
-                  padding:20
+                  backgroundColor: "#223069",
+                  fontSize: 70,
+                  color: "white",
+                  padding: 20,
+                  marginTop: 20,
+                  borderBottom: 0,
+                  fontWeight: "bold",
+                  borderColor: "white",
+                  boxShadow: "inset 0px 100px 200px rgba(0, 0, 0, 0.5)",
                 }}
                 onClick={() => {
                   setAge(30);
@@ -136,11 +170,14 @@ export default function RecommendScreen() {
               </Button>
             ) : (
               <Button
+                variant="outlined"
                 style={{
                   backgroundColor: "navy",
-                  fontSize: 50,
+                  fontSize: 70,
                   color: "white",
-                  padding:20
+                  padding: 30,
+                  fontWeight: "bold",
+                  borderColor: "white",
                 }}
                 onClick={() => {
                   setAge(30);
@@ -151,11 +188,17 @@ export default function RecommendScreen() {
             )}
             {Age === 40 ? (
               <Button
+                variant="outlined"
                 style={{
-                  backgroundColor: "white",
-                  fontSize: 50,
-                  color: "black",
-                  padding:20
+                  backgroundColor: "#223069",
+                  fontSize: 70,
+                  color: "white",
+                  padding: 20,
+                  marginTop: 20,
+                  borderBottom: 0,
+                  fontWeight: "bold",
+                  borderColor: "white",
+                  boxShadow: "inset 0px 100px 200px rgba(0, 0, 0, 0.5)",
                 }}
                 onClick={() => {
                   setAge(40);
@@ -165,11 +208,14 @@ export default function RecommendScreen() {
               </Button>
             ) : (
               <Button
+                variant="outlined"
                 style={{
                   backgroundColor: "navy",
-                  fontSize: 50,
+                  fontSize: 70,
                   color: "white",
-                  padding:20
+                  padding: 30,
+                  fontWeight: "bold",
+                  borderColor: "white",
                 }}
                 onClick={() => {
                   setAge(40);
@@ -180,11 +226,17 @@ export default function RecommendScreen() {
             )}
             {Age === 50 ? (
               <Button
+                variant="outlined"
                 style={{
-                  backgroundColor: "white",
-                  fontSize: 50,
-                  color: "black",
-                  padding:20
+                  backgroundColor: "#223069",
+                  fontSize: 70,
+                  color: "white",
+                  padding: 20,
+                  marginTop: 20,
+                  borderBottom: 0,
+                  fontWeight: "bold",
+                  borderColor: "white",
+                  boxShadow: "inset 0px 100px 200px rgba(0, 0, 0, 0.5)",
                 }}
                 onClick={() => {
                   setAge(50);
@@ -194,11 +246,14 @@ export default function RecommendScreen() {
               </Button>
             ) : (
               <Button
+                variant="outlined"
                 style={{
                   backgroundColor: "navy",
-                  fontSize: 50,
+                  fontSize: 70,
                   color: "white",
-                  padding:20
+                  padding: 30,
+                  fontWeight: "bold",
+                  borderColor: "white",
                 }}
                 onClick={() => {
                   setAge(50);
@@ -209,7 +264,7 @@ export default function RecommendScreen() {
             )}
           </Box>
           <Box className={styles.outerWrapperSearch}>
-            <Box style={{ marginTop: -50 }} className={styles.wrapperSearch}>
+            <Box style={{ marginTop: -100 }} className={styles.wrapperSearch}>
               {Age === 0 ? (
                 Books.zero &&
                 Books.zero.map((Book) => (
@@ -217,7 +272,11 @@ export default function RecommendScreen() {
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border: "2px solid #ffffff" }}
+                    style={{
+                      display: "flex",
+                      border: "0px 2px 2px 2px solid #ffffff",
+                      borderTop: 0,
+                    }}
                   >
                     <img
                       src={Book.cover}
@@ -225,16 +284,17 @@ export default function RecommendScreen() {
                       style={{ margin: 50, width: "250px", height: "350px" }}
                     ></img>
                     <Box
-                      style={{ alignItems: "center", justifyContent: "center" }}
+                      style={{
+                        display: "flex",
+                        color: "white",
+                        fontSize: 60,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }}
                     >
-                      <Typography
-                        style={{ color: "white", margin: 50, marginTop: 100 }}
-                        variant="h5
-                    "
-                        component="h5"
-                      >
-                        {Book.title}
-                      </Typography>
+                      {Book.title}
                     </Box>
                   </Box>
                 ))
@@ -245,7 +305,10 @@ export default function RecommendScreen() {
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border: "2px solid #ffffff" }}
+                    style={{
+                      display: "flex",
+                      border: "0px 2px 2px 2px solid #ffffff",
+                    }}
                   >
                     <img
                       src={Book.cover}
@@ -253,16 +316,17 @@ export default function RecommendScreen() {
                       style={{ margin: 50, width: "250px", height: "350px" }}
                     ></img>
                     <Box
-                      style={{ alignItems: "center", justifyContent: "center" }}
+                      style={{
+                        display: "flex",
+                        color: "white",
+                        fontSize: 60,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }}
                     >
-                      <Typography
-                        style={{ color: "white", margin: 50, marginTop: 100 }}
-                        variant="h5
-                    "
-                        component="h5"
-                      >
-                        {Book.title}
-                      </Typography>
+                      {Book.title}
                     </Box>
                   </Box>
                 ))
@@ -273,7 +337,10 @@ export default function RecommendScreen() {
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border: "2px solid #ffffff" }}
+                    style={{
+                      display: "flex",
+                      border: "0px 2px 2px 2px solid #ffffff",
+                    }}
                   >
                     <img
                       src={Book.cover}
@@ -281,16 +348,17 @@ export default function RecommendScreen() {
                       style={{ margin: 50, width: "250px", height: "350px" }}
                     ></img>
                     <Box
-                      style={{ alignItems: "center", justifyContent: "center" }}
+                      style={{
+                        display: "flex",
+                        color: "white",
+                        fontSize: 60,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }}
                     >
-                      <Typography
-                        style={{ color: "white", margin: 50, marginTop: 100 }}
-                        variant="h5
-                    "
-                        component="h5"
-                      >
-                        {Book.title}
-                      </Typography>
+                      {Book.title}
                     </Box>
                   </Box>
                 ))
@@ -301,7 +369,10 @@ export default function RecommendScreen() {
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border: "2px solid #ffffff" }}
+                    style={{
+                      display: "flex",
+                      border: "0px 2px 2px 2px solid #ffffff",
+                    }}
                   >
                     <img
                       src={Book.cover}
@@ -309,16 +380,17 @@ export default function RecommendScreen() {
                       style={{ margin: 50, width: "250px", height: "350px" }}
                     ></img>
                     <Box
-                      style={{ alignItems: "center", justifyContent: "center" }}
+                      style={{
+                        display: "flex",
+                        color: "white",
+                        fontSize: 60,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }}
                     >
-                      <Typography
-                        style={{ color: "white", margin: 50, marginTop: 100 }}
-                        variant="h5
-                    "
-                        component="h5"
-                      >
-                        {Book.title}
-                      </Typography>
+                      {Book.title}
                     </Box>
                   </Box>
                 ))
@@ -329,7 +401,10 @@ export default function RecommendScreen() {
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border: "2px solid #ffffff" }}
+                    style={{
+                      display: "flex",
+                      border: "0px 2px 2px 2px solid #ffffff",
+                    }}
                   >
                     <img
                       src={Book.cover}
@@ -337,16 +412,17 @@ export default function RecommendScreen() {
                       style={{ margin: 50, width: "250px", height: "350px" }}
                     ></img>
                     <Box
-                      style={{ alignItems: "center", justifyContent: "center" }}
+                      style={{
+                        display: "flex",
+                        color: "white",
+                        fontSize: 60,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }}
                     >
-                      <Typography
-                        style={{ color: "white", margin: 50, marginTop: 100 }}
-                        variant="h5
-                    "
-                        component="h5"
-                      >
-                        {Book.title}
-                      </Typography>
+                      {Book.title}
                     </Box>
                   </Box>
                 ))
@@ -357,7 +433,10 @@ export default function RecommendScreen() {
                     onClick={() => {
                       navigate(`/book/detail/${Book.isbn}`);
                     }}
-                    style={{ display: "flex", border: "2px solid #ffffff" }}
+                    style={{
+                      display: "flex",
+                      border: "0px 2px 2px 2px solid #ffffff",
+                    }}
                   >
                     <img
                       src={Book.cover}
@@ -365,16 +444,17 @@ export default function RecommendScreen() {
                       style={{ margin: 50, width: "250px", height: "350px" }}
                     ></img>
                     <Box
-                      style={{ alignItems: "center", justifyContent: "center" }}
+                      style={{
+                        display: "flex",
+                        color: "white",
+                        fontSize: 60,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }}
                     >
-                      <Typography
-                        style={{ color: "white", margin: 50, marginTop: 100 }}
-                        variant="h5
-                    "
-                        component="h5"
-                      >
-                        {Book.title}
-                      </Typography>
+                      {Book.title}
                     </Box>
                   </Box>
                 ))
