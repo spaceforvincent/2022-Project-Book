@@ -5,8 +5,6 @@ import { Box } from "@material-ui/core";
 import Footer from "../../components/Footer";
 import Timer from './Timer';
 
-import RentalStatus from './RentalStatus';
-
 import axios from 'axios';
 
 const Return3 = (props) => {

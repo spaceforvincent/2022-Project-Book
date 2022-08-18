@@ -5,18 +5,20 @@ import * as Yup from "yup";
 import DatePicker from "react-datepicker";
 import { getMonth, getYear } from 'date-fns';
 import range from "lodash/range";
+import moment from 'moment';
+
 // css 영역
 import "react-datepicker/dist/react-datepicker.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, TextField } from "@mui/material";
 import "./signUp.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SignUp = () => {
     const navigate = useNavigate();
     const [startDate, setStartDate] = useState(new Date());
-    const [birthday, setBirthday] = useState();
+
     const years = range(1990, getYear(new Date()) + 1, 1);
     const months = [
         "January",
@@ -32,7 +34,6 @@ const SignUp = () => {
         "November",
         "December"
     ];
-
 
 
 
@@ -275,10 +276,10 @@ const SignUp = () => {
                                 <div className="input-forms-item">
                                     <div className="input-label">생년월일</div>
                                     <TextField
-                                        value={birthday}
+                                        value={values.birthday}
                                         name="birthday"
                                         variant="outlined"
-                                        onChange={handleChange}>{birthday}</TextField>
+                                        onChange={handleChange}></TextField>
                                     <div className="error-message">
                                         {errors.birthday}
                                     </div>
