@@ -8,11 +8,10 @@ import Footer from "../../components/Footer";
 import emotions from "../../images/emotions.png";
 import agegroup from "../../images/agegroup.png";
 
-import axios from 'axios';
+import axios from "axios";
 import io from "socket.io-client";
 
 export default function RecommendMain(props) {
-
   const styles = useStyles();
   const navigate = useNavigate();
 
@@ -22,7 +21,6 @@ export default function RecommendMain(props) {
   const sendMsg = (answer) => {
     console.log(answer);
     socket.emit("inputdata", answer);
-    props.setScreen(false)
   };
 
   // const getFace = (facedata) => {   console.log(facedata)   axios
@@ -36,14 +34,14 @@ export default function RecommendMain(props) {
   return (
     <Fade in={true}>
       <CardActionArea>
-
         <Box className={[styles.center]}>
           <Header />
           <Box>
             <Box
               sx={{
-                padding: 130
-              }}></Box>
+                padding: 130,
+              }}
+            ></Box>
             <Box
               sx={{
                 fontFamily: "'Noto Sans'",
@@ -51,50 +49,58 @@ export default function RecommendMain(props) {
                 fontWeight: "700",
                 fontSize: "5rem",
                 color: "#FFFFFF",
-                textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE"
-              }}>추천 방식을 선택하세요</Box>
+                textShadow:
+                  "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE",
+              }}
+            >
+              추천 방식을 선택하세요
+            </Box>
             <Box
               sx={{
-                padding: 60
-              }}></Box>
+                padding: 60,
+              }}
+            ></Box>
             <Box
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-evenly",
                 height: 1030,
-                marginBottom: 400
-              }}>
+                marginBottom: 400,
+              }}
+            >
               <Button
                 onClick={() => {
-                  sendMsg(2)
-                  props.setScreen(false)
-                  props.setEmotion(true)
+                  sendMsg(2);
+                  props.setScreen(1);
                 }}
                 variant="contained"
                 sx={{
-                  background: "linear-gradient(180deg, #353F6B 0%, #353F6B 0.01%, #223069 100%)",
+                  background:
+                    "linear-gradient(180deg, #353F6B 0%, #353F6B 0.01%, #223069 100%)",
                   borderRadius: "60px",
                   padding: 10,
                   height: 750,
                   width: 500,
                   alignItems: "center",
                   justifyContent: "center",
-                  boxShadow: "20px 60px 40px rgba(0, 0, 0, 0.25)"
-                }}>
+                  boxShadow: "20px 60px 40px rgba(0, 0, 0, 0.25)",
+                }}
+              >
                 <Box>
-
                   <img
                     src={emotions}
                     alt="emotions"
                     style={{
                       width: "90%",
-                      height: "100%"
-                    }}></img>
+                      height: "100%",
+                    }}
+                  ></img>
                   <Box
                     sx={{
-                      padding: 30
-                    }}></Box>
+                      padding: 30,
+                    }}
+                  ></Box>
                   <Box
                     sx={{
                       fontFamily: "'Noto Sans'",
@@ -102,39 +108,47 @@ export default function RecommendMain(props) {
                       fontWeight: "700",
                       fontSize: "50px",
                       color: "#FFFFFF",
-                      textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE"
-                    }}>감정인식 추천</Box>
+                      textShadow:
+                        "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE",
+                    }}
+                  >
+                    감정인식 추천
+                  </Box>
                 </Box>
               </Button>
               <Button
+              
                 onClick={() => {
-                  navigate(`/book/recommend/age`);
+                  props.setScreen(2)
                 }}
                 variant="contained"
                 size="large"
                 sx={{
-                  background: "linear-gradient(180deg, #353F6B 0%, #353F6B 0.01%, #223069 100%)",
+                  background:
+                    "linear-gradient(180deg, #353F6B 0%, #353F6B 0.01%, #223069 100%)",
                   borderRadius: "60px",
                   padding: 10,
                   height: 750,
                   width: 500,
                   alignItems: "center",
                   justifyContent: "center",
-                  boxShadow: "20px 60px 40px rgba(0, 0, 0, 0.25)"
-                }}>
+                  boxShadow: "20px 60px 40px rgba(0, 0, 0, 0.25)",
+                }}
+              >
                 <Box>
-
                   <img
                     src={agegroup}
                     alt="agegroup"
                     style={{
                       width: "90%",
-                      height: "100%"
-                    }}></img>
+                      height: "100%",
+                    }}
+                  ></img>
                   <Box
                     sx={{
-                      padding: 30
-                    }}></Box>
+                      padding: 30,
+                    }}
+                  ></Box>
                   <Box
                     sx={{
                       fontFamily: "'Noto Sans'",
@@ -142,8 +156,12 @@ export default function RecommendMain(props) {
                       fontWeight: "700",
                       fontSize: "50px",
                       color: "#FFFFFF",
-                      textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE"
-                    }}>연령대별 추천</Box>
+                      textShadow:
+                        "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE",
+                    }}
+                  >
+                    연령대별 추천
+                  </Box>
                 </Box>
               </Button>
             </Box>

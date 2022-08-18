@@ -6,22 +6,90 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { useStyles } from "../../styles";
 import CardPayment from "../../images/card-payment.png";
+import io from "socket.io-client";
+import axios from "axios";
 
-export default function RecommendLoginCheck() {
+axios.defaults.withCredentials = true;
+
+export default function RecommendLoginCheck(props) {
   const styles = useStyles();
   const navigate = useNavigate();
+  const [sockets, setSockets] = useState([]);
+  const socket = io.connect("http://localhost:9994");
+  const [info, setInfo] = useState();
+  const RecommendWithLogin = async (token) => {
+    console.log("HELP ME");
+    const headers = {
+      "X-AUTH-TOKEN": token,
+    };
+    axios
+      .get("/book/emotionLogin", {
+        params: {
+          emotion: props.emotion,
+        },
+        headers: headers, // headers에 headers 객체 전달
+      })
+      .then(function (response) {
+        console.log(response.data);
+        props.setBookList(response.data)
+      });
+  };
+  const RecommendWithoutLogin = async () => {
+    const json = await (
+      await fetch(`/book/emotion?emotion=${props.emotion}`)
+    ).json();
+    props.setBookList(json);
+  };
+  useEffect(() => {
+    socket.emit("inputdata", 4);
+    socket.on("isbnoutput", (data) => {
+      console.log(data);
+      setInfo(data);
+    });
+    return () => {
+      socket.close();
+    };
+  }, [sockets]);
+
+  const submit = async () => {
+    const { email, password } = {
+      email: "sanggom@ssaty.com",
+      password: "sanggom1234!",
+    };
+
+    // const { email, password } = {
+    //   email: info.slice(0, info.indexOf("//")),
+    //   password: info.slice(info.indexOf("//") + 2),
+    // };
+    try {
+      const { data } = await axios.post("/user/login", { email, password });
+      console.log(data);
+      if (data.token) {
+        console.log(data.token);
+        RecommendWithLogin(data.token);
+        console.log(data.token);
+      } else {
+        alert("이메일 혹은 비밀번호가 틀렸습니다.");
+      }
+    } catch (e) {
+      // 서버에서 받은 에러 메시지 출력
+      console.log(e);
+    }
+  };
+
   return (
     <Fade in={true}>
       <CardActionArea>
         <Box className={[styles.center]}>
           <Box>
             <img
+              onClick={() => submit()}
               src={CardPayment}
               alt="CardPayment"
               style={{ width: 400, height: 400, marginTop: 360 }}
@@ -48,7 +116,8 @@ export default function RecommendLoginCheck() {
             >
               <Button
                 onClick={() => {
-                  navigate(`/book/recommend/age`);
+                  RecommendWithoutLogin(props.emotion);
+                  console.log(props.BookList);
                 }}
                 variant="contained"
                 size="large"
