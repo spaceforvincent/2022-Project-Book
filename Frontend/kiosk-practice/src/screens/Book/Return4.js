@@ -38,7 +38,6 @@ const Return4 = (props) => {
                             <img
                                 src={props
                                     .brBooks[page - 1]
-                                    .book
                                     .cover}
                                 style={{
                                     width: "600px",
@@ -51,7 +50,6 @@ const Return4 = (props) => {
                                 <Box>{
                                     props
                                         .brBooks[page - 1]
-                                        .book
                                         .title
                                 }</Box>
                             }

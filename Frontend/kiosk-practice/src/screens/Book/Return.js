@@ -11,11 +11,9 @@ export default function ReturnScreen(props) {
     const styles = useStyles();
 
     const [brBooks, setBrbooks] = useState([]);
-    const [Final, setFinal] = useState([]);
     const [rbook, setRbook] = useState([]);
     const [Accept, setAccept] = useState(false);
     const [brNum, setBrnum] = useState(1);
-    const [isbn, setIsbn] = useState();
 
     const result = brBooks.filter(brBook => brBook.return_check === 0);
 
@@ -37,8 +35,8 @@ export default function ReturnScreen(props) {
                                 setBrbooks={setBrbooks}
                                 brBooks={brBooks} />
                             : brBooks[brBooks.length - 1].book.title === result[result.length - 1].book.title
-                                ? <Return4 brBooks={result} />
-                                : <Return3 brBooks={result} />
+                                ? <Return4 brBooks={rbook} />
+                                : <Return3 brBooks={rbook} />
 
                 }
             </CardActionArea>

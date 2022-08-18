@@ -82,7 +82,6 @@ const Return3 = (props) => {
                             <img
                                 src={props
                                     .brBooks[page - 1]
-                                    .book
                                     .cover}
                                 style={{
                                     width: "600px",
@@ -95,22 +94,10 @@ const Return3 = (props) => {
                                 <Box>{
                                     props
                                         .brBooks[page - 1]
-                                        .book
                                         .title
                                 }</Box>
                             }
 
-                            {
-                                <Box
-                                    style={{
-                                        margin: 50
-                                    }}>{
-                                        props
-                                            .brBooks[page - 1]
-                                            .return_date
-                                            .slice(0, 10)
-                                    }</Box>
-                            }
                         </Box>
                     }
 

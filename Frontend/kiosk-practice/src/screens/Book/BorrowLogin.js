@@ -9,16 +9,13 @@ import { ReactComponent as Plus } from "../../images/plusBtn.svg";
 
 axios.defaults.withCredentials = true;
 
-
-
 const Login = (props) => {
     const styles = useStyles();
     const [page, setPage] = useState(1);
+    const [count, setCount] = useState(1);
     const [token, setToken] = useState("");
-    const [count, setCount] = useState(0);
 
-    const [info, setInfo] = useState();
-    const [sockets, setSockets] = useState([]);
+    const [info, setInfo] = useState("");
     const socket = io.connect("http://localhost:9994");
 
     const nextPage = () => {
@@ -31,25 +28,21 @@ const Login = (props) => {
     }
 
     const submit = async () => {
-        // const { email, password } = {
-        //     email: "sanggom@ssaty.com",
-        //     password: "sanggom1234!"
-        // };
+        // const { email, password } = {     email: "sanggom@ssaty.com",     password:
+        // "sanggom1234!" };
 
         const { email, password } = {
             email: info.slice(0, info.indexOf("//")),
-            password: info.slice(info.indexOf("//") + 2),
-          };
+            password: info.slice(info.indexOf("//") + 2)
+        };
+        console.log(email)
 
         try {
-            const { data } = await axios.post(
-                "/user/login",
-                { email, password }
-            );
+            const { data } = await axios.post("/user/login", { email, password });
 
             if (data.token) {
                 console.log(data.token);
-                setToken(data.token)
+                setToken(data.token);
 
             } else {
                 alert("이메일 혹은 비밀번호가 틀렸습니다.")
@@ -62,18 +55,23 @@ const Login = (props) => {
     };
 
     const Borrow = (token) => {
-        console.log("borrowToken", token)
+        console.log("borrowToke : ", token)
         const headers = {
             'X-AUTH-TOKEN': token
         }
-        props
-            .borrowList
-            .map((BOOK) => (console.log(BOOK.isbn), setCount(count + 1), axios.put("/book/borrow", {}, {
+        for (let i = 0; i < props.borrowList.length; i++) {
+            axios.put("/book/borrow", {}, {
                 params: {
-                    ISBN: BOOK.isbn
+                    ISBN: props
+                        .borrowList[i]
+                        .isbn
                 },
                 headers: headers // headers에 headers 객체 전달
-            })))
+            })
+            if (i == props.borrowList.length - 1) {
+                BRcheck(token);
+            }
+        }
 
     };
 
@@ -93,21 +91,25 @@ const Login = (props) => {
     };
 
     useEffect(() => {
-        socket.emit("inputdata", 4);
-        socket.on("isbnoutput", (data) => {
-          console.log(data);
-          setInfo(data);
-        });
-        if (token != "") {
+        if (token == "") {
+            socket.emit("inputdata", 4);
+            socket.on("isbnoutput", (data) => {
+                console.log(data);
+                setInfo(data);
+            });
+        } else {
+            console.log("BorrowStart!!")
             Borrow(token);
         }
     }, [token]);
 
     useEffect(() => {
-        if (count == props.borrowList.length) {
-            BRcheck(token);
+        console.log("info : ", info)
+        if (info != "") {
+            console.log("info : ", info)
+            submit();
         }
-    }, [count]);
+    }, [info]);
 
     return (
         <Box className={styles.center}>
@@ -169,9 +171,10 @@ const Login = (props) => {
             <Box style={{
                 padding: 130
             }}></Box>
-            <Plus onClick={() => {
-                submit()
-            }} />
+            <Plus
+                onClick={() => {
+                    setInfo("sanggom@ssaty.com//sanggom1234!")
+                }} />
             <Footer />
         </Box>
     );
