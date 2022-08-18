@@ -67,13 +67,10 @@ const Borrow3 = (props) => {
                     onClick={() => {
                         nextPage()
                     }}>
-                    <Box className={[styles.TitleMessage,]} style={{
-                        margin: 50
-                    }}>
-                        대여&nbsp;현황
-                    </Box>
+
                     {
                         <Box className={[styles.Card]}>
+                            <Box>대여현황</Box>
                             <Box>{page}/{props.brBooks.length}</Box>
                             <img
                                 src={props
@@ -112,6 +109,7 @@ const Borrow3 = (props) => {
                         감사합니다
                     </Box>
                 </Box>
+                <Box style={{ padding: 40 }}></Box>
             </Box>
 
 

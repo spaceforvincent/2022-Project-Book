@@ -84,7 +84,7 @@ export const useStyles = makeStyles((theme) => ({
 
   SignupButton: {
     height: 300,
-    width: 550,
+    width: 550
   },
 
   HomeButton: {
@@ -159,7 +159,7 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: 20,
     marginRight: 20,
     marginBottom: 100,
-    marginTop:-100
+    marginTop: -100
   },
   detailBorrowStatus: {
     marginLeft: 10,
@@ -259,7 +259,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     textAlign: "center",
     width: "100%",
-    flexDirection: "column",
+    flexDirection: "column"
   },
   BigcardInner: {
     height: 1800,
@@ -269,9 +269,7 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     display: "flex",
     alignItems: "center",
-    flexDirection: "column",
-
-
+    flexDirection: "column"
   },
   Card: {
     background: "#FFFFFF",
@@ -289,10 +287,16 @@ export const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     fontWeight: "700",
     fontSize: "50px",
-    color: "#233173",
-
+    color: "#233173"
   },
-  CardFont: {
-
-  },
+  CardFont: {},
+  RecommendBtn: {
+    background: "linear-gradient(180deg, #353F6B 0%, #353F6B 0.01%, #223069 100%)",
+    borderRadius: "60px",
+    padding: 10,
+    height: 750,
+    width: 500,
+    alignItems: "center",
+    justifyContent: "center"
+  }
 }));

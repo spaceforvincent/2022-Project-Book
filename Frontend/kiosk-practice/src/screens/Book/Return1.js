@@ -44,13 +44,10 @@ const Return1 = (props) => {
     return (
         <Box className={styles.center}>
             <Header />
-            <MainIcon className={styles.largeLogo} />
-            <button
-                onClick={() => {
-                    getBook('9771228773007')
-                }}>
-                isbn을 추가해요!
-            </button>
+            <Box style={{ padding: 140 }}></Box>
+            <MainIcon onClick={() => {
+                getBook('9771228773007')
+            }} className={styles.largeLogo} />
             <Box className={[styles.TitleMessage, styles.padding]}>책을 올려주세요</Box>
             <Footer />
         </Box>

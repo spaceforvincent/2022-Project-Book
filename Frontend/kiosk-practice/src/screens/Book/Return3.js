@@ -80,7 +80,7 @@ const Return3 = (props) => {
                             <Box>{page}/{props.brBooks.length}</Box>
                             <img
                                 src={props
-                                    .brBooks[page - 1]
+                                    .brBooks[page - 1].book
                                     .cover}
                                 style={{
                                     width: "600px",
@@ -92,7 +92,7 @@ const Return3 = (props) => {
                             {
                                 <Box>{
                                     props
-                                        .brBooks[page - 1]
+                                        .brBooks[page - 1].book
                                         .title
                                 }</Box>
                             }

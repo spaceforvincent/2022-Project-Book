@@ -1,14 +1,14 @@
-import React, {Component, useState, useEffect} from "react";
+import React, { Component, useState, useEffect } from "react";
 
-import {useStyles} from "../../styles";
-import {Box, Grid} from "@material-ui/core";
+import { useStyles } from "../../styles";
+import { Box, Grid } from "@material-ui/core";
 import Footer from "../../components/Footer";
 
-import {useNavigate} from "react-router-dom";
-import {ReactComponent as Accept} from "../../images/accept+.svg";
-import {ReactComponent as Cancle} from "../../images/cancle+.svg";
+import { useNavigate } from "react-router-dom";
+import { ReactComponent as Accept } from "../../images/accept+.svg";
+import { ReactComponent as Cancle } from "../../images/cancle+.svg";
 
-import {ReactComponent as Plus} from "../../images/plusBtn.svg";
+import { ReactComponent as Plus } from "../../images/plusBtn.svg";
 import io from "socket.io-client";
 import axios from 'axios';
 
@@ -91,7 +91,7 @@ const Return2 = (props) => {
             getBook(data)
         })
 
-        return() => {
+        return () => {
             socket.close()
         }
     }, [socket]);
@@ -124,48 +124,48 @@ const Return2 = (props) => {
                     {
                         state
                             ? <Box className={[styles.Card]}>
-                                    <Box>
-                                        책을 올려주세요
-                                    </Box>
-                                    <Plus
-                                        onClick={() => {
-                                            getBook('9791165345990')
-                                        }}/>
+                                <Box>
+                                    책을 올려주세요
                                 </Box>
+                                <Plus
+                                    onClick={() => {
+                                        getBook('9791165345990')
+                                    }} />
+                            </Box>
                             : <Box className={[styles.Card]}>
-                                    <img
-                                        src={props
+                                <img
+                                    src={props
+                                        .rbook[props.rbook.length - 1]
+                                        .cover}
+                                    style={{
+                                        width: "600px",
+                                        height: "750px",
+                                        boxShadow: "20px 60px 40px rgba(0, 0, 0, 0.25)",
+                                        margin: 50
+                                    }}
+                                    alt="dummy"></img>
+                                {
+                                    <Box>{
+                                        props
                                             .rbook[props.rbook.length - 1]
-                                            .cover}
+                                            .title
+                                    }</Box>
+                                }
+                                {
+                                    <Box
                                         style={{
-                                            width: "600px",
-                                            height: "750px",
-                                            boxShadow: "20px 60px 40px rgba(0, 0, 0, 0.25)",
                                             margin: 50
-                                        }}
-                                        alt="dummy"></img>
-                                    {
-                                        <Box>{
-                                                    props
-                                                        .rbook[props.rbook.length - 1]
-                                                        .title
-                                                }</Box>
-                                    }
-                                    {
-                                        <Box
-                                                style={{
-                                                    margin: 50
-                                                }}>{
-                                                    props
-                                                        .rbook[props.rbook.length - 1]
-                                                        .author
-                                                }</Box>
-                                    }
-                                    <Plus
-                                        onClick={() => {
-                                            otherbook()
-                                        }}/>
-                                </Box>
+                                        }}>{
+                                            props
+                                                .rbook[props.rbook.length - 1]
+                                                .author
+                                        }</Box>
+                                }
+                                <Plus
+                                    onClick={() => {
+                                        otherbook()
+                                    }} />
+                            </Box>
                     }
                     <Box
                         className={[styles.TitleMessage]}
@@ -181,16 +181,16 @@ const Return2 = (props) => {
 
             <Grid container="container">
                 <Grid item="item" sm={12} className={styles.footer}>
-                    <Accept className={styles.AcceptButton} onClick={() => Return(true)}/>
+                    <Accept className={styles.AcceptButton} onClick={() => Return(true)} />
                     <Cancle
                         className={styles.AcceptButton}
                         onClick={() => {
                             navigate("/book/main");
-                        }}/>
+                        }} />
                 </Grid>
             </Grid>
 
-            <Footer/>
+            <Footer />
         </Box>
     );
 }

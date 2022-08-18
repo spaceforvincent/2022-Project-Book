@@ -15,9 +15,8 @@ export default function ReturnScreen(props) {
     const [Accept, setAccept] = useState(false);
     const [brNum, setBrnum] = useState(1);
     const [isbn, setIsbn] = useState();
-    
-    const result = brBooks.filter(brBook => brBook.return_check == 0);
-    const resultFinal = result.filter(brBook => brBook.isbn != isbn);
+
+    const result = brBooks.filter(brBook => brBook.return_check === 0);
 
     console.log(Accept);
 
@@ -27,8 +26,8 @@ export default function ReturnScreen(props) {
                 {
                     rbook.length === 0
                         ? <Return1 rbook={rbook} setRbook={setRbook} />
-                        : resultFinal.length !== 0
-                            ? <Return3 brBooks={resultFinal} />
+                        : result.length !== 0
+                            ? <Return3 brBooks={result} />
                             : <Return2
                                 brNum={brNum}
                                 setBrnum={setBrnum}

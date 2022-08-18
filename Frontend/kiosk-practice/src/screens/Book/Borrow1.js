@@ -1,8 +1,8 @@
-import React, {useState, useEffect, useCallback, Component} from 'react';
-import {useStyles} from "../../styles";
-import {Box, Grid} from "@material-ui/core";
+import React, { useState, useEffect, useCallback, Component } from 'react';
+import { useStyles } from "../../styles";
+import { Box, Grid } from "@material-ui/core";
 
-import {ReactComponent as MainIcon} from "../../images/Frame 1.svg";
+import { ReactComponent as MainIcon } from "../../images/Frame 1.svg";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -11,8 +11,6 @@ import axios from 'axios';
 
 const Borrow1 = (props) => {
     const styles = useStyles();
-
-    const [sockets, setSockets] = useState([]);
     const [books, setBooks] = useState([]);
 
     const socket = io.connect("http://localhost:9994");
@@ -35,37 +33,27 @@ const Borrow1 = (props) => {
             })
     }
 
-    const otherbook = () => {
-        setSockets('connect')
-        socket.emit("inputdata", 1);
-    }
-
-    const finishbook = () => {
-        setSockets('disconnect')
-    }
-
     useEffect(() => {
         socket.on('isbnoutput', (data) => {
             console.log(data)
             getBook(data)
         })
-        return() => {
+        return () => {
             socket.close()
         }
     }, [socket]);
 
     return (
         <Box className={styles.center}>
-            <Header/>
-            <MainIcon className={styles.largeLogo}/>
-            <button
+            <Header />
+            <Box style={{ padding: 140 }}></Box>
+            <MainIcon
+                className={styles.largeLogo}
                 onClick={() => {
                     getBook('9771228773007')
-                }}>
-                isbn을 추가해요!
-            </button>
+                }} />
             <Box className={[styles.TitleMessage, styles.padding]}>책을 올려주세요</Box>
-            <Footer/>
+            <Footer />
         </Box>
     );
 }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useStyles } from "../../styles";
 import { Box, CardActionArea, Fade } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,6 @@ export default function RecommendMain(props) {
   const styles = useStyles();
   const navigate = useNavigate();
 
-
   const socket = io.connect("http://localhost:9994");
   const [sockets, setSockets] = useState([]);
 
@@ -26,29 +25,12 @@ export default function RecommendMain(props) {
     props.setScreen(false)
   };
 
-  // const getFace = (facedata) => {
-  //   console.log(facedata)
-  //   axios
-  //       .get("http://i7d211.p.ssafy.io:8081/book/emotion", {
-  //           params: {
-  //               emotion: facedata
-  //           }
-  //       })
-  //       .then(function (response) {
-  //           props.setFaces(response.data)
-  //           console.log(props.faces)
-  //           return
-  //       })
-  //   }
-
-  // useEffect(() => {
-  //   socket.on('faceoutput', (data) => {
-  //       console.log(data)
-  //       getFace(data)
-  //   })
-  //   return() => {
-  //       socket.close()
-  //   }
+  // const getFace = (facedata) => {   console.log(facedata)   axios
+  // .get("http://i7d211.p.ssafy.io:8081/book/emotion", {           params: {
+  // emotion: facedata           }       })       .then(function (response) {
+  // props.setFaces(response.data)           console.log(props.faces) return
+  // })   } useEffect(() => {   socket.on('faceoutput', (data) => {
+  // console.log(data)       getFace(data)   })   return() => { socket.close()   }
   // }, [sockets]);
 
   return (
@@ -58,63 +40,110 @@ export default function RecommendMain(props) {
         <Box className={[styles.center]}>
           <Header />
           <Box>
-            <Typography
-              variant="h3"
-              component="h3"
-              style={{ marginTop: 400, fontSize: 50, color: "white" }}
-            >
-              추천 방식을 선택하세요
-            </Typography>
+            <Box
+              sx={{
+                padding: 130
+              }}></Box>
+            <Box
+              sx={{
+                fontFamily: "'Noto Sans'",
+                fontStyle: "normal",
+                fontWeight: "700",
+                fontSize: "5rem",
+                color: "#FFFFFF",
+                textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE"
+              }}>추천 방식을 선택하세요</Box>
+            <Box
+              sx={{
+                padding: 60
+              }}></Box>
             <Box
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-evenly",
                 height: 1030,
-                marginBottom: 400,
-              }}
-            >
+                marginBottom: 400
+              }}>
               <Button
-                onClick = {() => {
+                onClick={() => {
                   sendMsg(2)
                   props.setScreen(false)
                   props.setEmotion(true)
                 }}
                 variant="contained"
                 sx={{
-                  backgroundColor: "rgba(19, 33, 84, 0.6)",
-                  fontSize: 50,
+                  background: "linear-gradient(180deg, #353F6B 0%, #353F6B 0.01%, #223069 100%)",
+                  borderRadius: "60px",
                   padding: 10,
                   height: 750,
                   width: 500,
                   alignItems: "center",
                   justifyContent: "center",
-                }}
-              ><Box>
+                  boxShadow: "20px 60px 40px rgba(0, 0, 0, 0.25)"
+                }}>
+                <Box>
 
-                <img src={emotions} alt="emotions" style={{width:"90%", height:"100%"}}></img>
-                <Typography sx={{ fontSize: 50, marginTop:10 }}>감정인식 추천</Typography>
-              </Box>
+                  <img
+                    src={emotions}
+                    alt="emotions"
+                    style={{
+                      width: "90%",
+                      height: "100%"
+                    }}></img>
+                  <Box
+                    sx={{
+                      padding: 30
+                    }}></Box>
+                  <Box
+                    sx={{
+                      fontFamily: "'Noto Sans'",
+                      fontStyle: "normal",
+                      fontWeight: "700",
+                      fontSize: "50px",
+                      color: "#FFFFFF",
+                      textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE"
+                    }}>감정인식 추천</Box>
+                </Box>
               </Button>
               <Button
-              onClick = {() => {
-                navigate(`/book/recommend/age`);
-              }}
+                onClick={() => {
+                  navigate(`/book/recommend/age`);
+                }}
                 variant="contained"
                 size="large"
                 sx={{
-                  backgroundColor: "rgba(19, 33, 84, 0.6)",
+                  background: "linear-gradient(180deg, #353F6B 0%, #353F6B 0.01%, #223069 100%)",
+                  borderRadius: "60px",
                   padding: 10,
                   height: 750,
                   width: 500,
                   alignItems: "center",
                   justifyContent: "center",
-                }}
-              >
+                  boxShadow: "20px 60px 40px rgba(0, 0, 0, 0.25)"
+                }}>
                 <Box>
 
-                <img src={agegroup} alt="agegroup" style={{width:"90%", height:"100%"}}></img>
-                <Typography sx={{ fontSize: 50, marginTop:10 }}>연령대별 추천</Typography>
+                  <img
+                    src={agegroup}
+                    alt="agegroup"
+                    style={{
+                      width: "90%",
+                      height: "100%"
+                    }}></img>
+                  <Box
+                    sx={{
+                      padding: 30
+                    }}></Box>
+                  <Box
+                    sx={{
+                      fontFamily: "'Noto Sans'",
+                      fontStyle: "normal",
+                      fontWeight: "700",
+                      fontSize: "50px",
+                      color: "#FFFFFF",
+                      textShadow: "0 16px 40px rgba(0, 0, 0, 0.25), 0 16px 40px #6068BE"
+                    }}>연령대별 추천</Box>
                 </Box>
               </Button>
             </Box>
