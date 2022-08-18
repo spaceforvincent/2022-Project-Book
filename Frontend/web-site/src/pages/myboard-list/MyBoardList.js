@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {Link, useSearchParams} from "react-router-dom";
+import {Link, NavLink, useSearchParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {jwtUtils} from "../../utils/jwtUtils";
 import moment from "moment";
@@ -83,9 +83,11 @@ const MyBoardList = () => {
   return (
     <div className="boardList-wrapper">
       <div className="menu">
-        <Link to="/mypage">회원정보</Link>
+        <NavLink to="/myboard-list?boardType=notice&BT=공지">내 게시물</NavLink>
 
-        <Link to="/mybook">대여기록</Link>
+        <NavLink to="/mybook">대여기록</NavLink>
+
+        <NavLink to="/mypage">회원정보</NavLink>
       </div>
       
       <div className="menu">
