@@ -41,7 +41,7 @@ const Return3 = (props) => {
                 getBook(response.data)
             })
     }
-
+    console.log(props.brBooks)
     const getBook = (data) => {
         data.map((BOOK) => (console.log(BOOK.isbn), axios.get("/book/detail", {
             params: {
@@ -75,12 +75,14 @@ const Return3 = (props) => {
                         }}>
                         대여&nbsp;현황
                     </Box>
+
                     {
                         <Box className={[styles.Card]}>
                             <Box>{page}/{props.brBooks.length}</Box>
                             <img
                                 src={props
-                                    .brBooks[page - 1].book
+                                    .brBooks[page - 1]
+                                    .book
                                     .cover}
                                 style={{
                                     width: "600px",
@@ -92,10 +94,12 @@ const Return3 = (props) => {
                             {
                                 <Box>{
                                     props
-                                        .brBooks[page - 1].book
+                                        .brBooks[page - 1]
+                                        .book
                                         .title
                                 }</Box>
                             }
+
                             {
                                 <Box
                                     style={{
@@ -109,6 +113,7 @@ const Return3 = (props) => {
                             }
                         </Box>
                     }
+
                     <Box
                         className={[styles.TitleMessage]}
                         style={{
@@ -127,10 +132,8 @@ const Return3 = (props) => {
             </Box>
             <Box className={[styles.TitleMessage]}></Box>
 
-            <Timer sec="10" /> {/*  <meta http-equiv="refresh" content="10; url=http://localhost:3000/book/main"
- *  /> 
- */
-            }
+            <Timer sec="10" />
+            <meta http-equiv="refresh" content="10; url=http://localhost:3000/book/main" />
 
             <Footer />
         </Box>

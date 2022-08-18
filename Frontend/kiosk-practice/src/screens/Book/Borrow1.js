@@ -18,7 +18,7 @@ const Borrow1 = (props) => {
     const getBook = (bookdata) => {
         console.log(bookdata)
         axios
-            .get("http://i7d211.p.ssafy.io:8081/book/detail", {
+            .get("/book/detail", {
                 params: {
                     ISBN: bookdata
                 }

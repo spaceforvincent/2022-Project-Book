@@ -12,6 +12,8 @@ const Login = (props) => {
     const styles = useStyles();
     const [page, setPage] = useState(1);
     const [token, setToken] = useState("");
+    const [count, setCount] = useState(0);
+
     const nextPage = () => {
         console.log(page)
         if (page >= props.borrowList.length) {
@@ -28,14 +30,13 @@ const Login = (props) => {
         };
         try {
             const { data } = await axios.post(
-                "http://i7d211.p.ssafy.io:8081/user/login",
+                "/user/login",
                 { email, password }
             );
 
             if (data.token) {
                 console.log(data.token);
                 setToken(data.token)
-
 
             } else {
                 alert("이메일 혹은 비밀번호가 틀렸습니다.")
@@ -54,12 +55,20 @@ const Login = (props) => {
         }
         props
             .borrowList
-            .map((BOOK) => (console.log(BOOK.isbn), axios.put("/book/borrow", {}, {
+            .map((BOOK) => (console.log(BOOK.isbn), setCount(count + 1), axios.put("/book/borrow", {}, {
                 params: {
                     ISBN: BOOK.isbn
                 },
                 headers: headers // headers에 headers 객체 전달
             })))
+
+    };
+
+    const BRcheck = (token) => {
+        console.log("HELP ME")
+        const headers = {
+            'X-AUTH-TOKEN': token
+        }
         axios
             .get("/user/profileUsage", {
                 headers: headers // headers에 headers 객체 전달
@@ -72,10 +81,15 @@ const Login = (props) => {
 
     useEffect(() => {
         if (token != "") {
-
             Borrow(token);
         }
     }, [token]);
+
+    useEffect(() => {
+        if (count == props.borrowList.length) {
+            BRcheck(token);
+        }
+    }, [count]);
 
     return (
         <Box className={styles.center}>
@@ -134,11 +148,12 @@ const Login = (props) => {
                 </Box>
 
             </Box>
-            <Box style={{ padding: 130 }}></Box>
-            <Plus
-                onClick={() => {
-                    submit()
-                }} />
+            <Box style={{
+                padding: 130
+            }}></Box>
+            <Plus onClick={() => {
+                submit()
+            }} />
             <Footer />
         </Box>
     );

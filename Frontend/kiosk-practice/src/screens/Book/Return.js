@@ -5,6 +5,7 @@ import { Box, CardActionArea, Fade, Grid } from "@material-ui/core";
 import Return1 from "./Return1";
 import Return2 from "./Return2";
 import Return3 from "./Return3";
+import Return4 from "./Return4";
 
 export default function ReturnScreen(props) {
     const styles = useStyles();
@@ -18,7 +19,7 @@ export default function ReturnScreen(props) {
 
     const result = brBooks.filter(brBook => brBook.return_check === 0);
 
-    console.log(Accept);
+    console.log(brBooks);
 
     return (
         <Fade in={true}>
@@ -26,9 +27,8 @@ export default function ReturnScreen(props) {
                 {
                     rbook.length === 0
                         ? <Return1 rbook={rbook} setRbook={setRbook} />
-                        : result.length !== 0
-                            ? <Return3 brBooks={result} />
-                            : <Return2
+                        : brBooks.length === 0
+                            ? <Return2
                                 brNum={brNum}
                                 setBrnum={setBrnum}
                                 rbook={rbook}
@@ -36,6 +36,10 @@ export default function ReturnScreen(props) {
                                 setAccept={setAccept}
                                 setBrbooks={setBrbooks}
                                 brBooks={brBooks} />
+                            : brBooks[brBooks.length - 1].book.title === result[result.length - 1].book.title
+                                ? <Return4 brBooks={result} />
+                                : <Return3 brBooks={result} />
+
                 }
             </CardActionArea>
         </Fade>
