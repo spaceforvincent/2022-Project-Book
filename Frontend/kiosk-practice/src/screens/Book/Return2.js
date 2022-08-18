@@ -3,10 +3,9 @@ import React, { Component, useState, useEffect } from "react";
 import { useStyles } from "../../styles";
 import { Box, Grid } from "@material-ui/core";
 import Footer from "../../components/Footer";
-
+import ReturnText from '../../images/Return.png'
+import CancelText from '../../images/Cancle.png'
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as Accept } from "../../images/accept+.svg";
-import { ReactComponent as Cancle } from "../../images/cancle+.svg";
 
 import { ReactComponent as Plus } from "../../images/plusBtn.svg";
 import io from "socket.io-client";
@@ -180,12 +179,18 @@ const Return2 = (props) => {
 
             <Grid container="container">
                 <Grid item="item" sm={12} className={styles.footer}>
-                    <Accept className={styles.AcceptButton} onClick={() => Return(true)} />
-                    <Cancle
-                        className={styles.AcceptButton}
+                    <img
+                        alt="dummy"
+                        src={ReturnText}
+                        onClick={() => Return(true)}
+                        className={styles.AcceptButton} />
+                    <img
+                        alt="dummy"
+                        src={CancelText}
                         onClick={() => {
                             navigate("/book/main");
-                        }} />
+                        }}
+                        className={styles.AcceptButton} />
                 </Grid>
             </Grid>
 

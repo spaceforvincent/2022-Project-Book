@@ -1,15 +1,8 @@
 import React from "react";
-import {useStyles} from "../styles";
-import {useNavigate} from "react-router-dom";
-import {ReactComponent as Accept} from "../images/accept+.svg";
-import {ReactComponent as Cancle} from "../images/cancle+.svg";
+import { useStyles } from "../styles";
+import { useNavigate } from "react-router-dom";
 
-import {Box, Grid} from "@material-ui/core";
-
-// function move(type) {     if (type === 1) {         socket.emit("send opper",
-// "1");     } else if (type === 2) {         socket.emit("send opper", "2"); }
-// else if (type === 3) {         socket.emit("send opper", "3");     } else {
-// socket.emit("send opper", "4");     } }
+import { Box, Grid } from "@material-ui/core";
 
 const AcceptBtn = (props) => {
     const styles = useStyles();
@@ -18,12 +11,18 @@ const AcceptBtn = (props) => {
         <Box >
             <Grid container="container">
                 <Grid item="item" sm={12} className={styles.footer}>
-                    <Accept className={styles.AcceptButton} onClick={() => props.setData(true)}/>
-                    <Cancle
-                        className={styles.AcceptButton}
+                    <img
+                        alt="dummy"
+                        src={"src\images\Return.png"}
+                        onClick={() => props.setData(true)}
+                        className={styles.AcceptButton} />
+                    <img
+                        alt="dummy"
+                        src={"../../images/Cancle.png"}
                         onClick={() => {
                             navigate("/book/main");
-                        }}/>
+                        }}
+                        className={styles.AcceptButton} />
                 </Grid>
             </Grid>
         </Box>
