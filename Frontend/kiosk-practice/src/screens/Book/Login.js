@@ -3,6 +3,7 @@ import { useStyles } from "../../styles";
 import { Box, CardActionArea, Fade, Grid } from "@material-ui/core";
 
 import logo from "../../images/homeBtn.svg";
+import QrImg from "../../images/QrImg.jpg";
 
 import Timer from './Timer';
 import { ReactComponent as Home } from "../../images/homeBtn.svg";
@@ -22,12 +23,12 @@ export default function Login() {
                     </Box>
                     <Grid container="container">
                         <Grid item="item" sm={12} className={styles.footer}>
-                            <img className="QrImg" alt="Qr코드" src={logo} />
+                            <img style={{padding:220}} alt="Qr코드" src={QrImg} />
                         </Grid>
                     </Grid>
                     <Timer sec="10" />
                     <meta http-equiv="refresh" content="10; url=http://localhost:3000/book/main" />
-                    <Home className={styles.HomeButton} onClick={() => navigate("/book/main")} />
+                    <Home style={{padding:50}} className={styles.HomeButton} onClick={() => navigate("/book/main")} />
 
                 </Box>
             </CardActionArea>

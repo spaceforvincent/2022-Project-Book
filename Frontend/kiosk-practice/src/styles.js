@@ -156,8 +156,8 @@ export const useStyles = makeStyles((theme) => ({
     margin: 110,
   },
   detailUpperButton: {
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: 10,
+    marginRight: 10,
     marginBottom: 100,
     marginTop: -100,
   },

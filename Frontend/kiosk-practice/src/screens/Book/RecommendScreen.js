@@ -14,7 +14,7 @@ import * as faceApi from "face-api.js";
 
 export default function RecommendScreen(props) {
 
-
+const styles = useStyles();
 const MODEL_URL = process.env.PUBLIC_URL + '/models';
 
 const expressionMap = {
@@ -108,8 +108,10 @@ const expressionMap = {
   };
 
     return (
-      <div className="App">
-        <h1>Face Recognition Webcam</h1>
+      <div style={{ backgroundColor: "rgba(15, 29, 160, 0.65)" }}>
+<   Box style={{ paddingTop: 500 }} className={styles.TitleMessage}>
+        카메라를 바라봐주세요.
+      </Box>
         <div>
           {expressions.expressions}
         </div>
@@ -120,6 +122,7 @@ const expressionMap = {
             muted
             onPlay={onPlay}
             style={{
+              marginTop: -600,
               position: "absolute",
               width: "100%",
               height: "100vh",

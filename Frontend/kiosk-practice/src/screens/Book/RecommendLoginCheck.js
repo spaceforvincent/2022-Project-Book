@@ -22,7 +22,7 @@ export default function RecommendLoginCheck(props) {
   const navigate = useNavigate();
   const [sockets, setSockets] = useState([]);
   const socket = io.connect("http://localhost:9994");
-  const [info, setInfo] = useState();
+  const [info, setInfo] = useState("");
   const RecommendWithLogin = async (token) => {
     console.log("HELP ME");
     const headers = {
@@ -47,16 +47,17 @@ export default function RecommendLoginCheck(props) {
     props.setBookList(json);
   };
   useEffect(() => {
+    if ( info === "" ) {
     socket.emit("inputdata", 4);
     socket.on("isbnoutput", (data) => {
       console.log(data);
       setInfo(data);
-      submit();
-    });
+    })} else {
+      submit();}
     return () => {
       socket.close();
-    };
-  }, [sockets]);
+    };}
+  , [info]);
 
   const submit = async () => {
     // const { email, password } = {

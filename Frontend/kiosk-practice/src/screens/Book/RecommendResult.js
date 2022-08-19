@@ -22,7 +22,7 @@ export default function RecommendResult(props) {
           >
             <Header />
             <Box style={{ marginTop: 80 }} className={styles.TitleMessage}>
-              당신의 감정은 슬픔입니다.
+              슬픔은 나누면 반이 되잖아요
             </Box>
             <Box className={styles.outerWrapperSearch}>
               <Box style={{ marginTop: 100 }} className={styles.wrapperSearch}>
@@ -69,12 +69,12 @@ export default function RecommendResult(props) {
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
-              backgroundColor: "#AC2B2B",
+              backgroundColor: "#E16060",
             }}
           >
             <Header />
             <Box style={{ marginTop: 80 }} className={styles.TitleMessage}>
-              당신의 감정은 분노입니다.
+              만병의 근원, 화
             </Box>
             <Box className={styles.outerWrapperSearch}>
               <Box style={{ marginTop: 100 }} className={styles.wrapperSearch}>
@@ -121,12 +121,12 @@ export default function RecommendResult(props) {
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
-              backgroundColor: "#AAAC2B",
+              backgroundColor: "#313E7E",
             }}
           >
             <Header />
             <Box style={{ marginTop: 80 }} className={styles.TitleMessage}>
-              당신의 감정은 역겨움입니다.
+              무엇이 힘드셨나요?
             </Box>
             <Box className={styles.outerWrapperSearch}>
               <Box style={{ marginTop: 100 }} className={styles.wrapperSearch}>
@@ -173,12 +173,12 @@ export default function RecommendResult(props) {
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
-              backgroundColor: "#AAAC2B",
+              backgroundColor: "#E782E9",
             }}
           >
             <Header />
             <Box style={{ marginTop: 80 }} className={styles.TitleMessage}>
-              당신의 감정은 행복함입니다.
+              행복한 순간이야, Happy Day!
             </Box>
             <Box className={styles.outerWrapperSearch}>
               <Box style={{ marginTop: 100 }} className={styles.wrapperSearch}>
@@ -225,12 +225,12 @@ export default function RecommendResult(props) {
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
-              backgroundColor: "#AAAC2B",
+              backgroundColor: "#F5FA1D",
             }}
           >
             <Header />
             <Box style={{ marginTop: 80 }} className={styles.TitleMessage}>
-              당신의 감정은 두려움입니다.
+              무서워말아요
             </Box>
             <Box className={styles.outerWrapperSearch}>
               <Box style={{ marginTop: 100 }} className={styles.wrapperSearch}>
@@ -277,12 +277,12 @@ export default function RecommendResult(props) {
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
-              backgroundColor: "#AAAC2B",
+              backgroundColor: "#8B57CE",
             }}
           >
             <Header />
             <Box style={{ marginTop: 80 }} className={styles.TitleMessage}>
-              당신의 감정은 놀라움입니다.
+              당...당황하셨어요?
             </Box>
             <Box className={styles.outerWrapperSearch}>
               <Box style={{ marginTop: 100 }} className={styles.wrapperSearch}>
@@ -329,12 +329,12 @@ export default function RecommendResult(props) {
               justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
-              backgroundColor: "#AAAC2B",
+              backgroundColor: "#A6823D",
             }}
           >
             <Header />
             <Box style={{ marginTop: 80 }} className={styles.TitleMessage}>
-              당신의 감정을 모르겠습니다.
+              미묘하군요..
             </Box>
             <Box className={styles.outerWrapperSearch}>
               <Box style={{ marginTop: 100 }} className={styles.wrapperSearch}>

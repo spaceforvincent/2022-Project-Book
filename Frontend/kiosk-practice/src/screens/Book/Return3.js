@@ -113,7 +113,7 @@ const Return3 = (props) => {
             </Box>
             <Box onClick={() => {
                 SeeME()
-            }}>살려주세요 살려주세요 살려주세요</Box>
+            }}></Box>
             <Box>
                 {Dbooks.map((book) => (<div>{book.title}</div>))}
             </Box>
