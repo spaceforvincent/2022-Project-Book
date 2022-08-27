@@ -37,7 +37,7 @@
 - 데이터 유사도 기반 비슷한 장르의 연관 도서 추천
 
 ### 도서 추천
-![recommend](./assets/recommend.png)
+![recommend](./assets/recommend.PNG)
 - 감정추천과 연령대별 추천으로 나뉘어짐
 
 ![emotion1](./assets/emotion1.png) ![emotion2](./assets/emotion2.png)
@@ -58,6 +58,9 @@
 
 ![web3](./assets/web3.png)
 - 웹 페이지 도서 상세. 이 곳에서 리뷰 작성 가능. (키오스크에서 리뷰 작성은 불가)
+
+## ERD
+![erd](./assets/erd.png)
 
 ## 주요 기술
 
