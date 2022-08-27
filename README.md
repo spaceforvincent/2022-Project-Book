@@ -8,7 +8,7 @@
 
 ## 기능 소개
 ### 메인
-![메인](./assets/main)
+![메인](./assets/main.png)
 - 키오스크 메인 페이지
 
 - 회원가입 클릭 시 웹 페이지로 접근 가능한 QR코드가 제공됨
@@ -16,49 +16,49 @@
 - 대여/반납/추천/검색 페이지로 접근 가능
 
 ### 회원가입
-![QR](./assets/qr)
+![QR](./assets/qr.png)
 - 회원가입 웹 페이지 접근을 위한 QR 코드
 
-![Join](./assets/join) 
+![Join](./assets/join.png) 
 - 회원 가입 웹 페이지
 
 ### 도서 대여 & 반납
-![borrow](./assets/borrow) ![return](./assets/return)
-![borrow1](./assets/borrow1) ![borrow2](./assets/borrow2) ![borrow3](./assets/borrow3)
-![return1](./assets/return1) ![return2](./assets/return2)
+![borrow](./assets/borrow.png) ![return](./assets/return.png)
+![borrow1](./assets/borrow1.png) ![borrow2](./assets/borrow2.png) ![borrow3](./assets/borrow3.png)
+![return1](./assets/return1.png) ![return2](./assets/return2.png)
 - NFC 태그를 이용해 대여될 책 & 회원정보 인식
 - 읽어들인 정보를 socket.io 통신을 이용해 서버로 전송
 
 ### 도서 검색
-![search](./assets/search) ![searchresult](./assets/searchresult)
+![search](./assets/search.png) ![searchresult](./assets/searchresult.png)
 - 가상 키보드를 통한 화면 터치 검색 가능
 - 검색어 자동완성 기능 제공
 
 ### 도서 상세
-![detail1](./assets/detail1) ![detail2](./assets/detail2)
+![detail1](./assets/detail1.png) ![detail2](./assets/detail2.png)
 - 다른 사용자들의 리뷰, 책의 위치, 대여 예약 기능 제공
 - 데이터 유사도 기반 비슷한 장르의 연관 도서 추천
 
 ### 도서 추천
-![recommend](./assets/recommend)
+![recommend](./assets/recommend.png)
 - 감정추천과 연령대별 추천으로 나뉘어짐
 
-![emotion1](./assets/emotion1)
+![emotion1](./assets/emotion1.png)
 - 감정 추천의 경우 카메라로 먼저 사용자의 표정을 인식
 - 라즈베리파이를 활용한 face api를 통해 인식한 표정을 분석해 감정을 도출
-![emotion2](./assets/emotion2)
+![emotion2](./assets/emotion2.png)
 - 북극성의 회원인 경우 회원의 대여 기록과 리뷰 기록을 활용한 데이터 유사도 기반으로 보다 적합한 추천을 받을 수 있음
-![emotion3](./assets/emotion3)
+![emotion3](./assets/emotion3.png)
 
-![age](./assets/age)
+![age](./assets/age.png)
 - 연령대별 추천의 경우 유아부터 50대에 이르는 각 연령대의 인기 도서를 모아 보여줌
 
 ### 웹 페이지
-![web1](./assets/web1)
+![web1](./assets/web1.png)
 - 웹 페이지 메인
-![web2](./assets/web2)
+![web2](./assets/web2.png)
 - 웹 페이지 도서 검색
-![web3](./assets/web3)
+![web3](./assets/web3.png)
 - 웹 페이지 도서 상세. 이 곳에서 리뷰 작성 가능. (키오스크에서 리뷰 작성은 불가)
 
 ## 주요 기술
